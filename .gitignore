@@ -7,3 +7,4 @@ dense_index/
 bm25_index/
 lora_outputs/
 .env
+models/
