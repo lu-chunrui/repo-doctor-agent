@@ -1,0 +1,88 @@
+{
+  "source_file": "D:\\桌面\\repo-doctor-agent\\routing_data\\reviewed_samples.jsonl",
+  "random_seed": 42,
+  "split_method": "stratified_group_split",
+  "group_field": "group_id",
+  "splits": {
+    "train": {
+      "sample_count": 126,
+      "group_count": 21,
+      "group_ids": [
+        "add_top_p_sampling",
+        "analyze_generate_warnings",
+        "analyze_tokenizer_structure",
+        "attention_mask_location",
+        "checkpoint_file_not_found",
+        "cuda_out_of_memory",
+        "docker_generate_python310",
+        "docker_python_311",
+        "docker_train_entrypoint",
+        "explain_kv_cache",
+        "explain_reranking_pipeline",
+        "explain_rrf_without_tools",
+        "generate_cache_location",
+        "load_feedforward_type",
+        "rmsnorm_location",
+        "static_analyze_config",
+        "tensor_shape_mismatch",
+        "test_bpe_edge_cases",
+        "test_rmsnorm",
+        "test_train_without_modification",
+        "tokenizer_error_message"
+      ],
+      "label_distribution": {
+        "analyze_code": 18,
+        "analyze_log": 18,
+        "answer_directly": 18,
+        "complete_code": 18,
+        "generate_dockerfile": 18,
+        "generate_tests": 18,
+        "search_codebase": 18
+      }
+    },
+    "validation": {
+      "sample_count": 42,
+      "group_count": 7,
+      "group_ids": [
+        "analyze_model_structure",
+        "device_selection_priority",
+        "docker_without_source_changes",
+        "explain_lora_low_rank",
+        "kv_cache_location",
+        "missing_state_dict_keys",
+        "test_generate_cache"
+      ],
+      "label_distribution": {
+        "analyze_code": 6,
+        "analyze_log": 6,
+        "answer_directly": 6,
+        "complete_code": 6,
+        "generate_dockerfile": 6,
+        "generate_tests": 6,
+        "search_codebase": 6
+      }
+    },
+    "test": {
+      "sample_count": 42,
+      "group_count": 7,
+      "group_ids": [
+        "analyze_train_complexity",
+        "checkpoint_loading_location",
+        "complete_validation_loop",
+        "explain_retrieval_metrics",
+        "generate_default_dockerfile",
+        "state_dict_architecture_mismatch",
+        "test_model_file"
+      ],
+      "label_distribution": {
+        "analyze_code": 6,
+        "analyze_log": 6,
+        "answer_directly": 6,
+        "complete_code": 6,
+        "generate_dockerfile": 6,
+        "generate_tests": 6,
+        "search_codebase": 6
+      }
+    }
+  }
+}

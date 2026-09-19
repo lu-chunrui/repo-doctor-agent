@@ -1,0 +1,63 @@
+{
+  "created_at": "2026-09-14T14:30:13.755319+00:00",
+  "dataset": "/root/autodl-tmp/repo-doctor-agent/lora_data/validation.jsonl",
+  "model_path": "/root/autodl-tmp/models/Qwen2.5-1.5B-Instruct",
+  "adapter_path": "/root/autodl-tmp/repo-doctor-agent/lora_outputs/qwen2.5-1.5b-router/checkpoint-epoch-2",
+  "dtype": "float16",
+  "model_load_seconds": 1.267,
+  "hardware": {
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4090 D"
+  },
+  "generation": {
+    "average_latency_seconds": 1.0911,
+    "total_generation_seconds": 45.8255,
+    "total_generated_tokens": 1075,
+    "tokens_per_second": 23.46
+  },
+  "metrics": {
+    "total_samples": 42,
+    "successful_requests": 42,
+    "api_error_count": 0,
+    "json_valid_count": 42,
+    "schema_valid_count": 42,
+    "decision_correct_count": 42,
+    "gold_tool_call_count": 36,
+    "tool_name_correct_count": 34,
+    "argument_keys_covered_count": 33,
+    "arguments_exact_match_count": 14,
+    "hallucinated_tool_count": 0,
+    "api_success_rate": 1.0,
+    "json_valid_rate": 1.0,
+    "schema_valid_rate": 1.0,
+    "decision_accuracy": 1.0,
+    "tool_name_accuracy": 0.9444444444444444,
+    "argument_key_coverage_rate": 0.9166666666666666,
+    "arguments_exact_match_rate": 0.3888888888888889,
+    "tool_hallucination_rate": 0.0,
+    "confusion_matrix": {
+      "analyze_code": {
+        "analyze_code": 4,
+        "search_codebase": 2
+      },
+      "analyze_log": {
+        "analyze_log": 6
+      },
+      "answer_directly": {
+        "answer_directly": 6
+      },
+      "complete_code": {
+        "complete_code": 6
+      },
+      "generate_dockerfile": {
+        "generate_dockerfile": 6
+      },
+      "generate_tests": {
+        "generate_tests": 6
+      },
+      "search_codebase": {
+        "search_codebase": 6
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-09-14T12:34:37.249337+00:00",
+  "format": "messages",
+  "prompt_sha256": "3595dd14308fdc101dff1d7cf7898934711a05ade6b6324bd68bc822e12eeb3c",
+  "splits": {
+    "train": {
+      "source_file": "D:\\桌面\\repo-doctor-agent\\routing_data\\train.jsonl",
+      "output_file": "D:\\桌面\\repo-doctor-agent\\lora_data\\train.jsonl",
+      "sample_count": 126
+    },
+    "validation": {
+      "source_file": "D:\\桌面\\repo-doctor-agent\\routing_data\\validation.jsonl",
+      "output_file": "D:\\桌面\\repo-doctor-agent\\lora_data\\validation.jsonl",
+      "sample_count": 42
+    },
+    "test": {
+      "source_file": "D:\\桌面\\repo-doctor-agent\\routing_data\\test.jsonl",
+      "output_file": "D:\\桌面\\repo-doctor-agent\\lora_data\\test.jsonl",
+      "sample_count": 42
+    }
+  },
+  "training_policy": {
+    "train": "用于LoRA参数训练",
+    "validation": "用于训练过程评估和超参数选择",
+    "test": "只用于最终评测，禁止参与训练和调参"
+  }
+}

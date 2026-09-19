@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-09-14T11:27:37.521396+00:00",
+  "dataset": "routing_data\\validation.jsonl",
+  "model": "deepseek-chat",
+  "metrics": {
+    "total_samples": 42,
+    "successful_requests": 42,
+    "api_error_count": 0,
+    "json_valid_count": 42,
+    "schema_valid_count": 37,
+    "decision_correct_count": 41,
+    "gold_tool_call_count": 36,
+    "tool_name_correct_count": 35,
+    "argument_keys_covered_count": 30,
+    "arguments_exact_match_count": 18,
+    "hallucinated_tool_count": 0,
+    "api_success_rate": 1.0,
+    "json_valid_rate": 1.0,
+    "schema_valid_rate": 0.8809523809523809,
+    "decision_accuracy": 0.9761904761904762,
+    "tool_name_accuracy": 0.9722222222222222,
+    "argument_key_coverage_rate": 0.8333333333333334,
+    "arguments_exact_match_rate": 0.5,
+    "tool_hallucination_rate": 0.0,
+    "confusion_matrix": {
+      "analyze_code": {
+        "analyze_code": 6
+      },
+      "analyze_log": {
+        "analyze_log": 5,
+        "answer_directly": 1
+      },
+      "answer_directly": {
+        "answer_directly": 6
+      },
+      "complete_code": {
+        "complete_code": 6
+      },
+      "generate_dockerfile": {
+        "generate_dockerfile": 6
+      },
+      "generate_tests": {
+        "generate_tests": 6
+      },
+      "search_codebase": {
+        "search_codebase": 6
+      }
+    }
+  }
+}
