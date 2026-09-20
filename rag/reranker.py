@@ -18,19 +18,7 @@ from rag.query_rewriter import (
     RewrittenHybridRetriever,
     print_rewrite_result,
 )
-
-
-DEFAULT_RERANKER_MODEL = (
-    "BAAI/bge-reranker-base"
-)
-
-DEFAULT_RECALL_K = 20
-DEFAULT_FINAL_K = 5
-DEFAULT_BATCH_SIZE = 4
-DEFAULT_MAX_LENGTH = 512
-MAX_RERANK_CONTENT_CHARS = 8000
-
-
+from config import settings 
 def environment_flag(
     name,
     default=True,
@@ -63,11 +51,11 @@ def format_chunk_for_reranker(
 
     if (
         len(content)
-        > MAX_RERANK_CONTENT_CHARS
+        > settings.reranker_max_content_chars
     ):
         content = (
             content[
-                :MAX_RERANK_CONTENT_CHARS
+                :settings.reranker_max_content_chars
             ]
             + "\n...代码块已截断..."
         )
@@ -135,31 +123,46 @@ def convert_predictions_to_scores(
 
 class CodeReranker:
     def __init__(
-        self,
-        model_name=DEFAULT_RERANKER_MODEL,
-        enabled=True,
-        batch_size=DEFAULT_BATCH_SIZE,
-        max_length=DEFAULT_MAX_LENGTH,
-        device=None,
-        allow_fallback=True,
-    ):
-        if batch_size < 1:
+    self,
+    model_name=None,
+    enabled=None,
+    batch_size=None,
+    max_length=None,
+    allow_fallback=None,
+):
+        self.model_name = (
+        model_name or settings.reranker_model_name
+    )
+        self.enabled = (
+        settings.reranker_enabled
+        if enabled is None
+        else enabled
+    )
+        self.batch_size = (
+        settings.reranker_batch_size
+        if batch_size is None
+        else batch_size
+)
+        self.max_length = (
+        settings.reranker_max_length
+        if max_length is None
+        else max_length
+)
+        self.allow_fallback = (
+        settings.reranker_allow_fallback
+        if allow_fallback is None
+        else allow_fallback
+)
+
+        if self.batch_size < 1:
             raise ValueError(
                 "batch_size 必须大于等于 1"
             )
 
-        if max_length < 32:
+        if self.max_length < 32:
             raise ValueError(
                 "max_length 不能小于 32"
             )
-
-        self.model_name = model_name
-        self.enabled = enabled
-        self.batch_size = batch_size
-        self.max_length = max_length
-        self.device = device
-        self.allow_fallback = allow_fallback
-
         self.model = None
         self.load_error = None
 
@@ -174,7 +177,6 @@ class CodeReranker:
             self.model = CrossEncoder(
                 self.model_name,
                 max_length=self.max_length,
-                device=self.device,
             )
         except Exception as error:
             self.load_error = (
@@ -430,8 +432,8 @@ class RerankedCodeSearch:
     def search(
         self,
         query,
-        final_k=DEFAULT_FINAL_K,
-        recall_k=DEFAULT_RECALL_K,
+        final_k=settings.reranker_final_k,
+        recall_k=settings.reranker_recall_k,
         retrieval_candidate_k=30,
     ):
         if final_k < 1:
@@ -714,7 +716,7 @@ if __name__ == "__main__":
     )
 
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
 
     dense_index_directory = (
@@ -739,7 +741,7 @@ if __name__ == "__main__":
     reranker_model_name = (
         os.getenv(
             "RERANKER_MODEL_NAME",
-            DEFAULT_RERANKER_MODEL,
+            settings.reranker_model_name,
         )
     )
 

@@ -16,6 +16,7 @@ from agent.citations import (
     CitationValidator,
     EvidenceTrackingToolbox,
 )
+from config import settings
 
 
 MAX_SEARCH_QUERIES = 5
@@ -1092,7 +1093,7 @@ if __name__ == "__main__":
     )
 
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+       settings.resolved_default_repository()
     )
 
     REBUILD_INDEX = False

@@ -17,14 +17,12 @@ from agent.core import (
     ToolCallingLLMClient,
     print_tool_trace,
 )
-
+from config import settings
 
 CITATION_PATTERN = re.compile(
     r"\[([^\[\]\n]+):(\d+)-(\d+)\]"
 )
 
-MAX_EVIDENCE_CONTENT_CHARS = 2500
-MAX_REPAIR_PROMPT_CHARS = 30000
 
 
 CITATION_REPAIR_SYSTEM_PROMPT = """
@@ -181,11 +179,11 @@ class EvidenceTrackingToolbox:
 
             if (
                 len(content)
-                > MAX_EVIDENCE_CONTENT_CHARS
+                > settings.max_tool_content_chars
             ):
                 content = (
                     content[
-                        :MAX_EVIDENCE_CONTENT_CHARS
+                        :settings.max_tool_content_chars
                     ]
                     + "\n...证据内容已截断..."
                 )
@@ -674,11 +672,11 @@ class CitationAwareRepoDoctor:
 
         if (
             len(evidence_text)
-            > MAX_REPAIR_PROMPT_CHARS
+            > settings.max_tool_result_chars
         ):
             evidence_text = (
                 evidence_text[
-                    :MAX_REPAIR_PROMPT_CHARS
+                    :settings.max_tool_result_chars
                 ]
                 + "\n...证据列表已截断..."
             )
@@ -941,7 +939,7 @@ if __name__ == "__main__":
     )
 
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
 
     REBUILD_INDEX = False
@@ -981,7 +979,7 @@ if __name__ == "__main__":
             llm_client=llm_client,
             toolbox=tracking_toolbox,
             tool_schemas=TOOL_SCHEMAS,
-            max_tool_steps=6,
+            max_tool_steps=settings.max_tool_steps,
         )
 
         citation_validator = (

@@ -5,8 +5,8 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from repository.scanner import(validate_repository)
 from repository.splitter import(split_repository)
+from config import settings
 
-MODEL_NAME = "intfloat/multilingual-e5-small"
 
 INDEXABLE_SUFFIXES = {
     ".py",
@@ -55,14 +55,15 @@ def format_chunk_for_embedding(chunk):
         f"Code:\n{chunk['content']}"
     )
 class DenseCodeRetriever:
-    def __init__(self, model_name=MODEL_NAME):
-        self.model_name = model_name
-
+    def __init__(self, model_name=None):
+        self.model_name = (
+            model_name or settings.embedding_model_name
+        )
         print("正在加载 Embedding 模型：")
-        print(model_name)
+        print(self.model_name)
 
         self.model = SentenceTransformer(
-            model_name
+            self.model_name
         )
         self.chunks = []
         self.embeddings = None
@@ -75,7 +76,13 @@ class DenseCodeRetriever:
            raise ValueError("仓库中没有可索引的代码块")
         passages = [format_chunk_for_embedding(chunk) for chunk in self.chunks]
         print(f"准备编码 {len(passages)} 个代码块")
-        self.embeddings = self.model.encode(passages,batch_size=16,show_progress_bar=True,convert_to_numpy=True,normalize_embeddings=True)
+        self.embeddings = self.model.encode(
+            passages,
+            batch_size=settings.embedding_batch_size,
+            show_progress_bar=True,
+            convert_to_numpy=True,
+            normalize_embeddings=True,
+        )
         print("索引建立完成")
         print(f"向量矩阵形状：{self.embeddings.shape}")
         return { "repository": str(repo_path),
@@ -180,7 +187,7 @@ def print_search_results(results):
 if __name__ == "__main__":
     project_dir = Path(__file__).resolve().parent.parent
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
 
     index_directory = Path(

@@ -2,6 +2,7 @@ import json
 import re
 from datetime import datetime
 from pathlib import Path
+from config import settings
 
 from tools.registry import (
     TOOL_SCHEMAS,
@@ -22,12 +23,6 @@ from agent.citations import (
     print_citation_report,
     print_evidence,
 )
-
-
-MAX_MEMORY_TURNS = 6
-MAX_MEMORY_CHARS = 18000
-MAX_TOOL_STEPS = 6
-
 
 MEMORY_AGENT_SYSTEM_PROMPT = (
     AGENT_SYSTEM_PROMPT
@@ -56,8 +51,8 @@ class ConversationMemory:
 
     def __init__(
         self,
-        max_turns=MAX_MEMORY_TURNS,
-        max_chars=MAX_MEMORY_CHARS,
+        max_turns=settings.memory_max_turns,
+        max_chars=settings.memory_max_chars,
     ):
         if max_turns < 1:
             raise ValueError(
@@ -187,13 +182,13 @@ class MemoryRepoDoctorAgent(
         toolbox,
         tool_schemas,
         memory,
-        max_tool_steps=MAX_TOOL_STEPS,
+        max_tool_steps=settings.max_tool_steps,
     ):
         super().__init__(
             llm_client=llm_client,
             toolbox=toolbox,
             tool_schemas=tool_schemas,
-            max_tool_steps=max_tool_steps,
+            max_tool_steps=settings.max_tool_steps,
         )
 
         self.memory = memory
@@ -828,7 +823,7 @@ if __name__ == "__main__":
     )
 
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
 
     output_directory = (

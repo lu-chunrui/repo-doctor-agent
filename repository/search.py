@@ -2,6 +2,7 @@ from pathlib import Path
 from repository.scanner import list_files,validate_repository
 
 MAX_FILE_SIZE=10*1024*1024
+from config import settings
 
 def resolve_safe_path(repo_path,relative_path):
     repo_path=validate_repository(repo_path)
@@ -100,7 +101,7 @@ def print_search_results(results):
         print(f"命中行：{result['line']}")
         print(result["content"])
 if __name__ == "__main__":
-    repository_path = Path(r"D:\桌面\mini-transformer")
+    repository_path = Path(settings.resolved_default_repository())
     print("读取文件示例：")
     file_result = read_file(
         repository_path,

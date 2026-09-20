@@ -1,4 +1,5 @@
 from pathlib import Path
+from config import settings
 
 ignored_dirs={
     ".git",
@@ -112,7 +113,7 @@ def print_repository_analysis(result):
         print(file_path)
 if __name__ == "__main__":
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
     repository_result = analyze_repository(
         repository_path

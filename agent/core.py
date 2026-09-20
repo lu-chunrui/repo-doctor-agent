@@ -2,6 +2,7 @@ import json
 import os
 import time
 from pathlib import Path
+from config import settings
 
 import requests
 
@@ -10,9 +11,6 @@ from tools.registry import (
     create_agent_toolbox,
 )
 
-
-MAX_TOOL_STEPS = 6
-MAX_TOOL_RESULT_CHARS = 30000
 
 RETRY_STATUS_CODES = {
     408,
@@ -116,19 +114,12 @@ class ToolCallingLLMClient:
     @classmethod
     def from_environment(cls):
         return cls(
-            api_key=os.getenv(
-                "LLM_API_KEY",
-                "",
-            ),
-            base_url=os.getenv(
-                "LLM_BASE_URL",
-                "",
-            ),
-            model=os.getenv(
-                "LLM_MODEL",
-                "",
-            ),
-        )
+        api_key=settings.llm_api_key,
+        base_url=settings.llm_base_url,
+        model=settings.llm_model,
+        timeout=settings.llm_timeout,
+        max_retries=settings.llm_max_retries,
+    )
 
     def create_chat_completion(
         self,
@@ -342,7 +333,7 @@ def serialize_tool_result(
 
     if (
         len(serialized)
-        <= MAX_TOOL_RESULT_CHARS
+        <= settings.max_tool_result_chars
     ):
         return serialized
 
@@ -359,7 +350,7 @@ def serialize_tool_result(
             "工具结果过长，只保留前面部分"
         ),
         "preview": serialized[
-            :MAX_TOOL_RESULT_CHARS
+            :settings.max_tool_result_chars
         ],
     }
 
@@ -371,23 +362,24 @@ def serialize_tool_result(
 
 class RepoDoctorAgent:
     def __init__(
-        self,
-        llm_client,
-        toolbox,
-        tool_schemas,
-        max_tool_steps=MAX_TOOL_STEPS,
-    ):
-        if max_tool_steps < 1:
-            raise ValueError(
-                "max_tool_steps 必须大于等于 1"
-            )
+    self,
+    llm_client,
+    toolbox,
+    tool_schemas,
+    max_tool_steps=None,
+):
+     if max_tool_steps is None:
+        max_tool_steps = settings.max_tool_steps
 
-        self.llm_client = llm_client
-        self.toolbox = toolbox
-        self.tool_schemas = tool_schemas
-        self.max_tool_steps = (
-            max_tool_steps
+     if max_tool_steps < 1:
+        raise ValueError(
+            "max_tool_steps 必须大于等于 1"
         )
+
+     self.llm_client = llm_client
+     self.toolbox = toolbox
+     self.tool_schemas = tool_schemas
+     self.max_tool_steps = max_tool_steps
 
     def _execute_tool_call(
         self,
@@ -794,7 +786,7 @@ if __name__ == "__main__":
     )
 
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
 
     REBUILD_INDEX = False

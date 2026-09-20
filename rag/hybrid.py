@@ -6,11 +6,7 @@ from rag.dense import (
 from rag.bm25 import (
     BM25CodeRetriever,
 )
-
-
-RRF_K = 60
-DEFAULT_CANDIDATE_MULTIPLIER = 4
-MIN_CANDIDATE_COUNT = 20
+from config import settings
 
 
 def make_chunk_key(result):
@@ -25,48 +21,37 @@ def make_chunk_key(result):
 
 
 class HybridCodeRetriever:
-    
+
     def __init__(
         self,
         dense_retriever,
         bm25_retriever,
-        rrf_k=RRF_K,
-        dense_weight=1.0,
-        bm25_weight=1.0,
+        rrf_k = None,
+        dense_weight = None,
+        bm25_weight = None,
     ):
-        if rrf_k <= 0:
-            raise ValueError(
-                "rrf_k 必须大于 0"
-            )
-
-        if dense_weight < 0:
-            raise ValueError(
-                "dense_weight 不能小于 0"
-            )
-
-        if bm25_weight < 0:
-            raise ValueError(
-                "bm25_weight 不能小于 0"
-            )
-
-        if (
-            dense_weight == 0
-            and bm25_weight == 0
-        ):
-            raise ValueError(
-                "两个检索器的权重不能同时为 0"
-            )
-
-        self.dense_retriever = (
-            dense_retriever
+        self.rrf_k = settings.rrf_k if rrf_k is None else rrf_k
+        self.dense_weight = (
+            settings.dense_weight if dense_weight is None else dense_weight
         )
-        self.bm25_retriever = (
-            bm25_retriever
+        self.bm25_weight = (
+            settings.bm25_weight if bm25_weight is None else bm25_weight
         )
 
-        self.rrf_k = rrf_k
-        self.dense_weight = dense_weight
-        self.bm25_weight = bm25_weight
+        if self.rrf_k <= 0:
+            raise ValueError("rrf_k 必须大于 0")
+
+        if self.dense_weight < 0:
+            raise ValueError("dense_weight 不能小于 0")
+
+        if self.bm25_weight < 0:
+            raise ValueError("bm25_weight 不能小于 0")
+
+        if self.dense_weight == 0 and self.bm25_weight == 0:
+            raise ValueError("两个检索器的权重不能同时为 0")
+
+        self.dense_retriever = dense_retriever
+        self.bm25_retriever = bm25_retriever
 
     def _add_results(
         self,
@@ -138,12 +123,11 @@ class HybridCodeRetriever:
                 source
             )
 
-    def search(
-        self,
-        query,
-        top_k=5,
-        candidate_k=None,
-    ):
+    def search(self, query, top_k=None, candidate_k=None):
+        top_k = top_k or settings.retrieval_top_k
+        candidate_k = (
+            candidate_k or settings.retrieval_candidate_k
+        )
       
         if not isinstance(query, str):
             raise TypeError(
@@ -368,7 +352,7 @@ if __name__ == "__main__":
     )
 
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
 
     dense_index_directory = (

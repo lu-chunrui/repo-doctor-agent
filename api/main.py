@@ -54,26 +54,7 @@ from rag.reranker import (
     RerankedCodeSearch,
     environment_flag,
 )
-
-
-PROJECT_DIR = (
-    Path(__file__).resolve().parent.parent
-)
-
-RUNTIME_DIRECTORY = (
-    PROJECT_DIR / "runtime_data"
-)
-
-DEFAULT_ALLOWED_ROOT = (
-    r"D:\桌面"
-)
-
-DEFAULT_CORS_ORIGINS = [
-    "http://127.0.0.1:8501",
-    "http://localhost:8501",
-]
-
-MAX_SESSION_ID_LENGTH = 128
+from config import settings
 
 
 app = FastAPI(
@@ -93,7 +74,7 @@ def load_cors_origins():
     ).strip()
 
     if not raw_origins:
-        return DEFAULT_CORS_ORIGINS
+        return settings.cors_origins.split(",")
 
     return [
         origin.strip()
@@ -153,7 +134,7 @@ class ChatRequest(BaseModel):
     session_id: str = Field(
         default_factory=lambda: uuid4().hex,
         min_length=1,
-        max_length=MAX_SESSION_ID_LENGTH,
+        max_length=settings.max_session_id_length,
     )
 
 
@@ -170,7 +151,7 @@ class AnalyzeLogRequest(BaseModel):
     session_id: str = Field(
         default_factory=lambda: uuid4().hex,
         min_length=1,
-        max_length=MAX_SESSION_ID_LENGTH,
+        max_length=settings.max_session_id_length,
     )
 
 
@@ -181,14 +162,14 @@ class SessionRequest(BaseModel):
 
     session_id: str = Field(
         min_length=1,
-        max_length=MAX_SESSION_ID_LENGTH,
+        max_length=settings.max_session_id_length,
     )
 
 
 def load_allowed_roots():
     raw_roots = os.getenv(
         "REPO_DOCTOR_ALLOWED_ROOTS",
-        DEFAULT_ALLOWED_ROOT,
+        settings.allowed_roots,
     )
 
     roots = []
@@ -253,7 +234,7 @@ def validate_session_id(
         )
 
     if len(session_id) > (
-        MAX_SESSION_ID_LENGTH
+        settings.max_session_id_length
     ):
         raise ValueError(
             "session_id 过长"
@@ -489,7 +470,7 @@ class BackendManager:
             )
 
             runtime_directory = (
-                RUNTIME_DIRECTORY
+                settings.runtime_directory
                 / runtime_id
             )
 
@@ -743,7 +724,7 @@ class BackendManager:
                         TOOL_SCHEMAS
                     ),
                     memory=memory,
-                    max_tool_steps=6,
+                    max_tool_steps=settings.max_tool_steps,
                 )
             )
 
@@ -1226,7 +1207,7 @@ def get_memory(
     ),
     session_id: str = Query(
         min_length=1,
-        max_length=MAX_SESSION_ID_LENGTH,
+        max_length=settings.max_session_id_length,
     ),
 ):
     try:

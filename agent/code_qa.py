@@ -7,6 +7,7 @@ from rag.hybrid import (
     prepare_dense_retriever,
     prepare_bm25_retriever,
 )
+from config import settings
 
 SYSTEM_PROMPT = """
 你是一个代码仓库分析助手。
@@ -324,7 +325,7 @@ if __name__ == "__main__":
     )
 
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
     REBUILD_INDEX = False
 

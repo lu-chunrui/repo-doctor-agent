@@ -13,10 +13,7 @@ from repository.splitter import (
 from rag.dense import (
     should_index_chunk,
 )
-
-
-BM25_K1 = 1.5
-BM25_B = 0.75
+from config import settings
 
 
 def split_code_identifier(identifier):
@@ -114,23 +111,18 @@ def format_chunk_for_bm25(chunk):
 
 
 class BM25CodeRetriever:
-    def __init__(
-        self,
-        k1=BM25_K1,
-        b=BM25_B,
-    ):
-        if k1 <= 0:
+    def __init__(self, k1=None, b=None):
+        self.k1 = settings.bm25_k1 if k1 is None else k1
+        self.b = settings.bm25_b if b is None else b
+        if self.k1 <= 0:
             raise ValueError(
                 "k1 必须大于 0"
             )
 
-        if not 0 <= b <= 1:
+        if not 0 <= self.b <= 1:
             raise ValueError(
                 "b 必须位于 0 到 1 之间"
             )
-
-        self.k1 = k1
-        self.b = b
 
         self.chunks = []
         self.documents = []
@@ -505,7 +497,7 @@ if __name__ == "__main__":
     project_dir = Path(__file__).resolve().parent
 
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
 
     index_path = (

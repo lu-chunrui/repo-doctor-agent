@@ -17,8 +17,7 @@ from rag.hybrid import (
 from agent.core import (
     ToolCallingLLMClient,
 )
-
-
+from config import settings 
 ALLOWED_INTENTS = {
     "code_search",
     "code_analysis",
@@ -28,10 +27,6 @@ ALLOWED_INTENTS = {
     "dockerfile_generation",
     "general_question",
 }
-
-RRF_K = 60
-MAX_REPOSITORY_FILES_IN_PROMPT = 150
-
 
 QUERY_REWRITE_SYSTEM_PROMPT = """
 你是代码仓库检索系统的 Query Rewrite 模块。
@@ -354,7 +349,7 @@ class QueryRewriter:
     ):
         visible_files = (
             self.repository_files[
-                :MAX_REPOSITORY_FILES_IN_PROMPT
+                :settings.max_tool_content_chars
             ]
         )
 
@@ -673,7 +668,7 @@ class QueryRewriter:
                         },
                     ],
                     tools=None,
-                    temperature=0.0,
+                    temperature=settings.query_rewrite_temperature,
                 )
             )
 
@@ -729,7 +724,7 @@ class RewrittenHybridRetriever:
         query_rewriter,
         dense_retriever,
         bm25_retriever,
-        rrf_k=RRF_K,
+        rrf_k=settings.rrf_k,
         dense_weight=1.0,
         bm25_weight=1.0,
     ):
@@ -1110,7 +1105,7 @@ if __name__ == "__main__":
     )
 
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
 
     dense_index_directory = (

@@ -85,7 +85,8 @@ LLM 判断任务并选择工具
 
 ### 环境要求
 
-- Python 3.9+
+- Python 3.9+（运行 API、Web UI 和 RAG）
+- Python 3.10+ 与 `peft==0.20.0`（仅 LoRA 训练和适配器推理需要，当前 `.venv` 未安装）
 - 建议 8 GB 以上内存
 - 首次建立索引时需要下载 Embedding 模型
 - 启用 Reranker 时还需要下载 `BAAI/bge-reranker-base`
@@ -100,9 +101,6 @@ cd repo-doctor-agent
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-
-# 当前 Web 服务需要的补充依赖
-pip install fastapi uvicorn streamlit pydantic
 ```
 
 Linux/macOS 激活环境：

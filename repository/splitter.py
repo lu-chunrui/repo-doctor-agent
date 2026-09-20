@@ -3,6 +3,7 @@ from pathlib import Path
 
 from repository.scanner import (list_files,validate_repository)
 from repository.search import resolve_safe_path
+from config import settings
 
 TEXT_CHUNK_LINES = 80
 TEXT_CHUNK_OVERLAP = 10
@@ -167,7 +168,7 @@ def print_chunks(chunks):
         print(chunk["content"])
 if __name__ == "__main__":
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
     chunks = split_file(
         repository_path,

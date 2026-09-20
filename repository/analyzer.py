@@ -8,8 +8,8 @@ from repository.scanner import (
 from repository.search import (
     resolve_safe_path,
 )
+from config import settings
 
-LONG_FUNCTION_LINE_THRESHOLD = 50
 
 class ComplexityVisitor(ast.NodeVisitor):
 
@@ -267,7 +267,7 @@ class PythonAnalyzer(ast.NodeVisitor):
             "arguments": get_function_arguments(node),
         }
         self.functions.append(function_info)
-        if function_length > LONG_FUNCTION_LINE_THRESHOLD:
+        if function_length > settings.long_function_line_threshold:
             self.warnings.append(
                 {
                     "type": "long_function",
@@ -275,7 +275,7 @@ class PythonAnalyzer(ast.NodeVisitor):
                     "message": (
                         f"函数 {node.name} 长度为 "
                         f"{function_length} 行，超过 "
-                        f"{LONG_FUNCTION_LINE_THRESHOLD} 行"
+                        f"{settings.long_function_line_threshold} 行"
                     ),
                 }
             )
@@ -413,7 +413,7 @@ def print_analysis_report(report):
         )
 if __name__ == "__main__":
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
 
     report = analyze_python_file(

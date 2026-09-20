@@ -1,6 +1,7 @@
 import json
 import re
 from pathlib import Path
+from config import settings
 
 from repository.scanner import (
     list_files,
@@ -18,9 +19,6 @@ from rag.hybrid import (
     prepare_bm25_retriever,
     prepare_dense_retriever,
 )
-
-
-MAX_TOOL_CONTENT_CHARS = 12000
 
 
 TOOL_SCHEMAS = [
@@ -222,10 +220,9 @@ TOOL_SCHEMAS = [
 ]
 
 
-def truncate_text(
-    text,
-    max_chars=MAX_TOOL_CONTENT_CHARS,
-):
+def truncate_text(text, max_chars=None):
+    if max_chars is None:
+        max_chars = settings.max_tool_content_chars
     if len(text) <= max_chars:
         return text
 
@@ -836,7 +833,7 @@ if __name__ == "__main__":
     )
 
     repository_path = Path(
-        r"D:\桌面\mini-transformer"
+        settings.resolved_default_repository()
     )
 
     toolbox = create_agent_toolbox(

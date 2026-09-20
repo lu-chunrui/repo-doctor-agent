@@ -3,19 +3,7 @@ from uuid import uuid4
 
 import requests
 import streamlit as st
-
-
-DEFAULT_BACKEND_URL = (
-    "http://127.0.0.1:8000"
-)
-
-DEFAULT_REPOSITORY_PATH = (
-    r"D:\桌面\mini-transformer"
-)
-
-REQUEST_TIMEOUT = 300
-INDEX_TIMEOUT = 900
-
+from config import settings
 
 st.set_page_config(
     page_title="Repo Doctor Agent",
@@ -48,7 +36,7 @@ class RepoDoctorAPIClient:
         self,
         method,
         path,
-        timeout=REQUEST_TIMEOUT,
+        timeout=settings.request_timeout,
         **kwargs,
     ):
         url = f"{self.base_url}{path}"
@@ -102,7 +90,7 @@ class RepoDoctorAPIClient:
         return self._request(
             method="POST",
             path="/api/v1/index",
-            timeout=INDEX_TIMEOUT,
+            timeout=settings.index_timeout,
             json={
                 "repository_path": (
                     repository_path
@@ -1107,12 +1095,12 @@ def main():
 
     backend_url = st.text_input(
         "FastAPI 后端地址",
-        value=DEFAULT_BACKEND_URL,
+        value=settings.backend_url,
     )
 
     repository_path = st.text_input(
         "目标仓库路径",
-        value=DEFAULT_REPOSITORY_PATH,
+        value=settings.default_repository,
     ).strip()
 
     try:
