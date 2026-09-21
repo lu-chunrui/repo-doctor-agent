@@ -55,16 +55,51 @@ def format_chunk_for_embedding(chunk):
         f"Code:\n{chunk['content']}"
     )
 class DenseCodeRetriever:
-    def __init__(self, model_name=None):
-        self.model_name = (
-            model_name or settings.embedding_model_name
+    def __init__(
+    self,
+    model_name=None,
+    batch_size=None,
+):
+        
+        if model_name is None:
+            model_name = (
+                settings.embedding_model_name
+            )
+
+        if not isinstance(model_name, str):
+            raise TypeError(
+            "model_name 必须是字符串"
         )
-        print("正在加载 Embedding 模型：")
+
+        model_name = model_name.strip()
+
+        if not model_name:
+            raise ValueError(
+            "model_name 不能为空"
+        )
+
+        self.model_name = model_name
+
+        self.batch_size = (
+        settings.embedding_batch_size
+        if batch_size is None
+        else batch_size
+    )
+
+        if self.batch_size < 1:
+            raise ValueError(
+            "batch_size 必须大于等于 1"
+        )
+
+        print(
+        "正在加载 Embedding 模型："
+    )
         print(self.model_name)
 
         self.model = SentenceTransformer(
-            self.model_name
-        )
+        self.model_name
+    )
+
         self.chunks = []
         self.embeddings = None
     def build_index(self,repo_path):
@@ -78,7 +113,7 @@ class DenseCodeRetriever:
         print(f"准备编码 {len(passages)} 个代码块")
         self.embeddings = self.model.encode(
             passages,
-            batch_size=settings.embedding_batch_size,
+            batch_size=self.batch_size,
             show_progress_bar=True,
             convert_to_numpy=True,
             normalize_embeddings=True,

@@ -865,8 +865,8 @@ if __name__ == "__main__":
         )
 
         memory = ConversationMemory(
-            max_turns=6,
-            max_chars=18000,
+            settings.memory_max_turns,
+            settings.memory_max_chars,
         )
 
         memory_agent = (
@@ -877,7 +877,7 @@ if __name__ == "__main__":
                     TOOL_SCHEMAS
                 ),
                 memory=memory,
-                max_tool_steps=6,
+                max_tool_steps=settings.max_tool_steps,
             )
         )
 
