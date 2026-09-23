@@ -1,0 +1,12 @@
+{
+  "dataset_version": "1.0",
+  "repositories": [
+    {
+      "id": "repo-doctor",
+      "name": "Repo Doctor Agent",
+      "url": "https://github.com/lu-chunrui/repo-doctor-agent",
+      "revision": "cf4083dcd319f215f7df8cc2d8b3df5886f5aec2",
+      "language": "python"
+    }
+  ]
+}

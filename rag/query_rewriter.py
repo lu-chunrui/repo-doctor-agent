@@ -813,7 +813,6 @@ class RewrittenHybridRetriever:
                 item["bm25_score"] = (
                     result["score"]
                 )
-
     def search(
         self,
         original_query,
@@ -821,49 +820,68 @@ class RewrittenHybridRetriever:
         candidate_k=20,
     ):
         if top_k < 1:
-            raise ValueError(
-                "top_k 必须大于等于 1"
-            )
+            raise ValueError("top_k 必须大于等于 1")
 
         if candidate_k < top_k:
-            raise ValueError(
-                "candidate_k 不能小于 top_k"
-            )
+            raise ValueError("candidate_k 不能小于 top_k")
 
-        rewrite_result = (
-            self.query_rewriter.rewrite(
-                original_query
-            )
-        )
+        rewrite_result = self.query_rewriter.rewrite(original_query)
 
-        if not rewrite_result[
-            "should_search"
-        ]:
+        if not rewrite_result["should_search"]:
             return {
                 "rewrite": rewrite_result,
                 "results": [],
                 "skipped": True,
-                "skip_reason": (
-                    "查询被识别为不需要仓库检索"
-                ),
+                "skip_reason": "查询被识别为不需要仓库检索",
+                "soft_fuse_triggered": False,
+                "top_dense_similarity": None,
             }
 
-        dense_results = (
-            self.dense_retriever.search(
-                query=rewrite_result[
-                    "semantic_query"
-                ],
-                top_k=candidate_k,
+        top_dense_similarity = None
+
+        if settings.soft_fuse_enabled:
+            threshold = settings.soft_fuse_similarity_threshold
+
+            if threshold is None:
+                raise ValueError(
+                    "启用软熔断时必须设置 "
+                    "SOFT_FUSE_SIMILARITY_THRESHOLD"
+                )
+
+            if not -1.0 <= threshold <= 1.0:
+                raise ValueError(
+                    "软熔断相似度阈值必须位于 -1 到 1 之间"
+                )
+
+            probe_results = self.dense_retriever.search(
+                query=original_query,
+                top_k=1,
             )
+
+            if probe_results:
+                top_dense_similarity = probe_results[0]["score"]
+
+            if (
+                top_dense_similarity is None
+                or top_dense_similarity < threshold
+            ):
+                return {
+                    "rewrite": rewrite_result,
+                    "results": [],
+                    "skipped": True,
+                    "skip_reason": "Dense top-1 相似度低于软熔断阈值",
+                    "soft_fuse_triggered": True,
+                    "top_dense_similarity": top_dense_similarity,
+                }
+
+        dense_results = self.dense_retriever.search(
+            query=rewrite_result["semantic_query"],
+            top_k=candidate_k,
         )
 
-        bm25_results = (
-            self.bm25_retriever.search(
-                query=rewrite_result[
-                    "keyword_query"
-                ],
-                top_k=candidate_k,
-            )
+        bm25_results = self.bm25_retriever.search(
+            query=rewrite_result["keyword_query"],
+            top_k=candidate_k,
         )
 
         fused_results = {}
@@ -892,14 +910,17 @@ class RewrittenHybridRetriever:
         )
 
         return {
-            "rewrite": rewrite_result,
-            "results": (
-                ranked_results[:top_k]
-            ),
-            "skipped": False,
-            "skip_reason": None,
-        }
-
+    "rewrite": rewrite_result,
+    "results": (
+        ranked_results[:top_k]
+    ),
+    "skipped": False,
+    "skip_reason": None,
+    "soft_fuse_triggered": False,
+    "top_dense_similarity": (
+        top_dense_similarity
+    ),
+}
 
 def print_rewrite_result(
     rewrite_result,

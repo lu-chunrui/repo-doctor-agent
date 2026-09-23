@@ -1,0 +1,2881 @@
+{
+  "summary": {
+    "query_count": 30,
+    "relevant_query_count": 25,
+    "irrelevant_query_count": 5,
+    "average_latency_ms": 21.087359999999936,
+    "hit_at_1": 0.48,
+    "hit_at_3": 0.72,
+    "hit_at_5": 0.88,
+    "mrr": 0.618,
+    "irrelevant_false_positive_rate": 1.0,
+    "method": "hybrid_rrf",
+    "top_k": 5,
+    "candidate_k": 20,
+    "rrf_k": 60,
+    "dense_weight": 1.0,
+    "bm25_weight": 1.0,
+    "index_seconds": 27.6297226
+  },
+  "metrics_by_query_type": {
+    "colloquial_zh": {
+      "query_count": 4,
+      "relevant_query_count": 4,
+      "irrelevant_query_count": 0,
+      "average_latency_ms": 21.364749999998267,
+      "hit_at_1": 0.5,
+      "hit_at_3": 0.75,
+      "hit_at_5": 0.75,
+      "mrr": 0.5833333333333333,
+      "irrelevant_false_positive_rate": null
+    },
+    "cross_file": {
+      "query_count": 4,
+      "relevant_query_count": 4,
+      "irrelevant_query_count": 0,
+      "average_latency_ms": 22.49950000000034,
+      "hit_at_1": 0.5,
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "mrr": 0.7083333333333334,
+      "irrelevant_false_positive_rate": null
+    },
+    "identifier": {
+      "query_count": 8,
+      "relevant_query_count": 8,
+      "irrelevant_query_count": 0,
+      "average_latency_ms": 19.75426250000112,
+      "hit_at_1": 0.375,
+      "hit_at_3": 0.625,
+      "hit_at_5": 0.875,
+      "mrr": 0.5625,
+      "irrelevant_false_positive_rate": null
+    },
+    "irrelevant": {
+      "query_count": 5,
+      "relevant_query_count": 0,
+      "irrelevant_query_count": 5,
+      "average_latency_ms": 19.653280000001416,
+      "hit_at_1": null,
+      "hit_at_3": null,
+      "hit_at_5": null,
+      "mrr": null,
+      "irrelevant_false_positive_rate": 1.0
+    },
+    "misleading_keyword": {
+      "query_count": 2,
+      "relevant_query_count": 2,
+      "irrelevant_query_count": 0,
+      "average_latency_ms": 22.57679999999951,
+      "hit_at_1": 0.5,
+      "hit_at_3": 0.5,
+      "hit_at_5": 1.0,
+      "mrr": 0.6,
+      "irrelevant_false_positive_rate": null
+    },
+    "natural_language": {
+      "query_count": 7,
+      "relevant_query_count": 7,
+      "irrelevant_query_count": 0,
+      "average_latency_ms": 22.244242857141217,
+      "hit_at_1": 0.5714285714285714,
+      "hit_at_3": 0.7142857142857143,
+      "hit_at_5": 0.8571428571428571,
+      "mrr": 0.6547619047619049,
+      "irrelevant_false_positive_rate": null
+    }
+  },
+  "index_info": {
+    "dense": {
+      "repository": "D:\\桌面\\repo-doctor-agent",
+      "chunk_count": 243,
+      "embedding_dimension": 384
+    },
+    "bm25": {
+      "repository": "D:\\桌面\\repo-doctor-agent",
+      "document_count": 243,
+      "average_document_length": 282.641975308642,
+      "vocabulary_size": 4907
+    }
+  },
+  "queries": [
+    {
+      "id": "rd-001",
+      "query": "DenseCodeRetriever 在哪里定义？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/dense.py"
+      ],
+      "first_relevant_rank": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "latency_ms": 17.13060000000155,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tests\\check_dense.py",
+          "start_line": 1,
+          "end_line": 63,
+          "rrf_score": 0.031754032258064516,
+          "dense_rank": 4,
+          "dense_score": 0.8818047046661377,
+          "bm25_rank": 2,
+          "bm25_score": 23.733480963841142,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "rag\\dense.py",
+          "start_line": 235,
+          "end_line": 280,
+          "rrf_score": 0.030679156908665108,
+          "dense_rank": 10,
+          "dense_score": 0.8755507469177246,
+          "bm25_rank": 1,
+          "bm25_score": 24.351997422682278,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "rag\\hybrid.py",
+          "start_line": 347,
+          "end_line": 417,
+          "rrf_score": 0.03036576949620428,
+          "dense_rank": 9,
+          "dense_score": 0.8758412599563599,
+          "bm25_rank": 3,
+          "bm25_score": 20.59858168977931,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "rag\\hybrid.py",
+          "start_line": 278,
+          "end_line": 317,
+          "rrf_score": 0.03028233151183971,
+          "dense_rank": 1,
+          "dense_score": 0.8998913764953613,
+          "bm25_rank": 12,
+          "bm25_score": 10.627591825777493,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "tests\\check_hybrid.py",
+          "start_line": 1,
+          "end_line": 64,
+          "rrf_score": 0.02946912242686891,
+          "dense_rank": 5,
+          "dense_score": 0.8785682916641235,
+          "bm25_rank": 11,
+          "bm25_score": 10.654465299697367,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-002",
+      "query": "BM25CodeRetriever 类的 build_index 方法在哪里？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/bm25.py"
+      ],
+      "first_relevant_rank": 4,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "latency_ms": 25.393200000003446,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "rag\\hybrid.py",
+          "start_line": 320,
+          "end_line": 346,
+          "rrf_score": 0.03177805800756621,
+          "dense_rank": 1,
+          "dense_score": 0.9191954731941223,
+          "bm25_rank": 5,
+          "bm25_score": 24.526782861619324,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "tests\\check_bm25.py",
+          "start_line": 1,
+          "end_line": 47,
+          "rrf_score": 0.031099324975891997,
+          "dense_rank": 8,
+          "dense_score": 0.8993562459945679,
+          "bm25_rank": 1,
+          "bm25_score": 37.37744790599424,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "rag\\hybrid.py",
+          "start_line": 347,
+          "end_line": 417,
+          "rrf_score": 0.031024531024531024,
+          "dense_rank": 6,
+          "dense_score": 0.902836799621582,
+          "bm25_rank": 3,
+          "bm25_score": 28.35230642311402,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "rag\\bm25.py",
+          "start_line": 494,
+          "end_line": 541,
+          "rrf_score": 0.03055037313432836,
+          "dense_rank": 4,
+          "dense_score": 0.9112982749938965,
+          "bm25_rank": 7,
+          "bm25_score": 22.18041671141036,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "scripts\\evaluate_hybrid.py",
+          "start_line": 173,
+          "end_line": 421,
+          "rrf_score": 0.030090497737556562,
+          "dense_rank": 5,
+          "dense_score": 0.9068344831466675,
+          "bm25_rank": 8,
+          "bm25_score": 20.125138682454782,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-003",
+      "query": "create_agent_toolbox 函数在哪里定义？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "tools/registry.py"
+      ],
+      "first_relevant_rank": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "latency_ms": 17.29930000000479,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tests\\check_agent.py",
+          "start_line": 1,
+          "end_line": 77,
+          "rrf_score": 0.03128054740957967,
+          "dense_rank": 6,
+          "dense_score": 0.8957145810127258,
+          "bm25_rank": 2,
+          "bm25_score": 28.905963177333263,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "tools\\registry.py",
+          "start_line": 828,
+          "end_line": 870,
+          "rrf_score": 0.031099324975891997,
+          "dense_rank": 8,
+          "dense_score": 0.8930491209030151,
+          "bm25_rank": 1,
+          "bm25_score": 30.794259585087588,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "agent\\core.py",
+          "start_line": 781,
+          "end_line": 827,
+          "rrf_score": 0.030309988518943745,
+          "dense_rank": 5,
+          "dense_score": 0.8985077142715454,
+          "bm25_rank": 7,
+          "bm25_score": 16.576072160915942,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "agent\\citations.py",
+          "start_line": 934,
+          "end_line": 1015,
+          "rrf_score": 0.03028233151183971,
+          "dense_rank": 1,
+          "dense_score": 0.9021246433258057,
+          "bm25_rank": 12,
+          "bm25_score": 15.931724718300808,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "agent\\extensions.py",
+          "start_line": 818,
+          "end_line": 917,
+          "rrf_score": 0.02946236559139785,
+          "dense_rank": 2,
+          "dense_score": 0.9020381569862366,
+          "bm25_rank": 15,
+          "bm25_score": 15.420459443028143,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-004",
+      "query": "项目如何融合关键词检索和向量检索结果？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/hybrid.py"
+      ],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 17.284099999997693,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "rrf_score": 0.03278688524590164,
+          "dense_rank": 1,
+          "dense_score": 0.8824272155761719,
+          "bm25_rank": 1,
+          "bm25_score": 59.16747521488536,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "tests\\check_dense.py",
+          "start_line": 1,
+          "end_line": 63,
+          "rrf_score": 0.031009615384615385,
+          "dense_rank": 5,
+          "dense_score": 0.8768696784973145,
+          "bm25_rank": 4,
+          "bm25_score": 31.627071178181932,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "README.md",
+          "start_line": 211,
+          "end_line": 282,
+          "rrf_score": 0.03055037313432836,
+          "dense_rank": 4,
+          "dense_score": 0.8803784847259521,
+          "bm25_rank": 7,
+          "bm25_score": 28.673345325984858,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 979,
+          "end_line": 1045,
+          "rrf_score": 0.02967032967032967,
+          "dense_rank": 10,
+          "dense_score": 0.8706786632537842,
+          "bm25_rank": 5,
+          "bm25_score": 30.372929332198616,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "tools\\registry.py",
+          "start_line": 1,
+          "end_line": 222,
+          "rrf_score": 0.028985507246376812,
+          "dense_rank": 9,
+          "dense_score": 0.8714433908462524,
+          "bm25_rank": 9,
+          "bm25_score": 26.009534943378355,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-005",
+      "query": "搜出来一堆代码以后，项目是怎么重新排顺序的？",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/reranker.py"
+      ],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 19.979399999996872,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "rrf_score": 0.03225806451612903,
+          "dense_rank": 2,
+          "dense_score": 0.8789545297622681,
+          "bm25_rank": 2,
+          "bm25_score": 26.048773855818684,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "rag\\dense.py",
+          "start_line": 235,
+          "end_line": 280,
+          "rrf_score": 0.03028233151183971,
+          "dense_rank": 1,
+          "dense_score": 0.8846896290779114,
+          "bm25_rank": 12,
+          "bm25_score": 19.78089682067014,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "rag\\hybrid.py",
+          "start_line": 347,
+          "end_line": 417,
+          "rrf_score": 0.03028233151183971,
+          "dense_rank": 12,
+          "dense_score": 0.8732407093048096,
+          "bm25_rank": 1,
+          "bm25_score": 28.357450769197982,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "api\\main.py",
+          "start_line": 101,
+          "end_line": 121,
+          "rrf_score": 0.030117753623188408,
+          "dense_rank": 4,
+          "dense_score": 0.8765983581542969,
+          "bm25_rank": 9,
+          "bm25_score": 20.369224067124733,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "tests\\check_agent.py",
+          "start_line": 1,
+          "end_line": 77,
+          "rrf_score": 0.029211087420042643,
+          "dense_rank": 7,
+          "dense_score": 0.8753926753997803,
+          "bm25_rank": 10,
+          "bm25_score": 20.34075077545014,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-006",
+      "query": "系统在哪里保存多轮对话记忆？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "agent/extensions.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 18.609399999995446,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\extensions.py",
+          "start_line": 717,
+          "end_line": 817,
+          "rrf_score": 0.03252247488101534,
+          "dense_rank": 2,
+          "dense_score": 0.8793925046920776,
+          "bm25_rank": 1,
+          "bm25_score": 41.04710778318707,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "agent\\extensions.py",
+          "start_line": 695,
+          "end_line": 714,
+          "rrf_score": 0.03200204813108039,
+          "dense_rank": 3,
+          "dense_score": 0.876370906829834,
+          "bm25_rank": 2,
+          "bm25_score": 34.0390772451953,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "agent\\extensions.py",
+          "start_line": 47,
+          "end_line": 169,
+          "rrf_score": 0.03131881575727918,
+          "dense_rank": 1,
+          "dense_score": 0.88531094789505,
+          "bm25_rank": 7,
+          "bm25_score": 26.79937516029009,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "README.md",
+          "start_line": 141,
+          "end_line": 220,
+          "rrf_score": 0.030776515151515152,
+          "dense_rank": 6,
+          "dense_score": 0.8615994453430176,
+          "bm25_rank": 4,
+          "bm25_score": 29.059577639875,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "README.md",
+          "start_line": 211,
+          "end_line": 282,
+          "rrf_score": 0.030309988518943745,
+          "dense_rank": 7,
+          "dense_score": 0.8609418869018555,
+          "bm25_rank": 5,
+          "bm25_score": 28.665461885921548,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-007",
+      "query": "回答中的文件路径和行号由哪个类验证？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "agent/citations.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 24.062099999994757,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\citations.py",
+          "start_line": 1,
+          "end_line": 52,
+          "rrf_score": 0.03149801587301587,
+          "dense_rank": 4,
+          "dense_score": 0.8733446598052979,
+          "bm25_rank": 3,
+          "bm25_score": 51.22769466900958,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "agent\\code_qa.py",
+          "start_line": 1,
+          "end_line": 28,
+          "rrf_score": 0.03076923076923077,
+          "dense_rank": 5,
+          "dense_score": 0.8713523745536804,
+          "bm25_rank": 5,
+          "bm25_score": 42.38772043069834,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "tests\\check_api.py",
+          "start_line": 71,
+          "end_line": 117,
+          "rrf_score": 0.030117753623188408,
+          "dense_rank": 9,
+          "dense_score": 0.8694169521331787,
+          "bm25_rank": 4,
+          "bm25_score": 46.97497773337832,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "tests\\check_agent.py",
+          "start_line": 1,
+          "end_line": 77,
+          "rrf_score": 0.029211087420042643,
+          "dense_rank": 10,
+          "dense_score": 0.8686581254005432,
+          "bm25_rank": 7,
+          "bm25_score": 39.38668851382407,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "agent\\citations.py",
+          "start_line": 387,
+          "end_line": 636,
+          "rrf_score": 0.029116045245077504,
+          "dense_rank": 2,
+          "dense_score": 0.874418318271637,
+          "bm25_rank": 17,
+          "bm25_score": 22.772195949842793,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-008",
+      "query": "聊天请求从 FastAPI 接口进入后，如何创建会话并调用带记忆的 Agent？",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "relevant_files": [
+        "api/main.py",
+        "agent/extensions.py",
+        "agent/citations.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 22.25310000000036,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\extensions.py",
+          "start_line": 172,
+          "end_line": 448,
+          "rrf_score": 0.031099324975891997,
+          "dense_rank": 1,
+          "dense_score": 0.8962609767913818,
+          "bm25_rank": 8,
+          "bm25_score": 29.397690884698637,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "README.md",
+          "start_line": 71,
+          "end_line": 150,
+          "rrf_score": 0.03047794966520434,
+          "dense_rank": 11,
+          "dense_score": 0.8799290657043457,
+          "bm25_rank": 1,
+          "bm25_score": 59.77488937674539,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "agent\\extensions.py",
+          "start_line": 717,
+          "end_line": 817,
+          "rrf_score": 0.029857397504456328,
+          "dense_rank": 8,
+          "dense_score": 0.8847614526748657,
+          "bm25_rank": 6,
+          "bm25_score": 35.36892003588605,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "agent\\core.py",
+          "start_line": 69,
+          "end_line": 256,
+          "rrf_score": 0.029850746268656716,
+          "dense_rank": 7,
+          "dense_score": 0.8866356611251831,
+          "bm25_rank": 7,
+          "bm25_score": 31.963389436926366,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 759,
+          "end_line": 833,
+          "rrf_score": 0.02964426877470356,
+          "dense_rank": 6,
+          "dense_score": 0.8879806995391846,
+          "bm25_rank": 9,
+          "bm25_score": 26.94116972859812,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-009",
+      "query": "法国的首都是哪里？",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "relevant_files": [],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 19.80540000000275,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tests\\check_bm25.py",
+          "start_line": 1,
+          "end_line": 47,
+          "rrf_score": 0.029877369007803793,
+          "dense_rank": 5,
+          "dense_score": 0.8077129125595093,
+          "bm25_rank": 9,
+          "bm25_score": 9.980708601440952,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 227,
+          "end_line": 279,
+          "rrf_score": 0.029386529386529386,
+          "dense_rank": 3,
+          "dense_score": 0.8085252642631531,
+          "bm25_rank": 14,
+          "bm25_score": 7.283242889000366,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "tests\\check_dense.py",
+          "start_line": 1,
+          "end_line": 63,
+          "rrf_score": 0.028594771241830064,
+          "dense_rank": 12,
+          "dense_score": 0.8020693063735962,
+          "bm25_rank": 8,
+          "bm25_score": 10.294232819735276,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "tools\\registry.py",
+          "start_line": 828,
+          "end_line": 870,
+          "rrf_score": 0.02854251012145749,
+          "dense_rank": 16,
+          "dense_score": 0.8013858795166016,
+          "bm25_rank": 5,
+          "bm25_score": 11.433300879056706,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "rag\\reranker.py",
+          "start_line": 618,
+          "end_line": 645,
+          "rrf_score": 0.01639344262295082,
+          "dense_rank": 1,
+          "dense_score": 0.8109297156333923,
+          "bm25_rank": null,
+          "bm25_score": null,
+          "matched_by": [
+            "dense"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-010",
+      "query": "帮我制定一个三天健身计划。",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "relevant_files": [],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 18.411300000003905,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tools\\log_analysis.py",
+          "start_line": 1,
+          "end_line": 90,
+          "rrf_score": 0.03125763125763126,
+          "dense_rank": 5,
+          "dense_score": 0.8416200876235962,
+          "bm25_rank": 3,
+          "bm25_score": 9.447694311719474,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "README.md",
+          "start_line": 71,
+          "end_line": 150,
+          "rrf_score": 0.031009615384615385,
+          "dense_rank": 4,
+          "dense_score": 0.8422132730484009,
+          "bm25_rank": 5,
+          "bm25_score": 8.656553973787402,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "README.md",
+          "start_line": 211,
+          "end_line": 282,
+          "rrf_score": 0.02946236559139785,
+          "dense_rank": 2,
+          "dense_score": 0.8451229333877563,
+          "bm25_rank": 15,
+          "bm25_score": 4.93751322913187,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "rrf_score": 0.029236022193768675,
+          "dense_rank": 6,
+          "dense_score": 0.8410820364952087,
+          "bm25_rank": 11,
+          "bm25_score": 7.448799875239887,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "tests\\check_api.py",
+          "start_line": 1,
+          "end_line": 80,
+          "rrf_score": 0.027745885954841176,
+          "dense_rank": 7,
+          "dense_score": 0.8407119512557983,
+          "bm25_rank": 18,
+          "bm25_score": 4.05555441266597,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-011",
+      "query": "Settings 配置类在哪里定义？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "config.py"
+      ],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 16.313699999997766,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tests\\check_dense.py",
+          "start_line": 1,
+          "end_line": 63,
+          "rrf_score": 0.03252247488101534,
+          "dense_rank": 2,
+          "dense_score": 0.8575016856193542,
+          "bm25_rank": 1,
+          "bm25_score": 27.068900189605074,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "tests\\check_config.py",
+          "start_line": 1,
+          "end_line": 24,
+          "rrf_score": 0.03131881575727918,
+          "dense_rank": 1,
+          "dense_score": 0.8679388165473938,
+          "bm25_rank": 7,
+          "bm25_score": 17.734092548195406,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "tests\\check_bm25.py",
+          "start_line": 1,
+          "end_line": 47,
+          "rrf_score": 0.029957522915269395,
+          "dense_rank": 11,
+          "dense_score": 0.850256621837616,
+          "bm25_rank": 3,
+          "bm25_score": 19.455019751653808,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "rag\\dense.py",
+          "start_line": 235,
+          "end_line": 280,
+          "rrf_score": 0.029513888888888888,
+          "dense_rank": 12,
+          "dense_score": 0.8501154780387878,
+          "bm25_rank": 4,
+          "bm25_score": 18.380230827127626,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "tools\\registry.py",
+          "start_line": 828,
+          "end_line": 870,
+          "rrf_score": 0.016129032258064516,
+          "dense_rank": null,
+          "dense_score": null,
+          "bm25_rank": 2,
+          "bm25_score": 21.125716911835458,
+          "matched_by": [
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-012",
+      "query": "ToolCallingLLMClient 在哪个文件？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "agent/core.py"
+      ],
+      "first_relevant_rank": 4,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "latency_ms": 16.224799999996264,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tests\\check_agent.py",
+          "start_line": 1,
+          "end_line": 77,
+          "rrf_score": 0.03278688524590164,
+          "dense_rank": 1,
+          "dense_score": 0.8970520496368408,
+          "bm25_rank": 1,
+          "bm25_score": 27.858893182315175,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "tools\\log_analysis.py",
+          "start_line": 1,
+          "end_line": 90,
+          "rrf_score": 0.0304147465437788,
+          "dense_rank": 10,
+          "dense_score": 0.8764399290084839,
+          "bm25_rank": 2,
+          "bm25_score": 19.220861241352118,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "agent\\citations.py",
+          "start_line": 934,
+          "end_line": 1015,
+          "rrf_score": 0.029236022193768675,
+          "dense_rank": 6,
+          "dense_score": 0.88474041223526,
+          "bm25_rank": 11,
+          "bm25_score": 12.443311386737241,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "agent\\core.py",
+          "start_line": 781,
+          "end_line": 827,
+          "rrf_score": 0.029211087420042643,
+          "dense_rank": 7,
+          "dense_score": 0.8836809396743774,
+          "bm25_rank": 10,
+          "bm25_score": 13.47757706248981,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "agent\\extensions.py",
+          "start_line": 1,
+          "end_line": 46,
+          "rrf_score": 0.029206349206349208,
+          "dense_rank": 15,
+          "dense_score": 0.8697798252105713,
+          "bm25_rank": 3,
+          "bm25_score": 17.217294864746837,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-013",
+      "query": "parse_tool_arguments 函数在哪里实现？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "agent/core.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 21.36420000000072,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\core.py",
+          "start_line": 288,
+          "end_line": 323,
+          "rrf_score": 0.03177805800756621,
+          "dense_rank": 1,
+          "dense_score": 0.9183218479156494,
+          "bm25_rank": 5,
+          "bm25_score": 21.40218960293374,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "tools\\registry.py",
+          "start_line": 828,
+          "end_line": 870,
+          "rrf_score": 0.031099324975891997,
+          "dense_rank": 8,
+          "dense_score": 0.8770840167999268,
+          "bm25_rank": 1,
+          "bm25_score": 40.50933882810373,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "agent\\core.py",
+          "start_line": 363,
+          "end_line": 684,
+          "rrf_score": 0.02964254577157803,
+          "dense_rank": 2,
+          "dense_score": 0.8927252888679504,
+          "bm25_rank": 14,
+          "bm25_score": 14.501177862302255,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "tests\\check_agent.py",
+          "start_line": 1,
+          "end_line": 77,
+          "rrf_score": 0.028484848484848488,
+          "dense_rank": 15,
+          "dense_score": 0.8703811764717102,
+          "bm25_rank": 6,
+          "bm25_score": 20.959804553225812,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "agent\\citations.py",
+          "start_line": 66,
+          "end_line": 384,
+          "rrf_score": 0.027272727272727275,
+          "dense_rank": 10,
+          "dense_score": 0.8754335045814514,
+          "bm25_rank": 17,
+          "bm25_score": 12.89796641468396,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-014",
+      "query": "项目如何防止读取仓库目录之外的文件？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "repository/search.py"
+      ],
+      "first_relevant_rank": 4,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "latency_ms": 20.075900000001923,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "api\\main.py",
+          "start_line": 201,
+          "end_line": 223,
+          "rrf_score": 0.03177805800756621,
+          "dense_rank": 1,
+          "dense_score": 0.8832778930664062,
+          "bm25_rank": 5,
+          "bm25_score": 30.95207797689018,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "rrf_score": 0.030834914611005692,
+          "dense_rank": 8,
+          "dense_score": 0.8678113222122192,
+          "bm25_rank": 2,
+          "bm25_score": 41.03849917451886,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "README.md",
+          "start_line": 211,
+          "end_line": 282,
+          "rrf_score": 0.030776515151515152,
+          "dense_rank": 4,
+          "dense_score": 0.8724451065063477,
+          "bm25_rank": 6,
+          "bm25_score": 29.23549773210651,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "repository\\search.py",
+          "start_line": 7,
+          "end_line": 14,
+          "rrf_score": 0.030679156908665108,
+          "dense_rank": 10,
+          "dense_score": 0.8657374978065491,
+          "bm25_rank": 1,
+          "bm25_score": 57.4189168303903,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "agent\\core.py",
+          "start_line": 1,
+          "end_line": 68,
+          "rrf_score": 0.028782894736842105,
+          "dense_rank": 16,
+          "dense_score": 0.8617421984672546,
+          "bm25_rank": 4,
+          "bm25_score": 34.72868517273677,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-015",
+      "query": "用户贴了一段报错堆栈以后，系统咋把异常类型和函数名提取出来？",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "relevant_files": [
+        "tools/log_analysis.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 22.78589999999525,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tools\\log_analysis.py",
+          "start_line": 969,
+          "end_line": 1038,
+          "rrf_score": 0.032018442622950824,
+          "dense_rank": 1,
+          "dense_score": 0.8795596361160278,
+          "bm25_rank": 4,
+          "bm25_score": 40.47830766686157,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "tools\\log_analysis.py",
+          "start_line": 1,
+          "end_line": 90,
+          "rrf_score": 0.0315136476426799,
+          "dense_rank": 2,
+          "dense_score": 0.8787035942077637,
+          "bm25_rank": 5,
+          "bm25_score": 39.243231338874395,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 836,
+          "end_line": 929,
+          "rrf_score": 0.027783137179239824,
+          "dense_rank": 13,
+          "dense_score": 0.8723270893096924,
+          "bm25_rank": 11,
+          "bm25_score": 25.160827921914105,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "docs\\routing_experiment.md",
+          "start_line": 1,
+          "end_line": 16,
+          "rrf_score": 0.027583600982429624,
+          "dense_rank": 19,
+          "dense_score": 0.870477557182312,
+          "bm25_rank": 7,
+          "bm25_score": 38.341178198346284,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "tools\\registry.py",
+          "start_line": 1,
+          "end_line": 222,
+          "rrf_score": 0.01639344262295082,
+          "dense_rank": null,
+          "dense_score": null,
+          "bm25_rank": 1,
+          "bm25_score": 56.141787919487705,
+          "matched_by": [
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-016",
+      "query": "建立仓库索引时，API 如何依次创建 Dense、BM25 和混合检索器？",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "relevant_files": [
+        "api/main.py",
+        "rag/dense.py",
+        "rag/bm25.py",
+        "rag/hybrid.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 26.964299999995944,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "api\\main.py",
+          "start_line": 101,
+          "end_line": 121,
+          "rrf_score": 0.032266458495966696,
+          "dense_rank": 1,
+          "dense_score": 0.9210524559020996,
+          "bm25_rank": 3,
+          "bm25_score": 55.27494367773542,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "rrf_score": 0.03125,
+          "dense_rank": 4,
+          "dense_score": 0.8990105986595154,
+          "bm25_rank": 4,
+          "bm25_score": 49.17793882360943,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "README.md",
+          "start_line": 141,
+          "end_line": 220,
+          "rrf_score": 0.029236022193768675,
+          "dense_rank": 11,
+          "dense_score": 0.8901804685592651,
+          "bm25_rank": 6,
+          "bm25_score": 47.03495997284632,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "tests\\check_hybrid.py",
+          "start_line": 1,
+          "end_line": 64,
+          "rrf_score": 0.029030910609857977,
+          "dense_rank": 3,
+          "dense_score": 0.9001634120941162,
+          "bm25_rank": 16,
+          "bm25_score": 27.101219620112005,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 1,
+          "end_line": 74,
+          "rrf_score": 0.02877846790890269,
+          "dense_rank": 9,
+          "dense_score": 0.8941453099250793,
+          "bm25_rank": 10,
+          "bm25_score": 35.38122659286017,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-017",
+      "query": "tools registry 是在哪里向 PyPI 注册和发布 Python 包的？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": true,
+      "relevant_files": [
+        "tools/registry.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 20.847899999999697,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tools\\registry.py",
+          "start_line": 828,
+          "end_line": 870,
+          "rrf_score": 0.03278688524590164,
+          "dense_rank": 1,
+          "dense_score": 0.8842183351516724,
+          "bm25_rank": 1,
+          "bm25_score": 54.043665281512595,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "api\\main.py",
+          "start_line": 1,
+          "end_line": 69,
+          "rrf_score": 0.031746031746031744,
+          "dense_rank": 3,
+          "dense_score": 0.8730146884918213,
+          "bm25_rank": 3,
+          "bm25_score": 24.37721924152456,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "tests\\check_agent.py",
+          "start_line": 1,
+          "end_line": 77,
+          "rrf_score": 0.03128054740957967,
+          "dense_rank": 6,
+          "dense_score": 0.8686001300811768,
+          "bm25_rank": 2,
+          "bm25_score": 31.74983766532408,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "tools\\log_analysis.py",
+          "start_line": 1,
+          "end_line": 90,
+          "rrf_score": 0.030117753623188408,
+          "dense_rank": 9,
+          "dense_score": 0.8658828735351562,
+          "bm25_rank": 4,
+          "bm25_score": 24.207985958840823,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "agent\\extensions.py",
+          "start_line": 1,
+          "end_line": 46,
+          "rrf_score": 0.027046783625730993,
+          "dense_rank": 16,
+          "dense_score": 0.8618762493133545,
+          "bm25_rank": 12,
+          "bm25_score": 19.734564061377192,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-018",
+      "query": "系统如何判断一个问题是否需要搜索代码仓库？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/query_rewriter.py"
+      ],
+      "first_relevant_rank": 3,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 23.116999999999166,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\core.py",
+          "start_line": 1,
+          "end_line": 68,
+          "rrf_score": 0.032266458495966696,
+          "dense_rank": 3,
+          "dense_score": 0.8928555846214294,
+          "bm25_rank": 1,
+          "bm25_score": 47.52814255600889,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "agent\\code_qa.py",
+          "start_line": 1,
+          "end_line": 28,
+          "rrf_score": 0.032018442622950824,
+          "dense_rank": 1,
+          "dense_score": 0.895194411277771,
+          "bm25_rank": 4,
+          "bm25_score": 44.94628465700385,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 1,
+          "end_line": 74,
+          "rrf_score": 0.031024531024531024,
+          "dense_rank": 6,
+          "dense_score": 0.8872480988502502,
+          "bm25_rank": 3,
+          "bm25_score": 45.94159604930684,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "agent\\code_qa.py",
+          "start_line": 154,
+          "end_line": 172,
+          "rrf_score": 0.03021353930031804,
+          "dense_rank": 2,
+          "dense_score": 0.8938740491867065,
+          "bm25_rank": 11,
+          "bm25_score": 33.87203890379118,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "tools\\log_analysis.py",
+          "start_line": 1,
+          "end_line": 90,
+          "rrf_score": 0.030090497737556562,
+          "dense_rank": 8,
+          "dense_score": 0.885211706161499,
+          "bm25_rank": 5,
+          "bm25_score": 44.736297341838466,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-019",
+      "query": "RerankedCodeSearch 的 search 方法在哪里定义？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/reranker.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 18.532200000002774,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "rag\\reranker.py",
+          "start_line": 412,
+          "end_line": 533,
+          "rrf_score": 0.030679156908665108,
+          "dense_rank": 1,
+          "dense_score": 0.8999489545822144,
+          "bm25_rank": 10,
+          "bm25_score": 17.56492308932549,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "api\\main.py",
+          "start_line": 273,
+          "end_line": 318,
+          "rrf_score": 0.030621785881252923,
+          "dense_rank": 2,
+          "dense_score": 0.8929452300071716,
+          "bm25_rank": 9,
+          "bm25_score": 17.73879320472887,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "rag\\dense.py",
+          "start_line": 235,
+          "end_line": 280,
+          "rrf_score": 0.01639344262295082,
+          "dense_rank": null,
+          "dense_score": null,
+          "bm25_rank": 1,
+          "bm25_score": 31.980741259321192,
+          "matched_by": [
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "tools\\registry.py",
+          "start_line": 828,
+          "end_line": 870,
+          "rrf_score": 0.016129032258064516,
+          "dense_rank": null,
+          "dense_score": null,
+          "bm25_rank": 2,
+          "bm25_score": 24.29371584000665,
+          "matched_by": [
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "rag\\dense.py",
+          "start_line": 203,
+          "end_line": 234,
+          "rrf_score": 0.015873015873015872,
+          "dense_rank": 3,
+          "dense_score": 0.8824207186698914,
+          "bm25_rank": null,
+          "bm25_score": null,
+          "matched_by": [
+            "dense"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-020",
+      "query": "页面上工具调用记录和引用证据是怎么显示出来的？",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "relevant_files": [
+        "ui/streamlit_app.py"
+      ],
+      "first_relevant_rank": 3,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 20.507899999998358,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tests\\check_api.py",
+          "start_line": 71,
+          "end_line": 117,
+          "rrf_score": 0.032018442622950824,
+          "dense_rank": 4,
+          "dense_score": 0.884907066822052,
+          "bm25_rank": 1,
+          "bm25_score": 65.18618899198627,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "agent\\citations.py",
+          "start_line": 1,
+          "end_line": 52,
+          "rrf_score": 0.03200204813108039,
+          "dense_rank": 2,
+          "dense_score": 0.8878378868103027,
+          "bm25_rank": 3,
+          "bm25_score": 41.47918532971664,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 502,
+          "end_line": 558,
+          "rrf_score": 0.03057889822595705,
+          "dense_rank": 3,
+          "dense_score": 0.8853601217269897,
+          "bm25_rank": 8,
+          "bm25_score": 36.840542119587006,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "agent\\citations.py",
+          "start_line": 814,
+          "end_line": 835,
+          "rrf_score": 0.029051670471052088,
+          "dense_rank": 1,
+          "dense_score": 0.888142466545105,
+          "bm25_rank": 19,
+          "bm25_score": 26.815454525867864,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 836,
+          "end_line": 929,
+          "rrf_score": 0.028404512489927477,
+          "dense_rank": 8,
+          "dense_score": 0.8724101781845093,
+          "bm25_rank": 13,
+          "bm25_score": 32.01111586504888,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-021",
+      "query": "代码分析器如何检测函数参数中的可变默认值？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "repository/analyzer.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 21.866000000002828,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "repository\\analyzer.py",
+          "start_line": 127,
+          "end_line": 178,
+          "rrf_score": 0.03278688524590164,
+          "dense_rank": 1,
+          "dense_score": 0.8767215013504028,
+          "bm25_rank": 1,
+          "bm25_score": 56.32420583705178,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "agent\\code_qa.py",
+          "start_line": 1,
+          "end_line": 28,
+          "rrf_score": 0.03200204813108039,
+          "dense_rank": 2,
+          "dense_score": 0.8754896521568298,
+          "bm25_rank": 3,
+          "bm25_score": 38.48826011344174,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "tools\\registry.py",
+          "start_line": 1,
+          "end_line": 222,
+          "rrf_score": 0.03076923076923077,
+          "dense_rank": 5,
+          "dense_score": 0.8700622320175171,
+          "bm25_rank": 5,
+          "bm25_score": 38.28152791682348,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "agent\\core.py",
+          "start_line": 1,
+          "end_line": 68,
+          "rrf_score": 0.0304147465437788,
+          "dense_rank": 10,
+          "dense_score": 0.866504430770874,
+          "bm25_rank": 2,
+          "bm25_score": 48.04168631285355,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "docs\\routing_experiment.md",
+          "start_line": 1,
+          "end_line": 16,
+          "rrf_score": 0.029206349206349208,
+          "dense_rank": 3,
+          "dense_score": 0.8747369647026062,
+          "bm25_rank": 15,
+          "bm25_score": 24.29238351497599,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-022",
+      "query": "从 API 接收错误日志到生成诊断结果经过哪些模块？",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "relevant_files": [
+        "api/main.py",
+        "tools/log_analysis.py"
+      ],
+      "first_relevant_rank": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "latency_ms": 18.83720000000011,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 932,
+          "end_line": 1002,
+          "rrf_score": 0.03252247488101534,
+          "dense_rank": 1,
+          "dense_score": 0.89521324634552,
+          "bm25_rank": 2,
+          "bm25_score": 43.769007625198824,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "tools\\log_analysis.py",
+          "start_line": 1041,
+          "end_line": 1087,
+          "rrf_score": 0.031754032258064516,
+          "dense_rank": 2,
+          "dense_score": 0.8930937051773071,
+          "bm25_rank": 4,
+          "bm25_score": 34.879656218061285,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "agent\\core.py",
+          "start_line": 1,
+          "end_line": 68,
+          "rrf_score": 0.030776515151515152,
+          "dense_rank": 4,
+          "dense_score": 0.8893537521362305,
+          "bm25_rank": 6,
+          "bm25_score": 32.31445055120227,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "README.md",
+          "start_line": 211,
+          "end_line": 282,
+          "rrf_score": 0.02976190476190476,
+          "dense_rank": 12,
+          "dense_score": 0.8786388635635376,
+          "bm25_rank": 3,
+          "bm25_score": 41.47096716592673,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "tools\\log_analysis.py",
+          "start_line": 486,
+          "end_line": 927,
+          "rrf_score": 0.02967032967032967,
+          "dense_rank": 5,
+          "dense_score": 0.8881188035011292,
+          "bm25_rank": 10,
+          "bm25_score": 26.797147803037532,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-023",
+      "query": "resolve_allowed_repository 函数在哪里？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "api/main.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 25.776100000001634,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "api\\main.py",
+          "start_line": 201,
+          "end_line": 223,
+          "rrf_score": 0.03252247488101534,
+          "dense_rank": 1,
+          "dense_score": 0.9215653538703918,
+          "bm25_rank": 2,
+          "bm25_score": 21.543155097466798,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "tools\\registry.py",
+          "start_line": 828,
+          "end_line": 870,
+          "rrf_score": 0.032018442622950824,
+          "dense_rank": 4,
+          "dense_score": 0.8884450197219849,
+          "bm25_rank": 1,
+          "bm25_score": 21.993375705782906,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "api\\main.py",
+          "start_line": 169,
+          "end_line": 198,
+          "rrf_score": 0.02946236559139785,
+          "dense_rank": 2,
+          "dense_score": 0.9000952243804932,
+          "bm25_rank": 15,
+          "bm25_score": 8.859715344540305,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "tests\\check_dense.py",
+          "start_line": 1,
+          "end_line": 63,
+          "rrf_score": 0.02786377708978328,
+          "dense_rank": 16,
+          "dense_score": 0.8744157552719116,
+          "bm25_rank": 8,
+          "bm25_score": 17.091477430369373,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "repository\\search.py",
+          "start_line": 7,
+          "end_line": 14,
+          "rrf_score": 0.015873015873015872,
+          "dense_rank": 3,
+          "dense_score": 0.8921551704406738,
+          "bm25_rank": null,
+          "bm25_score": null,
+          "matched_by": [
+            "dense"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-024",
+      "query": "Agent 生成 Dockerfile 后如何进行校验和保存？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "agent/extensions.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 30.695199999996703,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\extensions.py",
+          "start_line": 633,
+          "end_line": 692,
+          "rrf_score": 0.03252247488101534,
+          "dense_rank": 1,
+          "dense_score": 0.902783989906311,
+          "bm25_rank": 2,
+          "bm25_score": 32.76032290336007,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "agent\\core.py",
+          "start_line": 1,
+          "end_line": 68,
+          "rrf_score": 0.03200204813108039,
+          "dense_rank": 2,
+          "dense_score": 0.8974976539611816,
+          "bm25_rank": 3,
+          "bm25_score": 30.944984009895382,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "rrf_score": 0.03177805800756621,
+          "dense_rank": 5,
+          "dense_score": 0.8863941431045532,
+          "bm25_rank": 1,
+          "bm25_score": 36.52491969420942,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "agent\\extensions.py",
+          "start_line": 1,
+          "end_line": 46,
+          "rrf_score": 0.03057889822595705,
+          "dense_rank": 3,
+          "dense_score": 0.8896279335021973,
+          "bm25_rank": 8,
+          "bm25_score": 24.824359617484134,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "agent\\extensions.py",
+          "start_line": 589,
+          "end_line": 619,
+          "rrf_score": 0.03055037313432836,
+          "dense_rank": 4,
+          "dense_score": 0.8879644870758057,
+          "bm25_rank": 7,
+          "bm25_score": 26.810290924798743,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-025",
+      "query": "点了清空记忆以后，后端到底把哪一段对话删掉了？",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "relevant_files": [
+        "api/main.py",
+        "agent/extensions.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 22.185800000002587,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\extensions.py",
+          "start_line": 717,
+          "end_line": 817,
+          "rrf_score": 0.03252247488101534,
+          "dense_rank": 2,
+          "dense_score": 0.8674530982971191,
+          "bm25_rank": 1,
+          "bm25_score": 53.12058633319654,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "README.md",
+          "start_line": 211,
+          "end_line": 282,
+          "rrf_score": 0.03177805800756621,
+          "dense_rank": 1,
+          "dense_score": 0.870165228843689,
+          "bm25_rank": 5,
+          "bm25_score": 21.541891099936468,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 502,
+          "end_line": 558,
+          "rrf_score": 0.031009615384615385,
+          "dense_rank": 5,
+          "dense_score": 0.8641773462295532,
+          "bm25_rank": 4,
+          "bm25_score": 23.253844727917222,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "agent\\citations.py",
+          "start_line": 1,
+          "end_line": 52,
+          "rrf_score": 0.029910714285714284,
+          "dense_rank": 4,
+          "dense_score": 0.8660576343536377,
+          "bm25_rank": 10,
+          "bm25_score": 16.551587659393846,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 603,
+          "end_line": 756,
+          "rrf_score": 0.02928692699490662,
+          "dense_rank": 16,
+          "dense_score": 0.8577393293380737,
+          "bm25_rank": 2,
+          "bm25_score": 44.225997408307784,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-026",
+      "query": "search.py 是调用 Google 搜索引擎查询网页的吗？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": true,
+      "relevant_files": [
+        "repository/search.py"
+      ],
+      "first_relevant_rank": 5,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.2,
+      "latency_ms": 24.30569999999932,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 1,
+          "end_line": 74,
+          "rrf_score": 0.03177805800756621,
+          "dense_rank": 5,
+          "dense_score": 0.8640429973602295,
+          "bm25_rank": 1,
+          "bm25_score": 24.357129414822467,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 836,
+          "end_line": 929,
+          "rrf_score": 0.031754032258064516,
+          "dense_rank": 4,
+          "dense_score": 0.8693491220474243,
+          "bm25_rank": 2,
+          "bm25_score": 24.19838833367774,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "rag\\bm25.py",
+          "start_line": 494,
+          "end_line": 541,
+          "rrf_score": 0.03128054740957967,
+          "dense_rank": 2,
+          "dense_score": 0.870557427406311,
+          "bm25_rank": 6,
+          "bm25_score": 20.79028369955999,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "tools\\log_analysis.py",
+          "start_line": 969,
+          "end_line": 1038,
+          "rrf_score": 0.029386529386529386,
+          "dense_rank": 14,
+          "dense_score": 0.8589184284210205,
+          "bm25_rank": 3,
+          "bm25_score": 22.741956020955577,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "repository\\search.py",
+          "start_line": 103,
+          "end_line": 123,
+          "rrf_score": 0.02886002886002886,
+          "dense_rank": 3,
+          "dense_score": 0.869864284992218,
+          "bm25_rank": 17,
+          "bm25_score": 16.563925696804553,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-027",
+      "query": "今天北京天气怎么样？",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "relevant_files": [],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 18.117999999994083,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "README.md",
+          "start_line": 211,
+          "end_line": 282,
+          "rrf_score": 0.031544957774465976,
+          "dense_rank": 1,
+          "dense_score": 0.8318626880645752,
+          "bm25_rank": 6,
+          "bm25_score": 1.6782303340306217,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "rag\\dense.py",
+          "start_line": 235,
+          "end_line": 280,
+          "rrf_score": 0.028629032258064516,
+          "dense_rank": 20,
+          "dense_score": 0.8182157278060913,
+          "bm25_rank": 2,
+          "bm25_score": 4.881180765369,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "rag\\hybrid.py",
+          "start_line": 347,
+          "end_line": 417,
+          "rrf_score": 0.01639344262295082,
+          "dense_rank": null,
+          "dense_score": null,
+          "bm25_rank": 1,
+          "bm25_score": 14.524752827551414,
+          "matched_by": [
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "agent\\code_qa.py",
+          "start_line": 173,
+          "end_line": 209,
+          "rrf_score": 0.016129032258064516,
+          "dense_rank": 2,
+          "dense_score": 0.8307900428771973,
+          "bm25_rank": null,
+          "bm25_score": null,
+          "matched_by": [
+            "dense"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "rrf_score": 0.015873015873015872,
+          "dense_rank": 3,
+          "dense_score": 0.828690767288208,
+          "bm25_rank": null,
+          "bm25_score": null,
+          "matched_by": [
+            "dense"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-028",
+      "query": "请帮我写一条查询用户订单的 SQL。",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "relevant_files": [],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 18.94970000000029,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "rrf_score": 0.03200204813108039,
+          "dense_rank": 3,
+          "dense_score": 0.8739669322967529,
+          "bm25_rank": 2,
+          "bm25_score": 19.5768499524357,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "docs\\routing_experiment.md",
+          "start_line": 1,
+          "end_line": 16,
+          "rrf_score": 0.02854251012145749,
+          "dense_rank": 16,
+          "dense_score": 0.8658633828163147,
+          "bm25_rank": 5,
+          "bm25_score": 15.74077734904998,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 1048,
+          "end_line": 1099,
+          "rrf_score": 0.02813852813852814,
+          "dense_rank": 6,
+          "dense_score": 0.8702616691589355,
+          "bm25_rank": 17,
+          "bm25_score": 10.466836740328255,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 282,
+          "end_line": 712,
+          "rrf_score": 0.027526395173453996,
+          "dense_rank": 18,
+          "dense_score": 0.8655248880386353,
+          "bm25_rank": 8,
+          "bm25_score": 13.084146154458676,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "README.md",
+          "start_line": 71,
+          "end_line": 150,
+          "rrf_score": 0.026013513513513515,
+          "dense_rank": 14,
+          "dense_score": 0.8662146329879761,
+          "bm25_rank": 20,
+          "bm25_score": 9.889909265223448,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-029",
+      "query": "把 good morning 翻译成中文。",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "relevant_files": [],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "latency_ms": 22.982000000006053,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\citations.py",
+          "start_line": 1,
+          "end_line": 52,
+          "rrf_score": 0.02886002886002886,
+          "dense_rank": 17,
+          "dense_score": 0.8563007116317749,
+          "bm25_rank": 3,
+          "bm25_score": 8.796331541381669,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "README.md",
+          "start_line": 211,
+          "end_line": 282,
+          "rrf_score": 0.028438886647841874,
+          "dense_rank": 7,
+          "dense_score": 0.8587148189544678,
+          "bm25_rank": 14,
+          "bm25_score": 4.2137687679695235,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 153,
+          "end_line": 224,
+          "rrf_score": 0.027809742999616416,
+          "dense_rank": 6,
+          "dense_score": 0.8599720597267151,
+          "bm25_rank": 19,
+          "bm25_score": 3.7000721670567716,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "rag\\bm25.py",
+          "start_line": 113,
+          "end_line": 455,
+          "rrf_score": 0.027222222222222224,
+          "dense_rank": 15,
+          "dense_score": 0.8564901947975159,
+          "bm25_rank": 12,
+          "bm25_score": 4.340101477435294,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "rag\\hybrid.py",
+          "start_line": 220,
+          "end_line": 275,
+          "rrf_score": 0.026875901875901876,
+          "dense_rank": 12,
+          "dense_score": 0.8569023609161377,
+          "bm25_rank": 17,
+          "bm25_score": 3.9844295603441906,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rd-030",
+      "query": "Embedding 模型名称和批量大小在哪里配置，又在哪里实际使用？",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "relevant_files": [
+        "config.py",
+        "rag/dense.py"
+      ],
+      "first_relevant_rank": 3,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 21.943400000004942,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tests\\check_dense.py",
+          "start_line": 1,
+          "end_line": 63,
+          "rrf_score": 0.03252247488101534,
+          "dense_rank": 2,
+          "dense_score": 0.8835717439651489,
+          "bm25_rank": 1,
+          "bm25_score": 70.75970877451952,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 2,
+          "file": "tests\\check_config.py",
+          "start_line": 1,
+          "end_line": 24,
+          "rrf_score": 0.03177805800756621,
+          "dense_rank": 1,
+          "dense_score": 0.8870699405670166,
+          "bm25_rank": 5,
+          "bm25_score": 41.79545526311323,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 3,
+          "file": "rag\\dense.py",
+          "start_line": 235,
+          "end_line": 280,
+          "rrf_score": 0.031754032258064516,
+          "dense_rank": 4,
+          "dense_score": 0.8750334978103638,
+          "bm25_rank": 2,
+          "bm25_score": 45.3492223899853,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 4,
+          "file": "rag\\dense.py",
+          "start_line": 70,
+          "end_line": 202,
+          "rrf_score": 0.029386529386529386,
+          "dense_rank": 3,
+          "dense_score": 0.8769330382347107,
+          "bm25_rank": 14,
+          "bm25_score": 25.716949226623903,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "file": "README.md",
+          "start_line": 71,
+          "end_line": 150,
+          "rrf_score": 0.028381642512077296,
+          "dense_rank": 12,
+          "dense_score": 0.8628919124603271,
+          "bm25_rank": 9,
+          "bm25_score": 33.09593330594843,
+          "matched_by": [
+            "dense",
+            "bm25"
+          ]
+        }
+      ]
+    }
+  ]
+}

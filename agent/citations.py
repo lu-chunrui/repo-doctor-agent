@@ -23,7 +23,10 @@ CITATION_PATTERN = re.compile(
     r"\[([^\[\]\n]+):(\d+)-(\d+)\]"
 )
 
-
+CODE_FENCE_PATTERN = re.compile(
+    r"```.*?(?:```|\Z)",
+    re.DOTALL,
+)
 
 CITATION_REPAIR_SYSTEM_PROMPT = """
 你是一个代码回答引用校验与修正助手。
@@ -396,28 +399,35 @@ class CitationValidator:
         )
 
     def extract_citations(
-        self,
+    self,
+    answer,
+):
+        if not isinstance(answer, str):
+            raise TypeError("answer 必须是字符串")
+
+    
+        citation_text = CODE_FENCE_PATTERN.sub(
+        "",
         answer,
-    ):
+        )
+
         citations = []
 
         for match in CITATION_PATTERN.finditer(
-            answer
+        citation_text
         ):
             citations.append(
-                {
-                    "raw": match.group(0),
-                    "file": (
-                        match.group(1).strip()
-                    ),
-                    "start_line": int(
-                        match.group(2)
-                    ),
-                    "end_line": int(
-                        match.group(3)
-                    ),
-                }
-            )
+            {
+                "raw": match.group(0),
+                "file": match.group(1).strip(),
+                "start_line": int(
+                    match.group(2)
+                ),
+                "end_line": int(
+                    match.group(3)
+                ),
+            }
+        )
 
         return citations
 

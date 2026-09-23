@@ -468,6 +468,18 @@ class RerankedCodeSearch:
         rewrite_result = (
             retrieval_result["rewrite"]
         )
+        soft_fuse_triggered = (
+        retrieval_result.get(
+        "soft_fuse_triggered",
+        False,
+            )
+        )
+
+        top_dense_similarity = (
+        retrieval_result.get(
+        "top_dense_similarity"
+            )
+        )
 
         if retrieval_result["skipped"]:
             return {
@@ -486,6 +498,12 @@ class RerankedCodeSearch:
                     self.reranker.model_name
                 ),
                 "reranker_error": None,
+                "soft_fuse_triggered": (
+                soft_fuse_triggered
+              ),
+             "top_dense_similarity": (
+               top_dense_similarity
+                ),
             }
 
         recall_results = (
@@ -505,33 +523,38 @@ class RerankedCodeSearch:
         )
 
         return {
-            "original_query": query,
-            "rewrite": rewrite_result,
-            "recall_results": (
-                recall_results
-            ),
-            "results": (
-                rerank_result["results"]
-            ),
-            "skipped": False,
-            "skip_reason": None,
-            "reranker_used": (
-                rerank_result[
-                    "reranker_used"
-                ]
-            ),
-            "reranker_model": (
-                rerank_result[
-                    "reranker_model"
-                ]
-            ),
-            "reranker_error": (
-                rerank_result[
-                    "reranker_error"
-                ]
-            ),
-        }
-
+    "original_query": query,
+    "rewrite": rewrite_result,
+    "recall_results": (
+        recall_results
+    ),
+    "results": (
+        rerank_result["results"]
+    ),
+    "skipped": False,
+    "skip_reason": None,
+    "soft_fuse_triggered": (
+        soft_fuse_triggered
+    ),
+    "top_dense_similarity": (
+        top_dense_similarity
+    ),
+    "reranker_used": (
+        rerank_result[
+            "reranker_used"
+        ]
+    ),
+    "reranker_model": (
+        rerank_result[
+            "reranker_model"
+        ]
+    ),
+    "reranker_error": (
+        rerank_result[
+            "reranker_error"
+        ]
+    ),
+}
 
 def print_rank_change(
     result,

@@ -1,0 +1,41 @@
+{
+  "best_method_by_current_rules": "Dense",
+  "ranking_rule": [
+    "hit_at_5",
+    "mrr",
+    "hit_at_3",
+    "lower_average_latency_ms"
+  ],
+  "methods": [
+    {
+      "method": "BM25",
+      "hit_at_1": 0.375,
+      "hit_at_3": 0.5,
+      "hit_at_5": 0.5,
+      "mrr": 0.4166666666666667,
+      "average_latency_ms": 1.0081000000003115,
+      "index_seconds": 6.620427099999999,
+      "irrelevant_false_positive_rate": 1.0
+    },
+    {
+      "method": "Dense",
+      "hit_at_1": 0.25,
+      "hit_at_3": 0.5,
+      "hit_at_5": 0.875,
+      "mrr": 0.4354166666666667,
+      "average_latency_ms": 36.522839999999235,
+      "index_seconds": 21.8435972,
+      "irrelevant_false_positive_rate": 1.0
+    },
+    {
+      "method": "Hybrid + RRF",
+      "hit_at_1": 0.375,
+      "hit_at_3": 0.625,
+      "hit_at_5": 0.75,
+      "mrr": 0.53125,
+      "average_latency_ms": 22.878329999999636,
+      "index_seconds": 34.1199972,
+      "irrelevant_false_positive_rate": 1.0
+    }
+  ]
+}

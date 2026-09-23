@@ -1,98 +1,75 @@
-# RepoDoctor Agent - 面向代码仓库的 AI 诊断助手
+# RepoDoctor Agent
 
-一个融合 RAG、Function Calling、静态分析与 LoRA 路由实验的代码仓库问答和诊断系统。
+面向本地代码仓库的 AI 问答与诊断系统。项目将混合检索、Function Calling、Python AST 静态分析、Traceback 定位和引用校验组合成一条可评测、可复现的 Agent 链路。
 
-[项目简介](#项目简介) · [核心功能](#核心功能) · [快速开始](#快速开始) · [系统架构](#系统架构) · [实验结果](#实验结果) · [API](#api-接口)
+[快速开始](#快速开始) · [工作流程](#工作流程) · [核心能力](#核心能力) · [评测结果](#评测结果) · [评测复现](#评测复现) · [API](#api)
 
----
+## 项目亮点
 
-## 项目简介
+- **多工具 Agent**：根据问题选择代码检索、AST 分析、日志诊断、代码补全、测试生成或 Dockerfile 生成工具。
+- **混合代码检索**：Dense 与 BM25 双路召回，通过 RRF 融合，并支持 Query Rewrite 与 CrossEncoder Reranker。
+- **证据约束回答**：记录每次工具调用的源码证据，校验 `[文件路径:起始行-结束行]` 引用，减少无依据回答。
+- **端到端评测**：同时评估工具决策、工具选择、参数、检索证据、引用和最终回答支持度。
+- **安全边界**：只允许访问配置目录中的仓库，不执行待分析仓库中的未知代码，并限制输入和工具结果大小。
+- **完整交互入口**：提供 FastAPI 后端、Swagger API 文档和 Streamlit Web UI。
 
-RepoDoctor Agent 面向本地代码仓库提供带证据的问答与诊断能力。系统会根据用户问题自主选择工具，在仓库中检索、读取或分析代码，再由大模型结合工具结果生成回答。
-
-项目当前包含：
-
-- 多工具 Agent：基于 OpenAI 兼容的 Function Calling 接口，最多执行 6 轮工具调用。
-- 混合代码检索：Dense 向量检索与 BM25 召回，并使用 RRF 融合结果。
-- 查询改写与重排：分别生成语义查询和关键词查询，可选 CrossEncoder Reranker。
-- 证据约束：追踪工具证据并校验回答中的文件路径和行号引用。
-- 仓库诊断：支持 Python AST 静态分析、Traceback 定位与相关代码读取。
-- 完整交互链路：FastAPI 后端、Streamlit Web UI 和多轮会话记忆。
-- 路由实验：提供数据构建、评测、Qwen2.5-1.5B LoRA 训练及实验报告。
-
-适用场景包括代码定位、实现理解、代码质量分析、错误日志诊断、代码补全、单元测试生成和 Dockerfile 生成。
-
----
-
-## 核心功能
-
-### 6 个 Agent 工具
-
-| 工具 | 功能 | 典型场景 |
-| --- | --- | --- |
-| `search_codebase` | Dense + BM25 + RRF 混合检索 | 定位函数、类和功能实现 |
-| `analyze_code` | 使用 AST 分析 Python 文件 | 查看函数、类、导入、圈复杂度和潜在问题 |
-| `analyze_log` | 解析异常日志并读取报错上下文 | 定位 Traceback 对应的仓库代码 |
-| `complete_code` | 读取指定文件与代码区间 | 为代码修改或补全准备上下文 |
-| `generate_tests` | 提取目标结构和源码 | 生成 pytest 测试用例 |
-| `generate_dockerfile` | 扫描依赖和程序入口 | 生成适合当前仓库的 Dockerfile |
-
-### 检索链路
+## 工作流程
 
 ```text
 用户问题
    |
    v
-Query Rewriter
-   |-- semantic_query --> Dense Retriever (multilingual-e5-small)
-   `-- keyword_query  --> BM25 Retriever
-                              |
-                              v
-                         RRF Fusion
-                              |
-                              v
-                  CrossEncoder Reranker (可选)
-                              |
-                              v
-                       带行号的代码证据
+意图判断与 Query Rewrite
+   |
+   +-- semantic query --> Dense Retriever --------+
+   |                                               |
+   `-- keyword query  --> BM25 Retriever ----------+--> RRF
+                                                       |
+                                                       v
+                                             CrossEncoder Reranker
+                                                       |
+                                                       v
+LLM <---- 带文件路径和行号的证据 <---- Agent 工具调用
+   |
+   v
+回答生成 --> 引用校验 --> 多轮会话记忆 --> API / Web UI
 ```
 
-### Agent 决策流程
+软熔断作为可选实验功能保留，默认关闭。当前 30 条检索评测中，开启阈值熔断会误伤 1 条相关查询，而 Query Rewrite 已能过滤无关查询，因此默认配置优先保证召回率。
+
+## 核心能力
+
+### Agent 工具
+
+| 工具 | 作用 | 典型问题 |
+| --- | --- | --- |
+| `search_codebase` | Dense + BM25 + RRF 混合检索 | “QueryRewriter 在哪里实现？” |
+| `analyze_code` | 分析 Python 类、函数、复杂度和告警 | “分析 api/main.py 的结构” |
+| `analyze_log` | 解析 Traceback 并读取报错上下文 | “这个 KeyError 是怎么产生的？” |
+| `complete_code` | 获取指定文件和代码区间 | “补齐这个方法的参数校验” |
+| `generate_tests` | 获取目标类或函数的测试上下文 | “为 CitationValidator 生成 pytest 测试” |
+| `generate_dockerfile` | 收集依赖、入口和仓库结构 | “为项目生成 Dockerfile” |
+
+### 证据与引用
+
+涉及仓库事实的回答使用以下格式引用源码：
 
 ```text
-用户输入
-   |
-   v
-LLM 判断任务并选择工具
-   |
-   v
-执行工具并记录证据
-   |
-   +-- 证据不足 --> 继续调用工具（最多 6 轮）
-   |
-   v
-生成带 [文件路径:起始行-结束行] 引用的回答
-   |
-   v
-引用校验 + 会话记忆
+[rag/hybrid.py:94-110]
 ```
 
-仓库中的代码和注释只会作为待分析数据，不会被当作 Agent 指令，也不会直接执行未知仓库代码。
-
----
+系统会检查文件是否存在、行号是否有效、引用是否位于工具实际读取的证据范围，并忽略代码块中的引用示例。
 
 ## 快速开始
 
 ### 环境要求
 
-- Python 3.9+（运行 API、Web UI 和 RAG）
-- Python 3.10+ 与 `peft==0.20.0`（仅 LoRA 训练和适配器推理需要，当前 `.venv` 未安装）
+- Python 3.9+
 - 建议 8 GB 以上内存
-- 首次建立索引时需要下载 Embedding 模型
-- 启用 Reranker 时还需要下载 `BAAI/bge-reranker-base`
-- CUDA 可选，仅用于加速本地模型和 LoRA 实验
+- 首次运行需要下载 Embedding 模型
+- 启用 Reranker 时需要下载 `BAAI/bge-reranker-base`
 
-### 1. 克隆并创建环境
+### 1. 创建虚拟环境
 
 ```powershell
 git clone https://github.com/lu-chunrui/repo-doctor-agent.git
@@ -100,183 +77,236 @@ cd repo-doctor-agent
 
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Linux/macOS 激活环境：
+Linux/macOS：
 
 ```bash
+python3 -m venv .venv
 source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
 ```
 
 ### 2. 配置环境变量
 
-系统使用 OpenAI Chat Completions 兼容接口。下面以 DeepSeek 为例：
+```powershell
+Copy-Item .env.example .env
+```
+
+编辑 `.env`：
+
+```env
+LLM_API_KEY=your-api-key
+LLM_BASE_URL=https://api.deepseek.com
+LLM_MODEL=deepseek-chat
+
+# 必须包含准备分析的仓库。Windows 多目录使用分号分隔。
+REPO_DOCTOR_ALLOWED_ROOTS=D:\project;D:\workspace
+REPO_DOCTOR_CORS_ORIGINS=http://127.0.0.1:8501,http://localhost:8501
+
+EMBEDDING_MODEL_NAME=intfloat/multilingual-e5-small
+RERANKER_MODEL_NAME=BAAI/bge-reranker-base
+DEFAULT_REPOSITORY=D:\project\example-repository
+
+# 实验功能，默认关闭
+SOFT_FUSE_ENABLED=false
+SOFT_FUSE_SIMILARITY_THRESHOLD=0.869
+```
+
+配置由 `pydantic-settings` 自动从项目根目录的 `.env` 读取。`LLM_API_KEY` 在程序导入和健康检查阶段不是必填项，真正调用 LLM 时才会校验。
+
+> 不要提交 `.env`。仓库只应保留不含密钥的 `.env.example`。
+
+### 3. 启动后端
 
 ```powershell
-$env:LLM_API_KEY = "your-api-key"
-$env:LLM_BASE_URL = "https://api.deepseek.com"
-$env:LLM_MODEL = "deepseek-chat"
-
-# 必须包含准备分析的仓库；多个目录使用系统路径分隔符连接
-$env:REPO_DOCTOR_ALLOWED_ROOTS = "D:\桌面"
-
-# 可选：替换默认重排模型
-$env:RERANKER_MODEL_NAME = "BAAI/bge-reranker-base"
+python -m uvicorn api.main:app --host 127.0.0.1 --port 8000
 ```
 
-是否启用 Reranker 由 Web 界面选项或 `/api/v1/index` 请求中的 `enable_reranker` 字段控制。
+- 健康检查：<http://127.0.0.1:8000/api/v1/health>
+- Swagger：<http://127.0.0.1:8000/docs>
 
-> `.env` 已加入忽略列表，但当前程序不会自动加载 `.env`。请在启动进程前设置环境变量。
+### 4. 启动 Web UI
 
-### 3. 启动 FastAPI 后端
+另开一个终端：
 
 ```powershell
-.\.venv\Scripts\python.exe -m uvicorn api.main:app --host 127.0.0.1 --port 8000
+cd repo-doctor-agent
+.\.venv\Scripts\Activate.ps1
+python -m streamlit run ui\streamlit_app.py
 ```
 
-- 健康检查：`http://127.0.0.1:8000/api/v1/health`
-- Swagger 文档：`http://127.0.0.1:8000/docs`
+访问 <http://127.0.0.1:8501>，输入允许目录内的仓库路径，先建立索引，再进行问答或日志诊断。
 
-### 4. 启动 Streamlit UI
+首次索引需要下载模型并生成 Dense、BM25 索引。运行时索引按仓库隔离保存在 `runtime_data/`，不应提交到 Git。
 
-打开另一个 PowerShell 窗口，并设置相同的工作目录：
+## 评测结果
+
+所有结果均来自仓库内保存的评测数据和脚本。数据规模仍然较小，指标用于验证当前实现和对比方案，不代表任意代码仓库上的通用效果。
+
+### 检索消融
+
+评测集包含 30 条查询，其中 25 条与仓库相关、5 条无关，覆盖标识符、自然语言、中文口语、跨文件、误导关键词和无关问题。
+
+| 方法 | Hit@1 | Hit@3 | Hit@5 | MRR | 平均延迟 | 无关查询误检率 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| BM25 | 0.28 | 0.52 | 0.64 | 0.4080 | 1.32 ms | 1.00 |
+| Dense | 0.44 | 0.72 | 0.80 | 0.5713 | 18.73 ms | 1.00 |
+| Hybrid + RRF | 0.48 | 0.72 | 0.88 | 0.6180 | 21.09 ms | 1.00 |
+| Dense + Rewrite | 0.60 | 0.76 | 0.92 | 0.7027 | 8.14 s | 0.00 |
+| Hybrid + Rewrite | 0.56 | 0.80 | 0.88 | 0.6800 | 8.18 s | 0.00 |
+| **Hybrid + Rewrite + Reranker** | **0.68** | **0.88** | **0.96** | **0.7867** | **11.80 s** | **0.00** |
+
+当前默认方案在该评测集上获得最高 Hit@5 和 MRR，但代价是 Query Rewrite 与 Reranker 带来的明显延迟。原始结果见 `reports/retrieval/`。
+
+### 端到端 Agent
+
+| 指标 | 结果 |
+| --- | ---: |
+| 用例数 | 30 |
+| 完成率 | 100% |
+| 工具决策准确率 | 100% |
+| 工具选择准确率 | 90% |
+| 工具参数准确率 | 100% |
+| 证据命中率 | 100% |
+| 引用准确率 | 95.45% |
+| 无关问题假阳性率 | 0% |
+| 平均端到端延迟 | 18.38 s |
+
+### LLM-as-Judge
+
+Judge 会结合问题、回答、工具证据和真实引用源码，评估回答是否被证据支持。
+
+| 指标 | 结果 |
+| --- | ---: |
+| 成功评判 | 30 / 30 |
+| 回答支持率 | 93.33% |
+| 幻觉率 | 6.67% |
+| 平均相关性 | 4.83 / 5 |
+| 平均证据支持度 | 4.16 / 5 |
+| 平均引用支持度 | 4.27 / 5 |
+
+Judge 本身也可能产生判断偏差，因此该结果用于发现失败案例，不视为绝对真值。完整记录见 `reports/agent_eval/judge_results.json`。
+
+### 路由实验
+
+路由数据集共 210 条样本，按照 `126 / 42 / 42` 划分训练、验证和测试集，覆盖 6 个工具及直接回答场景。
+
+| 模型或方案 | 数据集 | 决策准确率 | 工具准确率 | Schema 合法率 | 参数键覆盖率 |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Base Prompt | Validation | 97.62% | 97.22% | 100.00% | 97.22% |
+| Prompt v1 | Validation | 100.00% | 100.00% | 100.00% | 100.00% |
+| Prompt v1 | Test | 100.00% | 100.00% | 100.00% | 100.00% |
+| Qwen2.5-1.5B Base | Validation | 73.81% | 50.00% | 78.57% | 50.00% |
+| Qwen2.5-1.5B LoRA | Validation | 90.48% | 88.89% | 100.00% | 77.78% |
+| Qwen2.5-1.5B LoRA epoch 4 | Test | 100.00% | 100.00% | 97.62% | 97.22% |
+
+LoRA 测试集包含 42 条均衡样本。相关预测、指标和实验说明位于 `reports/routing/` 与 `docs/routing_experiment.md`。
+
+## 评测复现
+
+先启动 API，然后执行 Agent 评测：
 
 ```powershell
-.\.venv\Scripts\python.exe -m streamlit run ui\streamlit_app.py
+python -m scripts.evaluate_agent `
+  --repository "D:\path\to\repo-doctor-agent" `
+  --timeout 300 `
+  --rebuild-index
 ```
 
-浏览器访问 `http://127.0.0.1:8501`，填写待分析仓库路径，先建立索引，再开始对话或分析日志。
+运行 LLM-as-Judge：
 
-> 第一次建立索引会下载模型并生成 Dense、BM25 索引，因此耗时会明显长于后续启动。索引按仓库隔离保存在 `runtime_data/`。
-
----
-
-## 系统架构
-
-```text
-┌──────────────────────────────────────────────────────────┐
-│                    Streamlit Web UI                      │
-└──────────────────────────┬───────────────────────────────┘
-                           │ HTTP
-┌──────────────────────────▼───────────────────────────────┐
-│                     FastAPI Service                      │
-│      仓库运行时 · 会话隔离 · 内存管理 · 索引管理          │
-└──────────────────────────┬───────────────────────────────┘
-                           │
-┌──────────────────────────▼───────────────────────────────┐
-│                    RepoDoctor Agent                      │
-│  Function Calling · 多轮工具调用 · 会话记忆 · 引用校验    │
-└───────────────┬───────────────────────┬──────────────────┘
-                │                       │
-┌───────────────▼────────────┐  ┌───────▼──────────────────┐
-│         Tool Suite         │  │       RAG Pipeline       │
-│ Search / AST / Log / Code  │  │ Rewrite / Dense / BM25   │
-│ Test / Dockerfile          │  │ RRF / CrossEncoder       │
-└────────────────────────────┘  └──────────────────────────┘
+```powershell
+python -m scripts.evaluate_agent_judge --force
 ```
 
-### 关键模块
+校验检索数据集并运行全部检索方案：
 
-| 模块 | 路径 | 说明 |
+```powershell
+python -m scripts.validate_retrieval_dataset
+python -m scripts.run_all_retrieval_evals
+```
+
+Rewrite 和 Judge 都会调用配置的大模型，会产生 API 费用；不同时间、模型和机器上的结果可能变化。
+
+## API
+
+| 方法 | 路径 | 作用 |
 | --- | --- | --- |
-| Agent Core | `agent/core.py` | LLM 客户端、工具循环与错误恢复 |
-| Evidence Agent | `agent/citations.py` | 证据追踪和引用校验 |
-| Agent Extensions | `agent/extensions.py` | 多轮会话记忆与扩展 Agent |
-| Tool Registry | `tools/registry.py` | 6 个工具的 Schema 与执行入口 |
-| Log Analysis | `tools/log_analysis.py` | Traceback 解析与诊断流程 |
-| Repository | `repository/` | 扫描、切分、搜索和 AST 分析 |
-| RAG | `rag/` | Dense、BM25、RRF、查询改写与重排 |
-| API | `api/main.py` | FastAPI 服务与仓库运行时管理 |
-| Web UI | `ui/streamlit_app.py` | Streamlit 交互界面 |
-| Routing Experiments | `experiments/routing/` | 数据处理、评测与 LoRA 训练 |
-
----
-
-## 实验结果
-
-路由数据集共 210 条样本，按 `126 / 42 / 42` 划分为训练集、验证集和测试集，覆盖 6 个工具以及直接回答场景。
-
-### Prompt 路由
-
-| 实验 | 数据集 | 决策准确率 | 工具准确率 | Schema 合法率 | 参数键覆盖率 | 参数完全一致率 | 工具幻觉率 |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Base Prompt | Validation | 97.62% | 97.22% | 100.00% | 97.22% | 63.89% | 0.00% |
-| Prompt v1 | Validation | 100.00% | 100.00% | 100.00% | 100.00% | 66.67% | 0.00% |
-| Prompt v1 | Test | 100.00% | 100.00% | 100.00% | 100.00% | 75.00% | 0.00% |
-
-### Qwen2.5-1.5B LoRA 路由
-
-| 模型 | 数据集 | 决策准确率 | 工具准确率 | Schema 合法率 | 参数键覆盖率 | 参数完全一致率 |
-| --- | --- | ---: | ---: | ---: | ---: | ---: |
-| Qwen2.5-1.5B Base | Validation | 73.81% | 50.00% | 78.57% | 50.00% | 25.00% |
-| Qwen2.5-1.5B LoRA | Validation | 90.48% | 88.89% | 100.00% | 77.78% | 25.00% |
-| Qwen2.5-1.5B LoRA (epoch 4) | Test | 100.00% | 100.00% | 97.62% | 97.22% | 50.00% |
-
-LoRA 测试集推理记录来自 NVIDIA GeForce RTX 4090 D：平均延迟约 `1.10 s/sample`，吞吐约 `23.83 tokens/s`。
-
-> 这些结果来自 42 条均衡测试样本，用于验证当前路由实验链路，不代表复杂真实仓库场景中的通用准确率。原始指标和预测结果位于 `reports/routing/`。
-
----
-
-## API 接口
-
-| 方法 | 路径 | 功能 |
-| --- | --- | --- |
-| `GET` | `/api/v1/health` | 查看服务及已加载仓库状态 |
-| `POST` | `/api/v1/index` | 为指定仓库建立或加载索引 |
-| `POST` | `/api/v1/chat` | 进行带仓库证据的多轮问答 |
-| `POST` | `/api/v1/analyze-log` | 分析 Traceback 或错误日志 |
+| `GET` | `/api/v1/health` | 服务和仓库运行时状态 |
+| `POST` | `/api/v1/index` | 建立或加载仓库索引 |
+| `POST` | `/api/v1/chat` | 带仓库证据的多轮问答 |
+| `POST` | `/api/v1/analyze-log` | Traceback 和错误日志诊断 |
 | `POST` | `/api/v1/clear-memory` | 清除指定会话记忆 |
-| `GET` | `/api/v1/memory` | 查看指定会话的记忆状态 |
+| `GET` | `/api/v1/memory` | 查看会话记忆状态 |
 
-建立索引示例：
+PowerShell 建立索引示例：
 
-```bash
-curl -X POST http://127.0.0.1:8000/api/v1/index \
-  -H "Content-Type: application/json" \
-  -d '{"repository_path":"D:\\path\\to\\repo","rebuild_index":false,"enable_reranker":true}'
+```powershell
+$body = @{
+    repository_path = "D:\path\to\repository"
+    rebuild_index = $false
+    enable_reranker = $true
+} | ConvertTo-Json
+
+Invoke-RestMethod `
+  -Method Post `
+  -Uri "http://127.0.0.1:8000/api/v1/index" `
+  -ContentType "application/json" `
+  -Body $body
 ```
 
 对话示例：
 
-```bash
-curl -X POST http://127.0.0.1:8000/api/v1/chat \
-  -H "Content-Type: application/json" \
-  -d '{"repository_path":"D:\\path\\to\\repo","session_id":"demo","message":"项目在哪里处理异常日志？"}'
-```
+```powershell
+$body = @{
+    repository_path = "D:\path\to\repository"
+    session_id = "demo"
+    message = "项目在哪里处理异常日志？"
+} | ConvertTo-Json
 
----
+Invoke-RestMethod `
+  -Method Post `
+  -Uri "http://127.0.0.1:8000/api/v1/chat" `
+  -ContentType "application/json" `
+  -Body $body
+```
 
 ## 项目结构
 
 ```text
 repo-doctor-agent/
-├── agent/                 # Agent 核心、记忆和引用校验
-├── api/                   # FastAPI 服务
+├── agent/                 # Agent、会话记忆、证据与引用校验
+├── api/                   # FastAPI 服务和运行时管理
 ├── data/
-│   ├── routing/           # 路由训练、验证和测试数据
+│   ├── agent_eval/        # 端到端 Agent 评测集
+│   ├── retrieval/         # 检索评测集与仓库配置
+│   ├── routing/           # 路由实验数据
 │   └── lora/              # LoRA 格式数据
-├── docs/                  # 实验说明
-├── experiments/routing/   # 数据构建、评测和 LoRA 训练脚本
-├── rag/                   # Dense、BM25、混合检索、改写与重排
-├── reports/routing/       # 实验指标和模型预测
-├── repository/            # 仓库读取、切分、搜索与静态分析
+├── experiments/routing/   # 路由和 LoRA 实验脚本
+├── rag/                   # Dense、BM25、RRF、改写与重排
+├── reports/               # 检索、Agent、Judge 和路由报告
+├── repository/            # 扫描、切分、搜索与 AST 分析
+├── scripts/               # 数据校验和评测脚本
 ├── tools/                 # Agent 工具定义与日志诊断
-├── ui/                    # Streamlit 前端
-├── runtime_data/          # 按仓库生成的运行时索引（不提交）
+├── ui/                    # Streamlit Web UI
+├── runtime_data/          # 本地运行时索引，不提交
+├── config.py              # 集中配置
 └── requirements.txt
 ```
 
----
-
 ## 当前限制
 
-- 静态分析重点支持 Python；其他文本文件可参与检索，但没有语言级 AST 分析。
-- Dense 和 Reranker 模型首次使用时需要下载，离线环境需提前准备缓存。
-- 当前路由数据规模较小，实验指标主要用于受控对比。
-- 代码生成类工具负责收集可信上下文，最终内容仍由配置的大模型生成。
+- AST 静态分析目前只支持 Python；其他文本文件可以参与检索，但没有语言级结构分析。
+- 当前检索集和 Agent 集均为 30 条，结果仍需在更多仓库和盲测数据上验证。
+- Query Rewrite 和 Reranker 提升了当前评测效果，但显著增加延迟。
+- 代码补全、测试和 Dockerfile 工具负责收集可信上下文，最终生成内容仍需要人工审查。
+- `tests/check_*.py` 主要是手动检查脚本，尚未形成完整的自动化单元测试套件。
+- LLM-as-Judge 不是人工标注的替代品，其结果可能受 Judge 模型和提示词影响。
 
 ## License
 
-本项目暂未声明开源许可证。如需复用或分发，请先联系仓库作者。
+当前仓库尚未添加开源许可证。在添加 `LICENSE` 前，默认保留全部权利。

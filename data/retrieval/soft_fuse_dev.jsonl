@@ -1,0 +1,30 @@
+{"id":"sf-dev-001","split":"dev","query_type":"identifier","query":"CodeReranker 在模型加载失败时如何回退？","should_retrieve":true}
+{"id":"sf-dev-002","split":"dev","query_type":"natural_language","query":"引用检查失败后，系统怎样请求模型修复回答？","should_retrieve":true}
+{"id":"sf-dev-003","split":"dev","query_type":"natural_language","query":"多轮对话内容超过限制后是怎样被裁剪的？","should_retrieve":true}
+{"id":"sf-dev-004","split":"dev","query_type":"natural_language","query":"仓库扫描时会忽略哪些目录？","should_retrieve":true}
+{"id":"sf-dev-005","split":"dev","query_type":"natural_language","query":"Python 文件是怎样按照类和函数切分成代码块的？","should_retrieve":true}
+{"id":"sf-dev-006","split":"dev","query_type":"identifier","query":"DenseCodeRetriever 如何保存和重新加载向量索引？","should_retrieve":true}
+{"id":"sf-dev-007","split":"dev","query_type":"identifier","query":"tokenize_for_bm25 如何拆分英文代码标识符？","should_retrieve":true}
+{"id":"sf-dev-008","split":"dev","query_type":"natural_language","query":"查询改写模块如何从问题中提取函数名和类名？","should_retrieve":true}
+{"id":"sf-dev-009","split":"dev","query_type":"cross_file","query":"CORS 配置在哪里读取，又在哪里传给 FastAPI？","should_retrieve":true}
+{"id":"sf-dev-010","split":"dev","query_type":"natural_language","query":"后端如何检查 session_id 是否包含非法字符？","should_retrieve":true}
+{"id":"sf-dev-011","split":"dev","query_type":"natural_language","query":"代码补全工具如何保证只能读取仓库内的文件？","should_retrieve":true}
+{"id":"sf-dev-012","split":"dev","query_type":"natural_language","query":"测试生成工具会向模型提供哪些源码和分析信息？","should_retrieve":true}
+{"id":"sf-dev-013","split":"dev","query_type":"natural_language","query":"重排序模型的批量大小和最大长度在哪里生效？","should_retrieve":true}
+{"id":"sf-dev-014","split":"dev","query_type":"identifier","query":"summarize_evidence 返回哪些证据字段？","should_retrieve":true}
+{"id":"sf-dev-015","split":"dev","query_type":"natural_language","query":"LLM 请求遇到 429 或 503 时如何重试？","should_retrieve":true}
+{"id":"sf-dev-016","split":"dev","query_type":"irrelevant","query":"Transformer 模型中的自注意力机制是什么？","should_retrieve":false}
+{"id":"sf-dev-017","split":"dev","query_type":"irrelevant","query":"请给我一份番茄炒蛋的做法。","should_retrieve":false}
+{"id":"sf-dev-018","split":"dev","query_type":"irrelevant","query":"人民币兑换美元的汇率是多少？","should_retrieve":false}
+{"id":"sf-dev-019","split":"dev","query_type":"misleading_keyword","query":"如何使用 JavaScript 实现 debounce 函数？","should_retrieve":false}
+{"id":"sf-dev-020","split":"dev","query_type":"irrelevant","query":"矩阵行列式应该怎样计算？","should_retrieve":false}
+{"id":"sf-dev-021","split":"dev","query_type":"misleading_keyword","query":"BM25 这个名称的历史来源是什么？","should_retrieve":false}
+{"id":"sf-dev-022","split":"dev","query_type":"misleading_keyword","query":"FastAPI 官方文档推荐怎样组织大型项目？","should_retrieve":false}
+{"id":"sf-dev-023","split":"dev","query_type":"misleading_keyword","query":"如何在 macOS 上安装 Docker Desktop？","should_retrieve":false}
+{"id":"sf-dev-024","split":"dev","query_type":"misleading_keyword","query":"pytest fixture 的 scope 有哪些取值？","should_retrieve":false}
+{"id":"sf-dev-025","split":"dev","query_type":"irrelevant","query":"Git rebase 和 merge 有什么区别？","should_retrieve":false}
+{"id":"sf-dev-026","split":"dev","query_type":"misleading_keyword","query":"Chroma 和 FAISS 哪个向量数据库更好？","should_retrieve":false}
+{"id":"sf-dev-027","split":"dev","query_type":"misleading_keyword","query":"DeepSeek API 当前的调用价格是多少？","should_retrieve":false}
+{"id":"sf-dev-028","split":"dev","query_type":"misleading_keyword","query":"SentenceTransformer 有哪些公开性能排行榜？","should_retrieve":false}
+{"id":"sf-dev-029","split":"dev","query_type":"misleading_keyword","query":"Pydantic BaseSettings 的基本用法是什么？","should_retrieve":false}
+{"id":"sf-dev-030","split":"dev","query_type":"irrelevant","query":"Web 应用应该怎样防止 SQL 注入？","should_retrieve":false}

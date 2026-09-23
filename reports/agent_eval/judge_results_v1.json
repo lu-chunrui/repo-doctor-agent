@@ -1,0 +1,645 @@
+{
+  "judge_version": "judge-v1",
+  "judge_model": "deepseek-chat",
+  "summary": {
+    "case_count": 30,
+    "judged_count": 30,
+    "error_count": 0,
+    "answer_supported_rate": 0.7,
+    "hallucination_rate": 0.3,
+    "average_relevance_score": 4.633333333333334,
+    "average_evidence_support_score": 3.24,
+    "average_citation_support_score": 3.380952380952381,
+    "parse_retry_count": 0,
+    "average_judge_latency_ms": 2359.9295766666664
+  },
+  "cases": [
+    {
+      "id": "agent-001",
+      "category": "search",
+      "status": "ok",
+      "fingerprint": "d4ede65fd0a0593d8788419657bcbd91d66c77efa4dbef0247fc75328acb5f03",
+      "latency_ms": 3325.7174000000005,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [
+          "`_build_prompt`、`_fallback_result`、`_validate_model_result` 的具体实现细节（如规则推断意图、字段校验逻辑）在提供的证据中未完整展示，仅部分由类定义片段间接支持。"
+        ],
+        "reason": "回答准确定位了 QueryRewriter 类在 rag/query_rewriter.py 第 282 行的定义，并基于证据合理描述了其职责（初始化、标识符校验、提示词构建、规则回退、结果校验及使用方式）。引用行号与证据一致，引用校验全部有效。部分方法内部实现细节因证据截断未完全展示，但整体结论有证据支持，无虚构事实。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-002",
+      "category": "search",
+      "status": "ok",
+      "fingerprint": "c61d12ee4f013de7fb2057a4e867848d57e59500a3a02be9ef88ccde5bc25852",
+      "latency_ms": 3481.9385,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [
+          "排序时用 len(matched_by) 作为次级排序键（RewrittenHybridRetriever 的次级排序键）这一具体细节在提供的证据中未明确展示",
+          "融合后还可选接 CrossEncoder Reranker 做二次精排（README 检索链路图）——证据中 README 仅提及可选 CrossEncoder Reranker，未展示检索链路图"
+        ],
+        "reason": "回答准确描述了项目使用 RRF 融合 Dense 和 BM25 结果，核心流程（分别召回、去重合并、累加 RRF 分数、排序取 Top-K）与证据中 rag/hybrid.py 和 rag/query_rewriter.py 的实现一致，引用行号均通过校验。少数细节（如 RewrittenHybridRetriever 的次级排序键、README 检索链路图）在提供的证据片段中未直接体现，但整体结论有充分证据支持。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-003",
+      "category": "analyze_code",
+      "status": "ok",
+      "fingerprint": "d6d037bfae3457ef02a4d73b15e11e22f4dde1a7952a68c7e8dfeb865080301d",
+      "latency_ms": 3988.0782999999997,
+      "judgment": {
+        "answer_supported": false,
+        "hallucination": true,
+        "relevance_score": 4,
+        "evidence_support_score": 2,
+        "citation_support_score": 2,
+        "unsupported_claims": [
+          "该文件实现了一个稠密向量代码检索器（基于 sentence_transformers 的语义检索）——证据仅显示导入语句行号，未提供导入内容，无法确认使用了 SentenceTransformer",
+          "导入的具体模块名（json、pathlib.Path、numpy、SentenceTransformer、repository.scanner.validate_repository、repository.splitter.split_repository、config.settings）——证据未提供导入内容",
+          "各函数的复杂度数值（4、2、3、6、2、6、2、5）——证据中无复杂度信息",
+          "should_index_chunk 判断某个代码块是否应被索引、format_chunk_for_embedding 将代码块格式化为嵌入文本、print_search_results 打印检索结果——证据仅给出函数名，未提供功能描述",
+          "各方法的具体签名（如 __init__(self, model_name=None, batch_size=None)、search(self, query, top_k=5) 等）——证据未提供签名",
+          "save_index/load_index 缺少错误处理、load_index 涉及文件存在性判断与反序列化等具体实现细节——证据未提供函数体内容"
+        ],
+        "reason": "回答结构清晰且引用的行号与 AST 证据一致，但大量具体事实（导入内容、函数功能、方法签名、复杂度数值、实现细节）在证据中并无对应内容，属于基于行号范围的推测性描述，构成幻觉。证据仅支持类名、函数名及行号范围，因此证据支持度与引用支持度均偏低。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-004",
+      "category": "traceback",
+      "status": "ok",
+      "fingerprint": "5b869157aaa2c243349fb2e04b09fa0d1c6ad21ac8f034403ca4b59caabb178b",
+      "latency_ms": 4034.8106999999977,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [],
+        "reason": "回答准确定位了错误位置（rag/dense.py:105 的 __init__ 方法）和根本原因（self.batch_size 为 None 导致 None < 1 比较失败），并基于证据片段合理推断出赋值逻辑（batch_size 为 None 时回退到 settings.embedding_batch_size）。证据片段确实包含第 105 行的比较语句和赋值逻辑的尾部，支持主要结论。回答对赋值语句的重构属于合理推断，且明确标注了依据来源，未虚构文件或行号。建议部分为通用最佳实践，不影响主要结论。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-005",
+      "category": "complete_code",
+      "status": "ok",
+      "fingerprint": "5ab4f94f323dbce34f2feb086297fb2e6005fe6840da7de39dfc210688a36a79",
+      "latency_ms": 3033.9771000000014,
+      "judgment": {
+        "answer_supported": false,
+        "hallucination": true,
+        "relevance_score": 4,
+        "evidence_support_score": 2,
+        "citation_support_score": 2,
+        "unsupported_claims": [
+          "CodeReranker.__init__ 对 batch_size 和 max_length 做了校验",
+          "self.model_name 赋值位于 rag/reranker.py:118-146",
+          "现有参数校验位于 rag/reranker.py:118-146",
+          "model_name or settings.reranker_model_name 的写法无法拦截空字符串（空字符串是 falsy，会回退到 settings）"
+        ],
+        "reason": "回答方向相关，给出了合理的参数校验修改建议，但证据仅包含文件前 200 行的片段预览，未展示 CodeReranker.__init__ 的实际内容，无法验证 batch_size/max_length 校验、self.model_name 赋值位置及行号 118-146 等关键事实，因此主要结论缺乏证据支持，且存在对具体代码结构和行号的虚构嫌疑。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-006",
+      "category": "generate_tests",
+      "status": "ok",
+      "fingerprint": "d599eb2fa6148c1c2c6b9dc513ba5eb8c7c58d1db36de9387c5682c8cb3b708e",
+      "latency_ms": 2845.4801000000016,
+      "judgment": {
+        "answer_supported": false,
+        "hallucination": true,
+        "relevance_score": 4,
+        "evidence_support_score": 2,
+        "citation_support_score": 2,
+        "unsupported_claims": [
+          "QueryRewriter 类位于 rag/query_rewriter.py:282-712，且各方法行号（__init__ 283-301、_identifier_exists 303-343、_build_prompt 345-365、_fallback_result 367-423、_validate_model_result 425-618、rewrite 620-712）均无证据支持",
+          "__init__ 会调用 validate_repository 和 list_files，_identifier_exists 会调用 search_code 的具体行为无证据支持",
+          "QueryRewriter 的 __init__ 签名 (repository_path, llm_client) 及属性 repository_path、repository_files、llm_client 无证据支持",
+          "_fallback_result 返回字段（rewrite_source='fallback'、confidence=0.5、identifier_checks 结构等）无证据支持",
+          "_validate_model_result 的具体校验逻辑（intent 回退、类型强制、标识符接受/拒绝、去重）无证据支持",
+          "rewrite 方法的分支行为（LLM 正常/异常/非法 JSON/无 client）无证据支持",
+          "模块级辅助函数 unique_strings、extract_identifiers、infer_intent_by_rules、parse_json_object 的存在与行为无证据支持",
+          "FakeLLMClient 使用 chat 方法调用 LLM 客户端的假设无证据支持",
+          "声称 _validate_model_result 长达 194 行、圈复杂度 14 无证据支持"
+        ],
+        "reason": "回答给出了完整的 pytest 测试代码，形式上切题，但几乎所有关于 QueryRewriter 结构、方法签名、行号、返回字段和行为的断言都缺乏证据支持。提供的证据仅包含文件开头约 40 行（imports、ALLOWED_INTENTS、系统提示词），无法验证类定义位置、方法行号、属性名、返回字段结构或辅助函数。引用报告虽显示行号在文件范围内，但证据内容并未覆盖这些行，因此引用不能真正支持结论。存在大量虚构的类结构、方法签名、行号和行为细节，属于幻觉。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-007",
+      "category": "dockerfile",
+      "status": "ok",
+      "fingerprint": "bc6712932e9e6379d0a036296189f4f9f569ca70dccf29afe053cb2f92072aa3",
+      "latency_ms": 16373.274600000002,
+      "judgment": {
+        "answer_supported": false,
+        "hallucination": true,
+        "relevance_score": 4,
+        "evidence_support_score": 1,
+        "citation_support_score": null,
+        "unsupported_claims": [
+          "项目依赖 requirements.txt",
+          "包含 FastAPI 接口 api/main.py",
+          "包含 Streamlit 界面 ui/streamlit_app.py",
+          "依赖中包含 torch、transformers、sentence-transformers 等较大的包",
+          "项目依赖中有 python-dotenv、pydantic-settings",
+          "扫描未发现明确入口文件（selected_entrypoint 为空）"
+        ],
+        "reason": "回答给出了符合 Python 3.11 的 Dockerfile，形式上切题，但证据列表为空，所有关于项目结构、依赖文件、入口文件、具体依赖包和扫描结果的陈述均无任何证据支持，属于虚构仓库事实，因此不能判定为有证据支持。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-008",
+      "category": "general_knowledge",
+      "status": "ok",
+      "fingerprint": "c866d30e1000def8b25cda3972d8873ab710c833911219be74d9ee48f500d05f",
+      "latency_ms": 912.8431999999975,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": null,
+        "citation_support_score": null,
+        "unsupported_claims": [],
+        "reason": "这是通用 Python 知识问题，回答准确、全面地覆盖了列表与元组的核心区别（可变性、语法、性能、用途、方法、嵌套可变性），事实正确，无需仓库证据或引用。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-009",
+      "category": "irrelevant",
+      "status": "ok",
+      "fingerprint": "f70e436ecdc8b74ce17cee8e5535330413547b4d5afca0d7ac51631520e26319",
+      "latency_ms": 1110.725699999996,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": null,
+        "citation_support_score": null,
+        "unsupported_claims": [],
+        "reason": "这是通用知识问题，不涉及仓库。回答正确指出 FastAPI 于 2018 年发布，并准确说明其创建者、底层依赖（Starlette、Pydantic）及基于类型提示和自动生成 OpenAPI 文档等事实，无虚构内容。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-010",
+      "category": "wrong_filename",
+      "status": "ok",
+      "fingerprint": "bcb7320c5c5ce3a365740cf82c8f96666d14d28f5fe11738f37492c74dc7c5cb",
+      "latency_ms": 1043.8256000000051,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": null,
+        "unsupported_claims": [],
+        "reason": "回答正确指出文件不存在，无法进行复杂度分析，直接回应用户问题。证据列表为空，但结论（文件不存在）与问题前提一致，且引用报告无错误。未虚构文件或行为，仅提及 analyze_code 返回 FileNotFoundError，属于合理推断。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-011",
+      "category": "multi_tool",
+      "status": "ok",
+      "fingerprint": "ec93adae8e49535c829e394667be4721fa9d4379938effc35bde91bf6cbf634d",
+      "latency_ms": 1558.6983999999973,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [
+          "各函数的具体圈复杂度数值（如 __init__ 为 6、search 为 6、load_index 为 5 等）在证据中未直接给出，属于推断性结论。",
+          "print_search_results 函数（rag/dense.py:203-234）在证据中未被 AST 检测列出，其存在与复杂度缺乏直接证据。"
+        ],
+        "reason": "回答准确定位了 DenseCodeRetriever 在 rag/dense.py 的实现，并系统列出了文件中的函数/方法及行号，引用基本有效。但复杂度数值（圈复杂度）并非证据直接提供，属于推断；print_search_results 函数未在证据中出现。整体结论方向正确，证据支持度良好但非完全。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-012",
+      "category": "colloquial_zh",
+      "status": "ok",
+      "fingerprint": "1a83034c87db797649d662282ddd0651b80744625c4ea0d3de37f4ccab5977d4",
+      "latency_ms": 1510.7889000000014,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [],
+        "reason": "回答准确指出项目使用 RRF 融合两路检索结果，并描述了去重合并、按排名累加分数、排序取 top_k 的流程，与证据中 HybridCodeRetriever 和 RewrittenHybridRetriever 的代码结构一致。引用行号均通过校验，核心结论有证据支持。部分细节（如 tie-breaker 具体实现、matched_by 字段）证据预览未完整展示，但整体方向正确，未发现虚构事实。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-013",
+      "category": "identifier_search",
+      "status": "ok",
+      "fingerprint": "396716a53f6171811504ba5a107e8c47308fd9799969a5c037dfa178789abebf",
+      "latency_ms": 1345.3962000000033,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 5,
+        "citation_support_score": 5,
+        "unsupported_claims": [],
+        "reason": "回答准确定位了 CitationValidator 类定义在 agent/citations.py 的 387-636 行，并详细描述了其核心方法（__init__、extract_citations、_validate_repository_range、_is_supported_by_evidence、validate）及主要作用，与证据中的代码预览一致。引用均通过校验，且使用场景（CitationAwareRepoDoctor、tools/log_analysis.py、agent/extensions.py）也有对应证据支持。无虚构内容。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-014",
+      "category": "natural_language",
+      "status": "ok",
+      "fingerprint": "8166a79efb13f4f63eabae67265c8b46bf243468765b67b6c74fc6d4accc61ec",
+      "latency_ms": 2045.1039999999948,
+      "judgment": {
+        "answer_supported": false,
+        "hallucination": true,
+        "relevance_score": 4,
+        "evidence_support_score": 2,
+        "citation_support_score": 2,
+        "unsupported_claims": [
+          "config.py 中确实存在 soft_fuse_enabled 和 soft_fuse_distance_threshold 两个字段，且注释为“以后实现软熔断时再启用”——证据中 config.py:11-120 的预览并未显示这两个字段，无法确认其存在及注释内容。",
+          "全仓库检索未发现 soft_fuse_enabled / soft_fuse_distance_threshold 的其他引用点——证据中并未提供全仓库检索结果，无法支持“完全没有使用”的强结论。",
+          "HybridCodeRetriever 只使用 rrf_k、dense_weight、bm25_weight、retrieval_top_k、retrieval_candidate_k——证据预览仅显示 rrf_k、dense_weight、bm25_weight，未显示 retrieval_top_k、retrieval_candidate_k 的使用。",
+          "检索结果排序只按 rrf_score 和命中来源排序，没有任何距离阈值熔断/降级逻辑——证据预览未覆盖完整排序逻辑，无法确认。"
+        ],
+        "reason": "回答直接回应了用户问题，相关性较好。但关键事实（软熔断字段的存在、注释内容、全仓库无引用）在提供的证据中并未得到支持，config.py 预览未显示这两个字段，且“完全没有使用”的结论缺乏全仓库检索证据支撑，存在虚构配置字段与注释的风险，因此判定为证据不足且含幻觉。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-015",
+      "category": "analyze_code",
+      "status": "ok",
+      "fingerprint": "160903a2774e65c72147fed737b0ba264ece4d144190d98446ce55889e137c32",
+      "latency_ms": 1768.9979000000021,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [
+          "关于 analyze_python_file 依赖 validate_repository 与 resolve_safe_path 做路径校验的说法，证据仅显示第5、8行存在导入语句，未确认其具体用途",
+          "关于 is_absolute_path 与 visit_Constant 配合检测硬编码绝对路径可能对动态路径漏报的推断，缺乏实现细节证据",
+          "关于文件解析失败时异常处理策略需进一步确认的表述，属于推测而非证据支持"
+        ],
+        "reason": "回答准确覆盖了主要类、函数、行号与复杂度告警，引用基本有效且与证据一致。但部分潜在问题（异常处理、路径校验、漏报）属于推测性结论，证据仅提供导入行号，未提供实现细节，故 evidence_support 与 citation_support 略降。整体无虚构文件或函数，主要结论有据可依。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-016",
+      "category": "analyze_code",
+      "status": "ok",
+      "fingerprint": "e86fa145bb252f11e1d76ecde6db836fcfdff37d0cde209c5d70111851d2a463",
+      "latency_ms": 1560.3262999999997,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [
+          "关于锁粒度过大或死锁风险的判断属于推测，证据仅显示导入了 threading.RLock，未提供锁使用范围的具体证据",
+          "关于函数复杂度偏高的结论（load_allowed_roots、validate_session_id）缺少复杂度指标证据，仅有行号范围"
+        ],
+        "reason": "回答直接针对 api/main.py 的结构与潜在问题展开，结构清晰，行号引用与证据基本一致，引用校验全部有效。主要结论（类/函数划分、超长函数、God Class、硬编码路由、模块耦合）均有行号证据支撑。但部分推断性结论（锁风险、复杂度偏高）缺乏直接证据，属于合理推测而非确证，故 evidence/citation 支持度略降。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-017",
+      "category": "incomplete_traceback",
+      "status": "ok",
+      "fingerprint": "003df71c498ae258862cf8550d208710794f9fcc01e29d72ec47388ab36a0124",
+      "latency_ms": 1520.9806000000015,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [
+          "BM25 检查脚本很可能是从 tests/check_dense.py 复制过来只改了检索器类名（这是推测，证据中未提供 BM25 检查脚本本身）"
+        ],
+        "reason": "回答准确定位了 KeyError 根因：BM25 的 build_index 返回 document_count 而非 chunk_count，而 chunk_count 属于 Dense 检索器，证据（rag/bm25.py、rag/dense.py、tests/check_dense.py、api/main.py）均支持该结论。引用有效且对应。唯一不足是未直接展示 BM25 检查脚本本身，对'脚本从 check_dense 复制'属合理推测，且回答已诚实说明缺少 traceback 无法定位具体行。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-018",
+      "category": "traceback",
+      "status": "ok",
+      "fingerprint": "11724b5d0506712ecfbfb7234553a1fdcccc5fdab1eed0c326d6878da8efd569",
+      "latency_ms": 1234.6211000000053,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 5,
+        "unsupported_claims": [],
+        "reason": "回答准确诊断了 ModuleNotFoundError 的根因（ui/ 子目录中无法解析顶层 config 模块），引用的代码片段与证据一致，修复建议合理且明确标注为通用建议、未虚构 config 模块的实际位置。证据仅覆盖报错文件内容，未验证 config 模块实际位置，故证据支持度略低于满分。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-019",
+      "category": "complete_code",
+      "status": "ok",
+      "fingerprint": "d84424395117924da6c3a449064500d48e9d031a53d9382fe2512a84455a1791",
+      "latency_ms": 2113.174200000003,
+      "judgment": {
+        "answer_supported": false,
+        "hallucination": true,
+        "relevance_score": 3,
+        "evidence_support_score": 1,
+        "citation_support_score": 1,
+        "unsupported_claims": [
+          "声称 DenseCodeRetriever.__init__ 已包含针对空字符串或纯空格模型名称的参数校验",
+          "声称存在 model_name is None 时回退到 settings.embedding_model_name 的逻辑",
+          "声称存在非字符串抛 TypeError 的校验",
+          "声称存在 strip() 后为空则抛 ValueError(\"model_name 不能为空\") 的校验",
+          "引用了 rag/dense.py:63-84 的具体代码片段，但证据中未显示该内容"
+        ],
+        "reason": "证据仅提供了 rag/dense.py 前 200 行的部分预览，其中并未出现 DenseCodeRetriever 类或 __init__ 方法，也未显示任何 model_name 校验逻辑。回答却详细描述了具体行号、代码片段和异常类型，属于虚构事实。虽然回答与问题主题相关，但核心结论缺乏证据支持且存在明显幻觉。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-020",
+      "category": "complete_code",
+      "status": "ok",
+      "fingerprint": "7204e5e5f2303d6f36bd156b65cae7a1ffa09db8695aca23f5c491bc01720281",
+      "latency_ms": 1454.3996999999963,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [],
+        "reason": "回答直接针对用户问题，给出了 read_file 和 search_code 两处读取失败错误信息不清晰的分析及具体修改方案，并附有代码示例。证据预览显示 read_file 中确实存在文件存在性、类型、大小检查但 open() 无异常处理，且 resolve_safe_path 使用 relative_to 做安全约束，与回答描述一致。引用行号均通过校验。但证据仅提供了文件前 30 行左右的预览，无法完全验证 search_code 中 except OSError: continue 的静默吞错行为及行号 60-65 的准确性，因此证据支持度和引用支持度略低于满分。回答明确说明未直接改动文件，无虚构事实。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-021",
+      "category": "generate_tests",
+      "status": "ok",
+      "fingerprint": "3e55c22bc8761f71033d585513dc9d5ca096d1a0062f962712add22811eab71f",
+      "latency_ms": 1993.4334000000008,
+      "judgment": {
+        "answer_supported": false,
+        "hallucination": true,
+        "relevance_score": 4,
+        "evidence_support_score": 2,
+        "citation_support_score": 1,
+        "unsupported_claims": [
+          "CitationValidator 类具有 __init__、extract_citations、_validate_repository_range、_is_supported_by_evidence、validate 这些方法",
+          "extract_citations 返回包含 raw、file、start_line、end_line 键的字典列表",
+          "_validate_repository_range 返回 (valid_range, error) 元组，valid_range 包含 total_lines 键",
+          "_is_supported_by_evidence 接受 valid_range 和 evidence 参数并返回布尔值",
+          "validate 返回包含 ok 和 citations 键的 report 字典",
+          "错误信息包含“不存在”“超出仓库”“不是文件”“起始行”“结束行小于起始行”“超出文件总行数”等中文文本",
+          "路径分隔符会被归一化处理"
+        ],
+        "reason": "回答生成了完整的 pytest 测试代码，表面上直接回应了用户请求，但证据仅提供了 agent/citations.py 前 1015 行的片段预览，其中只显示了 CITATION_PATTERN、normalize_path_text 等少量内容，并未展示 CitationValidator 类及其方法签名、返回结构或错误信息。回答中大量关于方法名、参数、返回键、错误文本的断言均无证据支持，属于对源码结构的虚构推断。引用校验报告也显示所有引用均无效（引用的 model.py、sub/utils.py 等是测试夹具中的临时文件，并非仓库真实文件），因此引用支持度极低。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-022",
+      "category": "generate_tests",
+      "status": "ok",
+      "fingerprint": "4c3dadc5ca9fee87962831d6b7aea288790a6c57682e22b41c963f1a5694fdff",
+      "latency_ms": 2032.927700000002,
+      "judgment": {
+        "answer_supported": false,
+        "hallucination": true,
+        "relevance_score": 4,
+        "evidence_support_score": 2,
+        "citation_support_score": 2,
+        "unsupported_claims": [
+          "tokenize_for_bm25 对非字符串输入抛出 TypeError(\"text 必须是字符串\")",
+          "tokenize_for_bm25 使用正则 [A-Za-z][A-Za-z0-9_]*|\\d+ 提取标识符/数字",
+          "中文部分经 split_chinese_text 拆成单字 + 相邻双字（bigram）",
+          "tokenize_for_bm25 返回列表且不去重",
+          "split_code_identifier 保留小写全名并拆出下划线/驼峰片段的具体行为",
+          "split_chinese_text 产出单字与 bigram 的具体行为",
+          "对 _private 等边界输入的具体输出行为"
+        ],
+        "reason": "回答给出了完整的测试代码，与用户需求相关。但证据仅包含 rag/bm25.py 前若干行的片段预览，未展示 tokenize_for_bm25 函数体、TypeError 分支、正则表达式、中文处理逻辑等关键实现细节。回答中关于函数行为、异常消息、正则、bigram 等核心断言均缺乏证据支持，且引用的行号（如 77-98、79-80、84-92、94-96）无法从提供的证据中验证，存在虚构实现细节的风险。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-023",
+      "category": "dockerfile",
+      "status": "ok",
+      "fingerprint": "1f031564075beab4addb17d2808864499969c84d5461595bbba504277b125134",
+      "latency_ms": 1483.1753999999933,
+      "judgment": {
+        "answer_supported": false,
+        "hallucination": true,
+        "relevance_score": 4,
+        "evidence_support_score": 1,
+        "citation_support_score": null,
+        "unsupported_claims": [
+          "项目名为 repo-doctor-agent",
+          "依赖清单来自 requirements.txt 且包含 fastapi、uvicorn、torch、transformers、sentence-transformers、torch==2.8.0",
+          "api/main.py 使用 FastAPI 且存在名为 app 的实例",
+          "项目使用 8000 端口",
+          "项目需要 build-essential 和 curl 系统依赖"
+        ],
+        "reason": "回答给出了可用的 Dockerfile 结构，直接回应了用户需求，相关性较高。但证据为空，所有关于项目名称、依赖文件内容、FastAPI 实例名、端口等关键事实均无任何证据支持，属于虚构仓库信息，因此判定为幻觉且主要结论未被支持。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-024",
+      "category": "general_knowledge",
+      "status": "ok",
+      "fingerprint": "8721053cf258ca319d6a9a2c6162b65acc7bf5e96a097c2ab5c84a46320902dd",
+      "latency_ms": 1030.1137000000012,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": null,
+        "citation_support_score": null,
+        "unsupported_claims": [],
+        "reason": "这是通用数学问题，回答准确给出了余弦相似度的公式、展开形式、取值范围和特点，事实正确，无需仓库证据。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-025",
+      "category": "misleading_keyword",
+      "status": "ok",
+      "fingerprint": "36ead91a5172c1293dddc0472b4c1436cdd542262a0adcd05a0c7093977c3b57",
+      "latency_ms": 1058.2723999999928,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": null,
+        "citation_support_score": null,
+        "unsupported_claims": [],
+        "reason": "这是通用信息检索知识问题，不涉及仓库。回答正确解释了 BM 为 Best Matching、Okapi BM25 的提出者（Robertson、Spärck Jones 等）及核心思想，事实准确，无虚构内容。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-026",
+      "category": "irrelevant",
+      "status": "ok",
+      "fingerprint": "2d440451d94222b70317e505cfb5e2aff8962fbd77f24e432fab5ddf9883dd19",
+      "latency_ms": 786.6804999999886,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": null,
+        "citation_support_score": null,
+        "unsupported_claims": [],
+        "reason": "该问题为非仓库通用问题，回答正确说明无法获取实时天气数据并给出合理获取渠道，事实准确，无虚构内容。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-027",
+      "category": "wrong_filename",
+      "status": "ok",
+      "fingerprint": "82ac68b2d3e746d8284613a3e7aa9a0510d2d66a05c2c74cc673d9f73ab24d5c",
+      "latency_ms": 1004.7221000000093,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 4,
+        "evidence_support_score": 4,
+        "citation_support_score": null,
+        "unsupported_claims": [],
+        "reason": "回答直接回应了用户对 rag/vector_store.py 复杂度的分析请求，说明文件不存在并给出后续建议。证据为空但回答本身声称文件不存在，与证据一致；未虚构文件或函数。引用报告无引用，citation_support_score 为 null。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-028",
+      "category": "search",
+      "status": "ok",
+      "fingerprint": "46c5edff5c51012a042b7796f709a01886ef9fb4e32d1ff7a37940a637599f39",
+      "latency_ms": 1370.9710000000114,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 5,
+        "citation_support_score": 5,
+        "unsupported_claims": [],
+        "reason": "回答准确描述了白名单目录加载、路径校验、归属校验三层机制，所有关键结论均有对应代码证据支持，引用行号经校验有效。补充说明中的防目录穿越、文件级限制和配置方式也与证据一致。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-029",
+      "category": "multi_tool",
+      "status": "ok",
+      "fingerprint": "723ba804122dc1e53c29c6d64c1166e91d62d98df90e36596a88eb201fe6bdc2",
+      "latency_ms": 1892.2866999999997,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [
+          "各方法的具体圈复杂度数值（如 _add_evidence 复杂度 9、_validate_repository_range 复杂度 8 等）在证据中未直接给出，属于推断或来自未展示的分析结果。",
+          "各方法的具体行号区间（如 __init__ 388–396、extract_citations 398–422、_is_supported_by_evidence 508–552 等）在证据中未逐条列出，仅类级别区间有证据支持。",
+          "第 61 行存在硬编码绝对路径的告警在证据中未直接体现。"
+        ],
+        "reason": "回答准确定位 CitationValidator 在 agent/citations.py 第 387–636 行，并系统分析了文件中的类、函数与复杂度，直接回应了用户问题。类级别位置与结构有 AST 证据支持，引用校验全部通过。但部分方法级行号、圈复杂度数值和静态告警细节缺乏直接证据，故证据与引用支持度略降。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    },
+    {
+      "id": "agent-030",
+      "category": "multi_tool",
+      "status": "ok",
+      "fingerprint": "ac0c04638153ad6cf11dd6063a052354191d822c4beeac140c13f702d6d24795",
+      "latency_ms": 1882.1458999999977,
+      "judgment": {
+        "answer_supported": true,
+        "hallucination": false,
+        "relevance_score": 5,
+        "evidence_support_score": 4,
+        "citation_support_score": 4,
+        "unsupported_claims": [
+          "文件依赖列表（repository.scanner.validate_repository、tools.registry.create_agent_toolbox、agent.core.ToolCallingLLMClient/print_tool_trace、agent.citations.CitationValidator/EvidenceTrackingToolbox、config.settings）未在证据中展示具体导入内容，仅有行号占位。",
+          "各函数的圈复杂度数值（如 classify_exception 22、parse_traceback 17、build_search_queries 14）及 diagnose 165 行等具体度量未在证据中直接给出。",
+          "TracebackDiagnosisAgent 的方法列表（_execute_tool、_collect_repository_files、_build_llm_prompt、_generate_diagnosis、_repair_citations、diagnose）仅部分被证据覆盖。"
+        ],
+        "reason": "回答直接回应了搜索实现与分析文件结构/潜在问题的要求，parse_traceback 的位置、逻辑与文件结构基本被证据支持，引用校验通过。但部分细节（依赖导入、复杂度数值、类方法列表）缺乏证据直接支撑，故证据与引用支持度略降。",
+        "judge_model": "deepseek-chat",
+        "parse_attempts": 1
+      }
+    }
+  ]
+}

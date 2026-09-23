@@ -1,0 +1,694 @@
+{
+  "repository": "D:\\桌面\\repo-doctor-agent",
+  "query_count": 30,
+  "minimum_recall": 0.95,
+  "index_info": {
+    "repository": "D:\\桌面\\repo-doctor-agent",
+    "chunk_count": 264,
+    "embedding_dimension": 384
+  },
+  "index_seconds": 26.401188999999995,
+  "average_latency_ms": 20.651923333333855,
+  "selected": {
+    "threshold": 0.8691268563270569,
+    "true_positive": 15,
+    "false_positive": 5,
+    "true_negative": 10,
+    "false_negative": 0,
+    "relevant_recall": 1.0,
+    "irrelevant_false_positive_rate": 0.3333333333333333,
+    "accuracy": 0.8333333333333334
+  },
+  "score_distribution": {
+    "relevant": {
+      "minimum": 0.8691268563270569,
+      "p25": 0.8807851374149323,
+      "median": 0.8960971236228943,
+      "p75": 0.9034878015518188,
+      "maximum": 0.9136922359466553,
+      "mean": 0.8916759729385376
+    },
+    "irrelevant": {
+      "minimum": 0.8171229362487793,
+      "p25": 0.8555149137973785,
+      "median": 0.8680434226989746,
+      "p75": 0.8726412951946259,
+      "maximum": 0.880937933921814,
+      "mean": 0.8614538788795472
+    }
+  },
+  "queries": [
+    {
+      "id": "sf-dev-001",
+      "query": "CodeReranker 在模型加载失败时如何回退？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "top1_similarity": 0.9080063700675964,
+      "top1_file": "rag\\reranker.py",
+      "top1_start_line": 124,
+      "top1_end_line": 409,
+      "latency_ms": 23.122000000000753
+    },
+    {
+      "id": "sf-dev-002",
+      "query": "引用检查失败后，系统怎样请求模型修复回答？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "top1_similarity": 0.8968642354011536,
+      "top1_file": "agent\\citations.py",
+      "top1_start_line": 1,
+      "top1_end_line": 52,
+      "latency_ms": 18.606899999994653
+    },
+    {
+      "id": "sf-dev-003",
+      "query": "多轮对话内容超过限制后是怎样被裁剪的？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "top1_similarity": 0.8960971236228943,
+      "top1_file": "agent\\extensions.py",
+      "top1_start_line": 47,
+      "top1_end_line": 169,
+      "latency_ms": 19.49650000000247
+    },
+    {
+      "id": "sf-dev-004",
+      "query": "仓库扫描时会忽略哪些目录？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "top1_similarity": 0.8787462115287781,
+      "top1_file": "repository\\scanner.py",
+      "top1_start_line": 94,
+      "top1_end_line": 127,
+      "latency_ms": 19.253000000006182
+    },
+    {
+      "id": "sf-dev-005",
+      "query": "Python 文件是怎样按照类和函数切分成代码块的？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "top1_similarity": 0.9042085409164429,
+      "top1_file": "repository\\splitter.py",
+      "top1_start_line": 169,
+      "top1_end_line": 178,
+      "latency_ms": 18.63760000000525
+    },
+    {
+      "id": "sf-dev-006",
+      "query": "DenseCodeRetriever 如何保存和重新加载向量索引？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "top1_similarity": 0.9027670621871948,
+      "top1_file": "api\\main.py",
+      "top1_start_line": 101,
+      "top1_end_line": 121,
+      "latency_ms": 19.155300000008424
+    },
+    {
+      "id": "sf-dev-007",
+      "query": "tokenize_for_bm25 如何拆分英文代码标识符？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "top1_similarity": 0.9136922359466553,
+      "top1_file": "rag\\bm25.py",
+      "top1_start_line": 77,
+      "top1_end_line": 98,
+      "latency_ms": 19.190600000001723
+    },
+    {
+      "id": "sf-dev-008",
+      "query": "查询改写模块如何从问题中提取函数名和类名？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "top1_similarity": 0.8855802416801453,
+      "top1_file": "repository\\analyzer.py",
+      "top1_start_line": 377,
+      "top1_end_line": 413,
+      "latency_ms": 33.43900000000133
+    },
+    {
+      "id": "sf-dev-009",
+      "query": "CORS 配置在哪里读取，又在哪里传给 FastAPI？",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "top1_similarity": 0.8828240633010864,
+      "top1_file": "tests\\check_bm25.py",
+      "top1_start_line": 1,
+      "top1_end_line": 47,
+      "latency_ms": 22.587200000003804
+    },
+    {
+      "id": "sf-dev-010",
+      "query": "后端如何检查 session_id 是否包含非法字符？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "top1_similarity": 0.9061552882194519,
+      "top1_file": "api\\main.py",
+      "top1_start_line": 226,
+      "top1_end_line": 258,
+      "latency_ms": 23.278200000007132
+    },
+    {
+      "id": "sf-dev-011",
+      "query": "代码补全工具如何保证只能读取仓库内的文件？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "top1_similarity": 0.8707695007324219,
+      "top1_file": "api\\main.py",
+      "top1_start_line": 201,
+      "top1_end_line": 223,
+      "latency_ms": 17.748600000004444
+    },
+    {
+      "id": "sf-dev-012",
+      "query": "测试生成工具会向模型提供哪些源码和分析信息？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "top1_similarity": 0.8728354573249817,
+      "top1_file": "agent\\core.py",
+      "top1_start_line": 1,
+      "top1_end_line": 71,
+      "latency_ms": 17.72109999998861
+    },
+    {
+      "id": "sf-dev-013",
+      "query": "重排序模型的批量大小和最大长度在哪里生效？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "top1_similarity": 0.8691268563270569,
+      "top1_file": "rag\\reranker.py",
+      "top1_start_line": 124,
+      "top1_end_line": 409,
+      "latency_ms": 18.55310000000543
+    },
+    {
+      "id": "sf-dev-014",
+      "query": "summarize_evidence 返回哪些证据字段？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "top1_similarity": 0.9024237394332886,
+      "top1_file": "agent\\code_qa.py",
+      "top1_start_line": 210,
+      "top1_end_line": 223,
+      "latency_ms": 20.003000000002658
+    },
+    {
+      "id": "sf-dev-015",
+      "query": "LLM 请求遇到 429 或 503 时如何重试？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "top1_similarity": 0.885042667388916,
+      "top1_file": "README.md",
+      "top1_start_line": 211,
+      "top1_end_line": 282,
+      "latency_ms": 21.35299999999063
+    },
+    {
+      "id": "sf-dev-016",
+      "query": "Transformer 模型中的自注意力机制是什么？",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "top1_similarity": 0.8633263111114502,
+      "top1_file": "agent\\extensions.py",
+      "top1_start_line": 172,
+      "top1_end_line": 448,
+      "latency_ms": 19.67929999999285
+    },
+    {
+      "id": "sf-dev-017",
+      "query": "请给我一份番茄炒蛋的做法。",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "top1_similarity": 0.8421618938446045,
+      "top1_file": "agent\\extensions.py",
+      "top1_start_line": 717,
+      "top1_end_line": 817,
+      "latency_ms": 24.734700000010434
+    },
+    {
+      "id": "sf-dev-018",
+      "query": "人民币兑换美元的汇率是多少？",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "top1_similarity": 0.8171229362487793,
+      "top1_file": "README.md",
+      "top1_start_line": 211,
+      "top1_end_line": 282,
+      "latency_ms": 21.702099999998836
+    },
+    {
+      "id": "sf-dev-019",
+      "query": "如何使用 JavaScript 实现 debounce 函数？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": false,
+      "top1_similarity": 0.86097651720047,
+      "top1_file": "README.md",
+      "top1_start_line": 211,
+      "top1_end_line": 282,
+      "latency_ms": 19.405700000007187
+    },
+    {
+      "id": "sf-dev-020",
+      "query": "矩阵行列式应该怎样计算？",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "top1_similarity": 0.8557285070419312,
+      "top1_file": "rag\\reranker.py",
+      "top1_start_line": 124,
+      "top1_end_line": 409,
+      "latency_ms": 20.607799999993404
+    },
+    {
+      "id": "sf-dev-021",
+      "query": "BM25 这个名称的历史来源是什么？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": false,
+      "top1_similarity": 0.8689699769020081,
+      "top1_file": "rag\\bm25.py",
+      "top1_start_line": 494,
+      "top1_end_line": 541,
+      "latency_ms": 18.111199999992778
+    },
+    {
+      "id": "sf-dev-022",
+      "query": "FastAPI 官方文档推荐怎样组织大型项目？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": false,
+      "top1_similarity": 0.8758731484413147,
+      "top1_file": "tests\\check_bm25.py",
+      "top1_start_line": 1,
+      "top1_end_line": 47,
+      "latency_ms": 21.785899999997582
+    },
+    {
+      "id": "sf-dev-023",
+      "query": "如何在 macOS 上安装 Docker Desktop？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": false,
+      "top1_similarity": 0.8691003322601318,
+      "top1_file": "README.md",
+      "top1_start_line": 141,
+      "top1_end_line": 220,
+      "latency_ms": 19.71549999998956
+    },
+    {
+      "id": "sf-dev-024",
+      "query": "pytest fixture 的 scope 有哪些取值？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": false,
+      "top1_similarity": 0.875298023223877,
+      "top1_file": "tests\\check_hybrid.py",
+      "top1_start_line": 1,
+      "top1_end_line": 64,
+      "latency_ms": 19.209500000002322
+    },
+    {
+      "id": "sf-dev-025",
+      "query": "Git rebase 和 merge 有什么区别？",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "top1_similarity": 0.8553013205528259,
+      "top1_file": "README.md",
+      "top1_start_line": 211,
+      "top1_end_line": 282,
+      "latency_ms": 20.55989999999497
+    },
+    {
+      "id": "sf-dev-026",
+      "query": "Chroma 和 FAISS 哪个向量数据库更好？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": false,
+      "top1_similarity": 0.8699845671653748,
+      "top1_file": "README.md",
+      "top1_start_line": 211,
+      "top1_end_line": 282,
+      "latency_ms": 21.077300000001742
+    },
+    {
+      "id": "sf-dev-027",
+      "query": "DeepSeek API 当前的调用价格是多少？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": false,
+      "top1_similarity": 0.8765594959259033,
+      "top1_file": "README.md",
+      "top1_start_line": 71,
+      "top1_end_line": 150,
+      "latency_ms": 19.414499999996337
+    },
+    {
+      "id": "sf-dev-028",
+      "query": "SentenceTransformer 有哪些公开性能排行榜？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": false,
+      "top1_similarity": 0.880937933921814,
+      "top1_file": "docs\\routing_experiment.md",
+      "top1_start_line": 1,
+      "top1_end_line": 16,
+      "latency_ms": 20.656700000003525
+    },
+    {
+      "id": "sf-dev-029",
+      "query": "Pydantic BaseSettings 的基本用法是什么？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": false,
+      "top1_similarity": 0.8680434226989746,
+      "top1_file": "agent\\core.py",
+      "top1_start_line": 1,
+      "top1_end_line": 71,
+      "latency_ms": 19.422900000009236
+    },
+    {
+      "id": "sf-dev-030",
+      "query": "Web 应用应该怎样防止 SQL 注入？",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "top1_similarity": 0.8424237966537476,
+      "top1_file": "docs\\routing_experiment.md",
+      "top1_start_line": 1,
+      "top1_end_line": 16,
+      "latency_ms": 21.329600000001392
+    }
+  ],
+  "candidate_thresholds": [
+    {
+      "threshold": 0.8171219362487793,
+      "true_positive": 15,
+      "false_positive": 15,
+      "true_negative": 0,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 1.0,
+      "accuracy": 0.5
+    },
+    {
+      "threshold": 0.8171229362487793,
+      "true_positive": 15,
+      "false_positive": 15,
+      "true_negative": 0,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 1.0,
+      "accuracy": 0.5
+    },
+    {
+      "threshold": 0.8421618938446045,
+      "true_positive": 15,
+      "false_positive": 14,
+      "true_negative": 1,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 0.9333333333333333,
+      "accuracy": 0.5333333333333333
+    },
+    {
+      "threshold": 0.8424237966537476,
+      "true_positive": 15,
+      "false_positive": 13,
+      "true_negative": 2,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 0.8666666666666667,
+      "accuracy": 0.5666666666666667
+    },
+    {
+      "threshold": 0.8553013205528259,
+      "true_positive": 15,
+      "false_positive": 12,
+      "true_negative": 3,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 0.8,
+      "accuracy": 0.6
+    },
+    {
+      "threshold": 0.8557285070419312,
+      "true_positive": 15,
+      "false_positive": 11,
+      "true_negative": 4,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 0.7333333333333333,
+      "accuracy": 0.6333333333333333
+    },
+    {
+      "threshold": 0.86097651720047,
+      "true_positive": 15,
+      "false_positive": 10,
+      "true_negative": 5,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 0.6666666666666666,
+      "accuracy": 0.6666666666666666
+    },
+    {
+      "threshold": 0.8633263111114502,
+      "true_positive": 15,
+      "false_positive": 9,
+      "true_negative": 6,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 0.6,
+      "accuracy": 0.7
+    },
+    {
+      "threshold": 0.8680434226989746,
+      "true_positive": 15,
+      "false_positive": 8,
+      "true_negative": 7,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 0.5333333333333333,
+      "accuracy": 0.7333333333333333
+    },
+    {
+      "threshold": 0.8689699769020081,
+      "true_positive": 15,
+      "false_positive": 7,
+      "true_negative": 8,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 0.4666666666666667,
+      "accuracy": 0.7666666666666667
+    },
+    {
+      "threshold": 0.8691003322601318,
+      "true_positive": 15,
+      "false_positive": 6,
+      "true_negative": 9,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 0.4,
+      "accuracy": 0.8
+    },
+    {
+      "threshold": 0.8691268563270569,
+      "true_positive": 15,
+      "false_positive": 5,
+      "true_negative": 10,
+      "false_negative": 0,
+      "relevant_recall": 1.0,
+      "irrelevant_false_positive_rate": 0.3333333333333333,
+      "accuracy": 0.8333333333333334
+    },
+    {
+      "threshold": 0.8699845671653748,
+      "true_positive": 14,
+      "false_positive": 5,
+      "true_negative": 10,
+      "false_negative": 1,
+      "relevant_recall": 0.9333333333333333,
+      "irrelevant_false_positive_rate": 0.3333333333333333,
+      "accuracy": 0.8
+    },
+    {
+      "threshold": 0.8707695007324219,
+      "true_positive": 14,
+      "false_positive": 4,
+      "true_negative": 11,
+      "false_negative": 1,
+      "relevant_recall": 0.9333333333333333,
+      "irrelevant_false_positive_rate": 0.26666666666666666,
+      "accuracy": 0.8333333333333334
+    },
+    {
+      "threshold": 0.8728354573249817,
+      "true_positive": 13,
+      "false_positive": 4,
+      "true_negative": 11,
+      "false_negative": 2,
+      "relevant_recall": 0.8666666666666667,
+      "irrelevant_false_positive_rate": 0.26666666666666666,
+      "accuracy": 0.8
+    },
+    {
+      "threshold": 0.875298023223877,
+      "true_positive": 12,
+      "false_positive": 4,
+      "true_negative": 11,
+      "false_negative": 3,
+      "relevant_recall": 0.8,
+      "irrelevant_false_positive_rate": 0.26666666666666666,
+      "accuracy": 0.7666666666666667
+    },
+    {
+      "threshold": 0.8758731484413147,
+      "true_positive": 12,
+      "false_positive": 3,
+      "true_negative": 12,
+      "false_negative": 3,
+      "relevant_recall": 0.8,
+      "irrelevant_false_positive_rate": 0.2,
+      "accuracy": 0.8
+    },
+    {
+      "threshold": 0.8765594959259033,
+      "true_positive": 12,
+      "false_positive": 2,
+      "true_negative": 13,
+      "false_negative": 3,
+      "relevant_recall": 0.8,
+      "irrelevant_false_positive_rate": 0.13333333333333333,
+      "accuracy": 0.8333333333333334
+    },
+    {
+      "threshold": 0.8787462115287781,
+      "true_positive": 12,
+      "false_positive": 1,
+      "true_negative": 14,
+      "false_negative": 3,
+      "relevant_recall": 0.8,
+      "irrelevant_false_positive_rate": 0.06666666666666667,
+      "accuracy": 0.8666666666666667
+    },
+    {
+      "threshold": 0.880937933921814,
+      "true_positive": 11,
+      "false_positive": 1,
+      "true_negative": 14,
+      "false_negative": 4,
+      "relevant_recall": 0.7333333333333333,
+      "irrelevant_false_positive_rate": 0.06666666666666667,
+      "accuracy": 0.8333333333333334
+    },
+    {
+      "threshold": 0.8828240633010864,
+      "true_positive": 11,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 4,
+      "relevant_recall": 0.7333333333333333,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.8666666666666667
+    },
+    {
+      "threshold": 0.885042667388916,
+      "true_positive": 10,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 5,
+      "relevant_recall": 0.6666666666666666,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.8333333333333334
+    },
+    {
+      "threshold": 0.8855802416801453,
+      "true_positive": 9,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 6,
+      "relevant_recall": 0.6,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.8
+    },
+    {
+      "threshold": 0.8960971236228943,
+      "true_positive": 8,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 7,
+      "relevant_recall": 0.5333333333333333,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.7666666666666667
+    },
+    {
+      "threshold": 0.8968642354011536,
+      "true_positive": 7,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 8,
+      "relevant_recall": 0.4666666666666667,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.7333333333333333
+    },
+    {
+      "threshold": 0.9024237394332886,
+      "true_positive": 6,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 9,
+      "relevant_recall": 0.4,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.7
+    },
+    {
+      "threshold": 0.9027670621871948,
+      "true_positive": 5,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 10,
+      "relevant_recall": 0.3333333333333333,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.6666666666666666
+    },
+    {
+      "threshold": 0.9042085409164429,
+      "true_positive": 4,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 11,
+      "relevant_recall": 0.26666666666666666,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.6333333333333333
+    },
+    {
+      "threshold": 0.9061552882194519,
+      "true_positive": 3,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 12,
+      "relevant_recall": 0.2,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.6
+    },
+    {
+      "threshold": 0.9080063700675964,
+      "true_positive": 2,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 13,
+      "relevant_recall": 0.13333333333333333,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.5666666666666667
+    },
+    {
+      "threshold": 0.9136922359466553,
+      "true_positive": 1,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 14,
+      "relevant_recall": 0.06666666666666667,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.5333333333333333
+    },
+    {
+      "threshold": 0.9136932359466553,
+      "true_positive": 0,
+      "false_positive": 0,
+      "true_negative": 15,
+      "false_negative": 15,
+      "relevant_recall": 0.0,
+      "irrelevant_false_positive_rate": 0.0,
+      "accuracy": 0.5
+    }
+  ]
+}

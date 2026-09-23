@@ -230,7 +230,39 @@ def truncate_text(text, max_chars=None):
         text[:max_chars]
         + "\n...内容过长，已截断..."
     )
+def add_line_numbers(
+        file_result,
+    ):
+        result = dict(file_result)
 
+        content = str(
+            result.get("content") or ""
+        )
+
+        if not content:
+            return result
+
+        start_line = result.get(
+            "start_line",
+            1,
+        )
+
+        numbered_lines = []
+
+        for offset, line in enumerate(
+            content.splitlines()
+        ):
+            line_number = start_line + offset
+
+            numbered_lines.append(
+                f"{line_number:4d} | {line}"
+            )
+
+        result["content"] = "\n".join(
+            numbered_lines
+        )
+
+        return result
 
 class AgentToolbox:
 
@@ -398,10 +430,74 @@ class AgentToolbox:
         self,
         relative_path,
     ):
-        return analyze_python_file(
+        analysis = analyze_python_file(
             self.repository_path,
             relative_path,
         )
+
+        compact_functions = []
+
+        for item in analysis.get(
+            "functions",
+            [],
+        ):
+            compact_functions.append(
+                {
+                    "name": item.get("name"),
+                    "type": item.get("type"),
+                    "class_name": item.get(
+                        "class_name"
+                    ),
+                    "line": item.get("line"),
+                    "end_line": item.get(
+                        "end_line"
+                    ),
+                    "length": item.get(
+                        "length"
+                    ),
+                    "complexity": item.get(
+                        "complexity"
+                    ),
+                    "decorators": item.get(
+                        "decorators",
+                        [],
+                    ),
+                }
+            )
+
+        return {
+            "file": analysis["file"],
+            "total_lines": analysis[
+                "total_lines"
+            ],
+            "summary": {
+                "import_count": len(
+                    analysis.get("imports", [])
+                ),
+                "class_count": len(
+                    analysis.get("classes", [])
+                ),
+                "function_count": len(
+                    compact_functions
+                ),
+                "warning_count": len(
+                    analysis.get("warnings", [])
+                ),
+            },
+            "imports": analysis.get(
+                "imports",
+                [],
+            )[:50],
+            "classes": analysis.get(
+                "classes",
+                [],
+            ),
+            "functions": compact_functions,
+            "warnings": analysis.get(
+                "warnings",
+                [],
+            ),
+        }
 
     def _find_repository_file(
         self,
@@ -617,6 +713,9 @@ class AgentToolbox:
                 file_result["content"]
             )
         )
+        file_result = add_line_numbers(
+            file_result,
+        )
 
         return {
             "task_type": "code_completion",
@@ -650,6 +749,9 @@ class AgentToolbox:
         source["content"] = truncate_text(
             source["content"]
         )
+        source = add_line_numbers(
+            source,
+        )
 
         return {
             "task_type": "test_generation",
@@ -673,12 +775,60 @@ class AgentToolbox:
         entrypoint=None,
         python_version="3.11",
     ):
+        if not isinstance(
+            python_version,
+            str,
+        ):
+            raise TypeError(
+                "python_version 必须是字符串"
+            )
+
+        python_version = (
+            python_version.strip()
+        )
+
+        if not python_version:
+            raise ValueError(
+                "python_version 不能为空"
+            )
+
         repository_files = [
-            str(relative_path)
+            str(relative_path).replace(
+                "\\",
+                "/",
+            )
             for relative_path in list_files(
                 self.repository_path
             )
         ]
+
+        if entrypoint is not None:
+            if not isinstance(
+                entrypoint,
+                str,
+            ):
+                raise TypeError(
+                    "entrypoint 必须是字符串"
+                )
+
+            entrypoint = (
+                entrypoint
+                .strip()
+                .replace("\\", "/")
+            )
+
+            if not entrypoint:
+                entrypoint = None
+
+        if (
+            entrypoint is not None
+            and entrypoint
+            not in repository_files
+        ):
+            raise ValueError(
+                "指定的入口文件不存在："
+                f"{entrypoint}"
+            )
 
         dependency_candidates = [
             "requirements.txt",
@@ -699,33 +849,63 @@ class AgentToolbox:
                 candidate,
             )
 
-            dependency_files[candidate] = (
+            file_result["content"] = (
                 truncate_text(
                     file_result["content"],
                     max_chars=8000,
                 )
             )
 
-        possible_entrypoints = []
+            # 保留 file、start_line、end_line，
+            # 供引用系统收集真实证据。
+            dependency_files[candidate] = (
+                file_result
+            )
 
-        for candidate in [
+        entrypoint_candidates = [
             "main.py",
             "app.py",
             "server.py",
             "manage.py",
-        ]:
-            if candidate in repository_files:
-                possible_entrypoints.append(
-                    candidate
-                )
+            "api/main.py",
+            "ui/streamlit_app.py",
+        ]
+
+        possible_entrypoints = [
+            candidate
+            for candidate
+            in entrypoint_candidates
+            if candidate in repository_files
+        ]
 
         selected_entrypoint = entrypoint
 
-        if selected_entrypoint is None:
-            if possible_entrypoints:
-                selected_entrypoint = (
-                    possible_entrypoints[0]
+        if (
+            selected_entrypoint is None
+            and possible_entrypoints
+        ):
+            selected_entrypoint = (
+                possible_entrypoints[0]
+            )
+
+        entrypoint_files = {}
+
+        for candidate in possible_entrypoints:
+            file_result = read_file(
+                self.repository_path,
+                candidate,
+            )
+
+            file_result["content"] = (
+                truncate_text(
+                    file_result["content"],
+                    max_chars=6000,
                 )
+            )
+
+            entrypoint_files[candidate] = (
+                file_result
+            )
 
         return {
             "task_type": (
@@ -749,6 +929,9 @@ class AgentToolbox:
             "dependency_files": (
                 dependency_files
             ),
+            "entrypoint_files": (
+                entrypoint_files
+            ),
             "repository_files": (
                 repository_files[:200]
             ),
@@ -759,10 +942,10 @@ class AgentToolbox:
                 "再复制项目代码",
                 "使用非 root 用户运行",
                 "给出合理的启动命令",
+                "不得在镜像中写入 API Key、密码或令牌",
+                "入口不确定时必须明确说明",
             ],
         }
-
-
 def create_agent_toolbox(
     repository_path,
     project_dir,

@@ -1,0 +1,2269 @@
+{
+  "summary": {
+    "method": "dense_query_rewrite",
+    "query_count": 30,
+    "relevant_query_count": 25,
+    "irrelevant_query_count": 5,
+    "hit_at_1": 0.6,
+    "hit_at_3": 0.76,
+    "hit_at_5": 0.92,
+    "mrr": 0.7026666666666667,
+    "average_latency_ms": 8139.960250000002,
+    "average_rewrite_latency_ms": 8125.727696666667,
+    "average_retrieval_latency_ms": 14.229780000003464,
+    "index_seconds": 21.049401500000002,
+    "irrelevant_false_positive_rate": 0.0,
+    "rewrite_failure_count": 0,
+    "rewrite_fallback_count": 0,
+    "skipped_query_count": 5
+  },
+  "index_info": {
+    "repository": "D:\\桌面\\repo-doctor-agent",
+    "chunk_count": 243,
+    "embedding_dimension": 384
+  },
+  "queries": [
+    {
+      "id": "rd-001",
+      "query": "DenseCodeRetriever 在哪里定义？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/dense.py"
+      ],
+      "first_relevant_rank": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "rewrite": {
+        "original_query": "DenseCodeRetriever 在哪里定义？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "DenseCodeRetriever 类或函数在哪个文件中定义",
+        "keyword_query": "DenseCodeRetriever definition class function DenseCodeRetriever",
+        "identifiers": [
+          "DenseCodeRetriever"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "DenseCodeRetriever",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "用户询问 DenseCodeRetriever 的定义位置，属于代码检索，需保留原始标识符并搜索仓库文件。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 8793.550500000001,
+      "retrieval_latency_ms": 17.321900000005996,
+      "total_latency_ms": 8810.8747,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "rag\\hybrid.py",
+          "start_line": 278,
+          "end_line": 317,
+          "score": 0.8993467092514038
+        },
+        {
+          "rank": 2,
+          "file": "rag\\dense.py",
+          "start_line": 70,
+          "end_line": 202,
+          "score": 0.8873990774154663
+        },
+        {
+          "rank": 3,
+          "file": "rag\\hybrid.py",
+          "start_line": 23,
+          "end_line": 201,
+          "score": 0.8868775367736816
+        },
+        {
+          "rank": 4,
+          "file": "api\\main.py",
+          "start_line": 101,
+          "end_line": 121,
+          "score": 0.886574387550354
+        },
+        {
+          "rank": 5,
+          "file": "rag\\dense.py",
+          "start_line": 235,
+          "end_line": 280,
+          "score": 0.8863608837127686
+        }
+      ]
+    },
+    {
+      "id": "rd-002",
+      "query": "BM25CodeRetriever 类的 build_index 方法在哪里？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/bm25.py"
+      ],
+      "first_relevant_rank": 3,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "rewrite": {
+        "original_query": "BM25CodeRetriever 类的 build_index 方法在哪里？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "BM25CodeRetriever 类的 build_index 方法定义位置",
+        "keyword_query": "BM25CodeRetriever build_index build_index BM25CodeRetriever",
+        "identifiers": [
+          "build_index",
+          "BM25CodeRetriever"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "build_index",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "BM25CodeRetriever",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "用户询问特定类和方法的位置，需要检索仓库代码，保留原始标识符。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 15189.524200000002,
+      "retrieval_latency_ms": 15.96179999999947,
+      "total_latency_ms": 15205.490400000002,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "rag\\hybrid.py",
+          "start_line": 320,
+          "end_line": 346,
+          "score": 0.9087232351303101
+        },
+        {
+          "rank": 2,
+          "file": "api\\main.py",
+          "start_line": 101,
+          "end_line": 121,
+          "score": 0.9080797433853149
+        },
+        {
+          "rank": 3,
+          "file": "rag\\bm25.py",
+          "start_line": 494,
+          "end_line": 541,
+          "score": 0.8990216851234436
+        },
+        {
+          "rank": 4,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 1100,
+          "end_line": 1192,
+          "score": 0.8988162279129028
+        },
+        {
+          "rank": 5,
+          "file": "scripts\\evaluate_hybrid.py",
+          "start_line": 173,
+          "end_line": 421,
+          "score": 0.8959925770759583
+        }
+      ]
+    },
+    {
+      "id": "rd-003",
+      "query": "create_agent_toolbox 函数在哪里定义？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "tools/registry.py"
+      ],
+      "first_relevant_rank": 5,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.2,
+      "rewrite": {
+        "original_query": "create_agent_toolbox 函数在哪里定义？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "create_agent_toolbox 函数定义位置",
+        "keyword_query": "create_agent_toolbox def create_agent_toolbox",
+        "identifiers": [
+          "create_agent_toolbox"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "create_agent_toolbox",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "用户询问函数定义位置，需要检索仓库代码，保留原始函数名作为关键词和标识符。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 9134.574999999999,
+      "retrieval_latency_ms": 15.196299999999496,
+      "total_latency_ms": 9149.77420000001,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\citations.py",
+          "start_line": 934,
+          "end_line": 1015,
+          "score": 0.8891435265541077
+        },
+        {
+          "rank": 2,
+          "file": "agent\\extensions.py",
+          "start_line": 818,
+          "end_line": 917,
+          "score": 0.8886699676513672
+        },
+        {
+          "rank": 3,
+          "file": "agent\\core.py",
+          "start_line": 363,
+          "end_line": 684,
+          "score": 0.8878515958786011
+        },
+        {
+          "rank": 4,
+          "file": "agent\\core.py",
+          "start_line": 687,
+          "end_line": 722,
+          "score": 0.8865551948547363
+        },
+        {
+          "rank": 5,
+          "file": "tools\\registry.py",
+          "start_line": 235,
+          "end_line": 763,
+          "score": 0.8855702877044678
+        }
+      ]
+    },
+    {
+      "id": "rd-004",
+      "query": "项目如何融合关键词检索和向量检索结果？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/hybrid.py"
+      ],
+      "first_relevant_rank": 4,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "rewrite": {
+        "original_query": "项目如何融合关键词检索和向量检索结果？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "项目如何融合关键词检索和向量检索结果？混合检索的实现方式",
+        "keyword_query": "hybrid retrieval fusion BM25 dense vector rag/hybrid.py rag/bm25.py rag/dense.py rag/hybrid.py rag/bm25.py rag/dense.py",
+        "identifiers": [
+          "rag/hybrid.py",
+          "rag/bm25.py",
+          "rag/dense.py"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "rag/hybrid.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "rag/bm25.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "rag/dense.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "问题询问仓库中关键词检索与向量检索结果的融合实现，属于代码检索；文件列表中存在 rag/hybrid.py、rag/bm25.py、rag/dense.py 等直接相关文件，保留这些标识符用于关键词检索。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 4422.281900000002,
+      "retrieval_latency_ms": 19.380299999994577,
+      "total_latency_ms": 4441.665000000001,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "score": 0.878831148147583
+        },
+        {
+          "rank": 2,
+          "file": "tests\\check_hybrid.py",
+          "start_line": 1,
+          "end_line": 64,
+          "score": 0.8785320520401001
+        },
+        {
+          "rank": 3,
+          "file": "README.md",
+          "start_line": 211,
+          "end_line": 282,
+          "score": 0.8780018091201782
+        },
+        {
+          "rank": 4,
+          "file": "rag\\hybrid.py",
+          "start_line": 23,
+          "end_line": 201,
+          "score": 0.8774427175521851
+        },
+        {
+          "rank": 5,
+          "file": "scripts\\run_all_retrieval_evals.py",
+          "start_line": 1,
+          "end_line": 46,
+          "score": 0.8767050504684448
+        }
+      ]
+    },
+    {
+      "id": "rd-005",
+      "query": "搜出来一堆代码以后，项目是怎么重新排顺序的？",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/reranker.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "搜出来一堆代码以后，项目是怎么重新排顺序的？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "检索结果如何重新排序 rerank 排序逻辑",
+        "keyword_query": "reranker rerank 排序 search hybrid rag/reranker.py repository/search.py rag/hybrid.py",
+        "identifiers": [
+          "rag/reranker.py",
+          "repository/search.py",
+          "rag/hybrid.py"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "rag/reranker.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "repository/search.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "rag/hybrid.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.85,
+        "reason": "用户询问检索结果重新排序的实现，对应仓库中的 reranker 与 search 相关模块，需进行代码检索。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 3409.5508999999993,
+      "retrieval_latency_ms": 16.72010000000057,
+      "total_latency_ms": 3426.273699999996,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "rag\\reranker.py",
+          "start_line": 536,
+          "end_line": 615,
+          "score": 0.9040954113006592
+        },
+        {
+          "rank": 2,
+          "file": "rag\\reranker.py",
+          "start_line": 618,
+          "end_line": 645,
+          "score": 0.903723955154419
+        },
+        {
+          "rank": 3,
+          "file": "rag\\reranker.py",
+          "start_line": 412,
+          "end_line": 533,
+          "score": 0.9014797806739807
+        },
+        {
+          "rank": 4,
+          "file": "rag\\reranker.py",
+          "start_line": 648,
+          "end_line": 710,
+          "score": 0.8967474102973938
+        },
+        {
+          "rank": 5,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 979,
+          "end_line": 1045,
+          "score": 0.8887431621551514
+        }
+      ]
+    },
+    {
+      "id": "rd-006",
+      "query": "系统在哪里保存多轮对话记忆？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "agent/extensions.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "系统在哪里保存多轮对话记忆？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "系统在哪里保存多轮对话记忆？对话历史或会话状态存储位置",
+        "keyword_query": "多轮对话 记忆 保存 存储 会话历史 conversation memory session history",
+        "identifiers": [],
+        "identifier_checks": [],
+        "confidence": 0.85,
+        "reason": "用户询问系统保存多轮对话记忆的位置，属于代码检索问题，需要查找仓库中与对话记忆存储相关的实现。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 4562.753400000005,
+      "retrieval_latency_ms": 15.639800000002424,
+      "total_latency_ms": 4578.396100000006,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\extensions.py",
+          "start_line": 47,
+          "end_line": 169,
+          "score": 0.8838187456130981
+        },
+        {
+          "rank": 2,
+          "file": "agent\\extensions.py",
+          "start_line": 717,
+          "end_line": 817,
+          "score": 0.8834162950515747
+        },
+        {
+          "rank": 3,
+          "file": "agent\\extensions.py",
+          "start_line": 695,
+          "end_line": 714,
+          "score": 0.8761852979660034
+        },
+        {
+          "rank": 4,
+          "file": "agent\\extensions.py",
+          "start_line": 172,
+          "end_line": 448,
+          "score": 0.8731443881988525
+        },
+        {
+          "rank": 5,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 502,
+          "end_line": 558,
+          "score": 0.8713022470474243
+        }
+      ]
+    },
+    {
+      "id": "rd-007",
+      "query": "回答中的文件路径和行号由哪个类验证？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "agent/citations.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "回答中的文件路径和行号由哪个类验证？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "哪个类负责验证回答中的文件路径和行号引用",
+        "keyword_query": "citations 文件路径 行号 验证 类 agent/citations.py",
+        "identifiers": [
+          "agent/citations.py"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "agent/citations.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.85,
+        "reason": "问题询问回答中文件路径和行号的验证类，属于仓库实现检索；文件列表中有 agent/citations.py 与引用验证高度相关，因此保留该路径作为关键词线索。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 2952.421700000002,
+      "retrieval_latency_ms": 14.82769999999789,
+      "total_latency_ms": 2967.2522999999983,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\citations.py",
+          "start_line": 1,
+          "end_line": 52,
+          "score": 0.8843838572502136
+        },
+        {
+          "rank": 2,
+          "file": "agent\\citations.py",
+          "start_line": 387,
+          "end_line": 636,
+          "score": 0.8832881450653076
+        },
+        {
+          "rank": 3,
+          "file": "agent\\citations.py",
+          "start_line": 814,
+          "end_line": 835,
+          "score": 0.8802262544631958
+        },
+        {
+          "rank": 4,
+          "file": "agent\\code_qa.py",
+          "start_line": 1,
+          "end_line": 28,
+          "score": 0.8795477151870728
+        },
+        {
+          "rank": 5,
+          "file": "agent\\extensions.py",
+          "start_line": 633,
+          "end_line": 692,
+          "score": 0.8778715133666992
+        }
+      ]
+    },
+    {
+      "id": "rd-008",
+      "query": "聊天请求从 FastAPI 接口进入后，如何创建会话并调用带记忆的 Agent？",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "relevant_files": [
+        "api/main.py",
+        "agent/extensions.py",
+        "agent/citations.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "聊天请求从 FastAPI 接口进入后，如何创建会话并调用带记忆的 Agent？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "FastAPI 接口接收聊天请求后如何创建会话并调用带记忆的 Agent",
+        "keyword_query": "FastAPI 聊天请求 创建会话 调用 Agent 记忆 api/main.py agent/core.py FastAPI",
+        "identifiers": [
+          "FastAPI"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "FastAPI",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.9,
+        "reason": "问题涉及仓库中 FastAPI 接口、会话创建和 Agent 调用流程，需要检索 api/main.py 与 agent/core.py 等实现文件。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 8981.646900000002,
+      "retrieval_latency_ms": 16.593700000001377,
+      "total_latency_ms": 8998.244099999994,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\extensions.py",
+          "start_line": 172,
+          "end_line": 448,
+          "score": 0.8954606056213379
+        },
+        {
+          "rank": 2,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 19,
+          "end_line": 174,
+          "score": 0.8946250677108765
+        },
+        {
+          "rank": 3,
+          "file": "agent\\code_qa.py",
+          "start_line": 29,
+          "end_line": 112,
+          "score": 0.8901574611663818
+        },
+        {
+          "rank": 4,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 1005,
+          "end_line": 1081,
+          "score": 0.8900467157363892
+        },
+        {
+          "rank": 5,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 1084,
+          "end_line": 1162,
+          "score": 0.8888813853263855
+        }
+      ]
+    },
+    {
+      "id": "rd-009",
+      "query": "法国的首都是哪里？",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "relevant_files": [],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "rewrite": {
+        "original_query": "法国的首都是哪里？",
+        "intent": "general_question",
+        "should_search": false,
+        "semantic_query": "法国的首都是哪里",
+        "keyword_query": "法国的首都是哪里？",
+        "identifiers": [],
+        "identifier_checks": [],
+        "confidence": 0.99,
+        "reason": "该问题是常识性地理问题，与代码仓库实现、文件、函数、日志、测试或 Dockerfile 无关，不需要检索目标仓库。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": true,
+      "rewrite_latency_ms": 2778.7555000000025,
+      "retrieval_latency_ms": 0.0024999999936881068,
+      "total_latency_ms": 2778.759600000001,
+      "retrieved_count": 0,
+      "retrieved_results": []
+    },
+    {
+      "id": "rd-010",
+      "query": "帮我制定一个三天健身计划。",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "relevant_files": [],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "rewrite": {
+        "original_query": "帮我制定一个三天健身计划。",
+        "intent": "general_question",
+        "should_search": false,
+        "semantic_query": "帮我制定一个三天健身计划。",
+        "keyword_query": "帮我制定一个三天健身计划。",
+        "identifiers": [],
+        "identifier_checks": [],
+        "confidence": 0.98,
+        "reason": "用户请求制定健身计划，与代码仓库检索无关，无需查询目标仓库。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": true,
+      "rewrite_latency_ms": 2857.2712999999935,
+      "retrieval_latency_ms": 0.0008999999892012056,
+      "total_latency_ms": 2857.274000000004,
+      "retrieved_count": 0,
+      "retrieved_results": []
+    },
+    {
+      "id": "rd-011",
+      "query": "Settings 配置类在哪里定义？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "config.py"
+      ],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "rewrite": {
+        "original_query": "Settings 配置类在哪里定义？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "Settings 配置类在哪里定义，查找配置类定义位置",
+        "keyword_query": "Settings 配置类 config.py Settings",
+        "identifiers": [
+          "Settings"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "Settings",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.9,
+        "reason": "用户询问 Settings 配置类的定义位置，需要在仓库中检索配置相关文件，保留标识符 Settings，并结合文件列表中的 config.py 作为关键词。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 8897.131299999997,
+      "retrieval_latency_ms": 18.583300000003078,
+      "total_latency_ms": 8915.717700000001,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tests\\check_dense.py",
+          "start_line": 1,
+          "end_line": 63,
+          "score": 0.8731959462165833
+        },
+        {
+          "rank": 2,
+          "file": "tests\\check_config.py",
+          "start_line": 1,
+          "end_line": 24,
+          "score": 0.8719309568405151
+        },
+        {
+          "rank": 3,
+          "file": "repository\\analyzer.py",
+          "start_line": 127,
+          "end_line": 178,
+          "score": 0.8709021806716919
+        },
+        {
+          "rank": 4,
+          "file": "tests\\check_bm25.py",
+          "start_line": 1,
+          "end_line": 47,
+          "score": 0.8692721128463745
+        },
+        {
+          "rank": 5,
+          "file": "api\\main.py",
+          "start_line": 273,
+          "end_line": 318,
+          "score": 0.8692009449005127
+        }
+      ]
+    },
+    {
+      "id": "rd-012",
+      "query": "ToolCallingLLMClient 在哪个文件？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "agent/core.py"
+      ],
+      "first_relevant_rank": 4,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.25,
+      "rewrite": {
+        "original_query": "ToolCallingLLMClient 在哪个文件？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "ToolCallingLLMClient 类定义在哪个文件中",
+        "keyword_query": "ToolCallingLLMClient",
+        "identifiers": [
+          "ToolCallingLLMClient"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "ToolCallingLLMClient",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "用户询问类 ToolCallingLLMClient 所在的文件，需要检索仓库代码，保留原始标识符。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 9627.874200000007,
+      "retrieval_latency_ms": 17.370300000010275,
+      "total_latency_ms": 9645.246599999993,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\extensions.py",
+          "start_line": 818,
+          "end_line": 917,
+          "score": 0.8980886936187744
+        },
+        {
+          "rank": 2,
+          "file": "tools\\log_analysis.py",
+          "start_line": 1088,
+          "end_line": 1161,
+          "score": 0.8959487676620483
+        },
+        {
+          "rank": 3,
+          "file": "tests\\check_agent.py",
+          "start_line": 1,
+          "end_line": 77,
+          "score": 0.8959224224090576
+        },
+        {
+          "rank": 4,
+          "file": "agent\\core.py",
+          "start_line": 69,
+          "end_line": 256,
+          "score": 0.8955869674682617
+        },
+        {
+          "rank": 5,
+          "file": "agent\\core.py",
+          "start_line": 363,
+          "end_line": 684,
+          "score": 0.8909093141555786
+        }
+      ]
+    },
+    {
+      "id": "rd-013",
+      "query": "parse_tool_arguments 函数在哪里实现？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "agent/core.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "parse_tool_arguments 函数在哪里实现？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "parse_tool_arguments 函数在哪个文件中实现",
+        "keyword_query": "parse_tool_arguments 函数 实现 定义 parse_tool_arguments",
+        "identifiers": [
+          "parse_tool_arguments"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "parse_tool_arguments",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "用户询问函数实现位置，需要检索仓库代码，保留原始函数名作为关键词和标识符。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 11095.7588,
+      "retrieval_latency_ms": 16.315700000006927,
+      "total_latency_ms": 11112.077400000004,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\core.py",
+          "start_line": 288,
+          "end_line": 323,
+          "score": 0.9104894399642944
+        },
+        {
+          "rank": 2,
+          "file": "agent\\core.py",
+          "start_line": 363,
+          "end_line": 684,
+          "score": 0.8860819339752197
+        },
+        {
+          "rank": 3,
+          "file": "tools\\log_analysis.py",
+          "start_line": 463,
+          "end_line": 483,
+          "score": 0.8851020932197571
+        },
+        {
+          "rank": 4,
+          "file": "api\\main.py",
+          "start_line": 868,
+          "end_line": 901,
+          "score": 0.8819540739059448
+        },
+        {
+          "rank": 5,
+          "file": "tools\\log_analysis.py",
+          "start_line": 486,
+          "end_line": 927,
+          "score": 0.8817797899246216
+        }
+      ]
+    },
+    {
+      "id": "rd-014",
+      "query": "项目如何防止读取仓库目录之外的文件？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "repository/search.py"
+      ],
+      "first_relevant_rank": 5,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.2,
+      "rewrite": {
+        "original_query": "项目如何防止读取仓库目录之外的文件？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "项目如何防止读取仓库目录之外的文件，路径遍历防护，文件读取安全限制",
+        "keyword_query": "repository scanner analyzer path traversal file read security",
+        "identifiers": [],
+        "identifier_checks": [],
+        "confidence": 0.85,
+        "reason": "问题涉及仓库文件读取的安全实现，需要在 repository 相关模块中检索路径校验逻辑，未提供具体标识符，因此使用语义和关键词查询。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 4613.2274,
+      "retrieval_latency_ms": 17.913899999996374,
+      "total_latency_ms": 4631.144599999999,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "api\\main.py",
+          "start_line": 201,
+          "end_line": 223,
+          "score": 0.8874754905700684
+        },
+        {
+          "rank": 2,
+          "file": "agent\\citations.py",
+          "start_line": 387,
+          "end_line": 636,
+          "score": 0.8791444301605225
+        },
+        {
+          "rank": 3,
+          "file": "README.md",
+          "start_line": 211,
+          "end_line": 282,
+          "score": 0.8786181807518005
+        },
+        {
+          "rank": 4,
+          "file": "agent\\extensions.py",
+          "start_line": 633,
+          "end_line": 692,
+          "score": 0.8762155771255493
+        },
+        {
+          "rank": 5,
+          "file": "repository\\search.py",
+          "start_line": 7,
+          "end_line": 14,
+          "score": 0.8745949268341064
+        }
+      ]
+    },
+    {
+      "id": "rd-015",
+      "query": "用户贴了一段报错堆栈以后，系统咋把异常类型和函数名提取出来？",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "relevant_files": [
+        "tools/log_analysis.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "用户贴了一段报错堆栈以后，系统咋把异常类型和函数名提取出来？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "从报错堆栈中提取异常类型和函数名的实现逻辑",
+        "keyword_query": "异常类型 函数名 提取 报错堆栈 log_analysis traceback exception function name tools/log_analysis.py",
+        "identifiers": [
+          "tools/log_analysis.py"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "tools/log_analysis.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.85,
+        "reason": "用户询问系统如何从报错堆栈中提取异常类型和函数名，属于仓库实现逻辑查询，最可能位于 tools/log_analysis.py，因此应检索代码。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 4331.149100000004,
+      "retrieval_latency_ms": 16.990900000024567,
+      "total_latency_ms": 4348.142999999993,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tools\\log_analysis.py",
+          "start_line": 241,
+          "end_line": 369,
+          "score": 0.883571445941925
+        },
+        {
+          "rank": 2,
+          "file": "tools\\log_analysis.py",
+          "start_line": 969,
+          "end_line": 1038,
+          "score": 0.8831899166107178
+        },
+        {
+          "rank": 3,
+          "file": "agent\\core.py",
+          "start_line": 363,
+          "end_line": 684,
+          "score": 0.8819485902786255
+        },
+        {
+          "rank": 4,
+          "file": "tools\\log_analysis.py",
+          "start_line": 1,
+          "end_line": 90,
+          "score": 0.8816267848014832
+        },
+        {
+          "rank": 5,
+          "file": "agent\\extensions.py",
+          "start_line": 451,
+          "end_line": 486,
+          "score": 0.8786816596984863
+        }
+      ]
+    },
+    {
+      "id": "rd-016",
+      "query": "建立仓库索引时，API 如何依次创建 Dense、BM25 和混合检索器？",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "relevant_files": [
+        "api/main.py",
+        "rag/dense.py",
+        "rag/bm25.py",
+        "rag/hybrid.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "建立仓库索引时，API 如何依次创建 Dense、BM25 和混合检索器？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "建立仓库索引时，API 如何依次创建 Dense、BM25 和混合检索器？",
+        "keyword_query": "API 仓库索引 Dense BM25 混合检索器 创建 依次 API BM25",
+        "identifiers": [
+          "API",
+          "BM25"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "API",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "BM25",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.9,
+        "reason": "问题涉及仓库索引构建流程中检索器的创建顺序，需要检索 API 与 RAG 检索器相关实现，保留用户给出的标识符 API 和 BM25。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 15200.730200000009,
+      "retrieval_latency_ms": 17.896100000001525,
+      "total_latency_ms": 15218.63000000002,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "api\\main.py",
+          "start_line": 101,
+          "end_line": 121,
+          "score": 0.9210524559020996
+        },
+        {
+          "rank": 2,
+          "file": "rag\\hybrid.py",
+          "start_line": 23,
+          "end_line": 201,
+          "score": 0.9039595127105713
+        },
+        {
+          "rank": 3,
+          "file": "tests\\check_hybrid.py",
+          "start_line": 1,
+          "end_line": 64,
+          "score": 0.9001634120941162
+        },
+        {
+          "rank": 4,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "score": 0.8990105986595154
+        },
+        {
+          "rank": 5,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 979,
+          "end_line": 1045,
+          "score": 0.8986341953277588
+        }
+      ]
+    },
+    {
+      "id": "rd-017",
+      "query": "tools registry 是在哪里向 PyPI 注册和发布 Python 包的？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": true,
+      "relevant_files": [
+        "tools/registry.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "tools registry 是在哪里向 PyPI 注册和发布 Python 包的？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "tools registry 中向 PyPI 注册和发布 Python 包的代码位置",
+        "keyword_query": "tools registry PyPI publish register package PyPI tools/registry.py",
+        "identifiers": [
+          "PyPI",
+          "tools/registry.py"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "PyPI",
+            "source": "original_query",
+            "exists_in_repository": false,
+            "accepted": true
+          },
+          {
+            "identifier": "tools/registry.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "用户询问 tools registry 中 PyPI 包注册与发布逻辑，需检索仓库实现，保留标识符 PyPI 并关联文件 tools/registry.py。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 10013.84760000002,
+      "retrieval_latency_ms": 16.08830000000694,
+      "total_latency_ms": 10029.940899999985,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tools\\registry.py",
+          "start_line": 828,
+          "end_line": 870,
+          "score": 0.8891669511795044
+        },
+        {
+          "rank": 2,
+          "file": "api\\main.py",
+          "start_line": 1,
+          "end_line": 69,
+          "score": 0.885844349861145
+        },
+        {
+          "rank": 3,
+          "file": "tools\\registry.py",
+          "start_line": 235,
+          "end_line": 763,
+          "score": 0.8857311010360718
+        },
+        {
+          "rank": 4,
+          "file": "tools\\log_analysis.py",
+          "start_line": 1088,
+          "end_line": 1161,
+          "score": 0.8848158121109009
+        },
+        {
+          "rank": 5,
+          "file": "tests\\check_agent.py",
+          "start_line": 1,
+          "end_line": 77,
+          "score": 0.8827471137046814
+        }
+      ]
+    },
+    {
+      "id": "rd-018",
+      "query": "系统如何判断一个问题是否需要搜索代码仓库？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/query_rewriter.py"
+      ],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "rewrite": {
+        "original_query": "系统如何判断一个问题是否需要搜索代码仓库？",
+        "intent": "code_analysis",
+        "should_search": true,
+        "semantic_query": "系统如何判断一个问题是否需要搜索代码仓库，should_search 决策逻辑在哪里实现",
+        "keyword_query": "should_search query_rewriter code_qa core routing 判断 是否需要搜索 代码仓库 should_search query_rewriter code_qa core",
+        "identifiers": [
+          "should_search",
+          "query_rewriter",
+          "code_qa",
+          "core"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "should_search",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "query_rewriter",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "code_qa",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "core",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.85,
+        "reason": "问题涉及仓库中查询改写与路由决策的实现逻辑，需要检索 rag/query_rewriter.py、agent/code_qa.py、agent/core.py 等文件，保留 should_search 等标识符。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 32167.128500000017,
+      "retrieval_latency_ms": 17.701100000010683,
+      "total_latency_ms": 32184.832200000015,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\code_qa.py",
+          "start_line": 173,
+          "end_line": 209,
+          "score": 0.890963613986969
+        },
+        {
+          "rank": 2,
+          "file": "rag\\bm25.py",
+          "start_line": 494,
+          "end_line": 541,
+          "score": 0.8851823806762695
+        },
+        {
+          "rank": 3,
+          "file": "agent\\code_qa.py",
+          "start_line": 154,
+          "end_line": 172,
+          "score": 0.8851624131202698
+        },
+        {
+          "rank": 4,
+          "file": "rag\\bm25.py",
+          "start_line": 113,
+          "end_line": 455,
+          "score": 0.8843615055084229
+        },
+        {
+          "rank": 5,
+          "file": "tools\\registry.py",
+          "start_line": 235,
+          "end_line": 763,
+          "score": 0.8839138746261597
+        }
+      ]
+    },
+    {
+      "id": "rd-019",
+      "query": "RerankedCodeSearch 的 search 方法在哪里定义？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "rag/reranker.py"
+      ],
+      "first_relevant_rank": 2,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "rewrite": {
+        "original_query": "RerankedCodeSearch 的 search 方法在哪里定义？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "RerankedCodeSearch 类的 search 方法定义位置",
+        "keyword_query": "RerankedCodeSearch search 方法 定义 RerankedCodeSearch search",
+        "identifiers": [
+          "RerankedCodeSearch",
+          "search"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "RerankedCodeSearch",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "search",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "用户询问 RerankedCodeSearch 的 search 方法定义位置，需要检索代码仓库，保留类名和方法名作为关键词。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 16895.07649999999,
+      "retrieval_latency_ms": 14.704600000015944,
+      "total_latency_ms": 16909.783500000005,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "api\\main.py",
+          "start_line": 273,
+          "end_line": 318,
+          "score": 0.8980920314788818
+        },
+        {
+          "rank": 2,
+          "file": "rag\\reranker.py",
+          "start_line": 412,
+          "end_line": 533,
+          "score": 0.8910842537879944
+        },
+        {
+          "rank": 3,
+          "file": "rag\\dense.py",
+          "start_line": 203,
+          "end_line": 234,
+          "score": 0.8841947317123413
+        },
+        {
+          "rank": 4,
+          "file": "rag\\reranker.py",
+          "start_line": 124,
+          "end_line": 409,
+          "score": 0.8837203979492188
+        },
+        {
+          "rank": 5,
+          "file": "rag\\reranker.py",
+          "start_line": 618,
+          "end_line": 645,
+          "score": 0.8827337026596069
+        }
+      ]
+    },
+    {
+      "id": "rd-020",
+      "query": "页面上工具调用记录和引用证据是怎么显示出来的？",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "relevant_files": [
+        "ui/streamlit_app.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "页面上工具调用记录和引用证据是怎么显示出来的？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "页面上工具调用记录和引用证据是如何显示和渲染的，涉及 UI 展示逻辑、工具调用记录、引用证据、citations 和 streamlit 页面",
+        "keyword_query": "工具调用记录 引用证据 显示 citations streamlit_app ui agent citations.py citations streamlit_app agent/citations.py ui/streamlit_app.py",
+        "identifiers": [
+          "citations",
+          "streamlit_app",
+          "agent/citations.py",
+          "ui/streamlit_app.py"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "citations",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "streamlit_app",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "agent/citations.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "ui/streamlit_app.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.86,
+        "reason": "问题询问页面中工具调用记录和引用证据的显示实现，需要检索 UI 与 citations 相关代码，因此应搜索仓库；保留 citations、streamlit_app 等仓库中出现的标识符。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 15634.452900000013,
+      "retrieval_latency_ms": 20.51529999999957,
+      "total_latency_ms": 15654.970599999984,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 502,
+          "end_line": 558,
+          "score": 0.9170299172401428
+        },
+        {
+          "rank": 2,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 334,
+          "end_line": 366,
+          "score": 0.9110252857208252
+        },
+        {
+          "rank": 3,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 259,
+          "end_line": 331,
+          "score": 0.9069452285766602
+        },
+        {
+          "rank": 4,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 836,
+          "end_line": 929,
+          "score": 0.9045574069023132
+        },
+        {
+          "rank": 5,
+          "file": "agent\\citations.py",
+          "start_line": 639,
+          "end_line": 811,
+          "score": 0.899619996547699
+        }
+      ]
+    },
+    {
+      "id": "rd-021",
+      "query": "代码分析器如何检测函数参数中的可变默认值？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "repository/analyzer.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "代码分析器如何检测函数参数中的可变默认值？",
+        "intent": "code_analysis",
+        "should_search": true,
+        "semantic_query": "代码分析器如何检测函数参数中的可变默认值 mutable default arguments",
+        "keyword_query": "analyzer mutable default arguments function parameters repository/analyzer.py repository/analyzer.py",
+        "identifiers": [
+          "repository/analyzer.py"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "repository/analyzer.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.85,
+        "reason": "问题涉及仓库中代码分析器的实现逻辑，需要检索 repository/analyzer.py 中关于函数参数可变默认值检测的代码。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 3554.4901000000095,
+      "retrieval_latency_ms": 17.092600000012226,
+      "total_latency_ms": 3571.5854999999974,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "repository\\analyzer.py",
+          "start_line": 127,
+          "end_line": 178,
+          "score": 0.9125944375991821
+        },
+        {
+          "rank": 2,
+          "file": "agent\\code_qa.py",
+          "start_line": 1,
+          "end_line": 28,
+          "score": 0.873799204826355
+        },
+        {
+          "rank": 3,
+          "file": "rag\\hybrid.py",
+          "start_line": 23,
+          "end_line": 201,
+          "score": 0.8735960721969604
+        },
+        {
+          "rank": 4,
+          "file": "agent\\code_qa.py",
+          "start_line": 154,
+          "end_line": 172,
+          "score": 0.8732976913452148
+        },
+        {
+          "rank": 5,
+          "file": "tools\\log_analysis.py",
+          "start_line": 91,
+          "end_line": 182,
+          "score": 0.8729206323623657
+        }
+      ]
+    },
+    {
+      "id": "rd-022",
+      "query": "从 API 接收错误日志到生成诊断结果经过哪些模块？",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "relevant_files": [
+        "api/main.py",
+        "tools/log_analysis.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "从 API 接收错误日志到生成诊断结果经过哪些模块？",
+        "intent": "code_analysis",
+        "should_search": true,
+        "semantic_query": "从 API 接收错误日志到生成诊断结果经过哪些模块，涉及 api/main.py、agent/core.py、tools/log_analysis.py 等模块的调用流程",
+        "keyword_query": "API 错误日志 诊断结果 模块 api/main.py agent/core.py tools/log_analysis.py API",
+        "identifiers": [
+          "API"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "API",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.85,
+        "reason": "问题询问仓库中从 API 接收错误日志到生成诊断结果的模块流程，需要检索 api、agent、tools 等相关实现文件，属于代码分析类查询。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 11638.55909999998,
+      "retrieval_latency_ms": 18.90209999999115,
+      "total_latency_ms": 11657.464300000014,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tools\\log_analysis.py",
+          "start_line": 486,
+          "end_line": 927,
+          "score": 0.9135432839393616
+        },
+        {
+          "rank": 2,
+          "file": "api\\main.py",
+          "start_line": 1,
+          "end_line": 69,
+          "score": 0.9104450345039368
+        },
+        {
+          "rank": 3,
+          "file": "tools\\log_analysis.py",
+          "start_line": 1041,
+          "end_line": 1087,
+          "score": 0.9073284268379211
+        },
+        {
+          "rank": 4,
+          "file": "tools\\log_analysis.py",
+          "start_line": 969,
+          "end_line": 1038,
+          "score": 0.9066965579986572
+        },
+        {
+          "rank": 5,
+          "file": "api\\main.py",
+          "start_line": 1069,
+          "end_line": 1165,
+          "score": 0.9061919450759888
+        }
+      ]
+    },
+    {
+      "id": "rd-023",
+      "query": "resolve_allowed_repository 函数在哪里？",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "relevant_files": [
+        "api/main.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "resolve_allowed_repository 函数在哪里？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "查找 resolve_allowed_repository 函数的定义位置",
+        "keyword_query": "resolve_allowed_repository",
+        "identifiers": [
+          "resolve_allowed_repository"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "resolve_allowed_repository",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "用户询问特定函数的定义位置，需要检索代码仓库，保留原始函数名作为关键词和标识符。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 9863.677900000028,
+      "retrieval_latency_ms": 16.89609999999675,
+      "total_latency_ms": 9880.576899999995,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "api\\main.py",
+          "start_line": 201,
+          "end_line": 223,
+          "score": 0.9130599498748779
+        },
+        {
+          "rank": 2,
+          "file": "api\\main.py",
+          "start_line": 169,
+          "end_line": 198,
+          "score": 0.8936164379119873
+        },
+        {
+          "rank": 3,
+          "file": "repository\\search.py",
+          "start_line": 7,
+          "end_line": 14,
+          "score": 0.8909707069396973
+        },
+        {
+          "rank": 4,
+          "file": "tools\\registry.py",
+          "start_line": 828,
+          "end_line": 870,
+          "score": 0.8868372440338135
+        },
+        {
+          "rank": 5,
+          "file": "repository\\analyzer.py",
+          "start_line": 127,
+          "end_line": 178,
+          "score": 0.883336067199707
+        }
+      ]
+    },
+    {
+      "id": "rd-024",
+      "query": "Agent 生成 Dockerfile 后如何进行校验和保存？",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "relevant_files": [
+        "agent/extensions.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "Agent 生成 Dockerfile 后如何进行校验和保存？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "Agent 生成 Dockerfile 后如何进行校验和保存，涉及 agent 核心逻辑、工具注册与文件保存流程",
+        "keyword_query": "Dockerfile validate save agent core tools registry",
+        "identifiers": [],
+        "identifier_checks": [],
+        "confidence": 0.85,
+        "reason": "问题询问仓库中 Agent 生成 Dockerfile 后的校验与保存实现，需要检索 agent 相关代码，但用户未提供具体标识符，因此仅使用通用技术词和仓库中存在的模块名。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 3042.4213999999665,
+      "retrieval_latency_ms": 17.581600000028175,
+      "total_latency_ms": 3060.005999999987,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\extensions.py",
+          "start_line": 633,
+          "end_line": 692,
+          "score": 0.9127197265625
+        },
+        {
+          "rank": 2,
+          "file": "agent\\core.py",
+          "start_line": 1,
+          "end_line": 68,
+          "score": 0.9024171233177185
+        },
+        {
+          "rank": 3,
+          "file": "agent\\extensions.py",
+          "start_line": 589,
+          "end_line": 619,
+          "score": 0.9017927646636963
+        },
+        {
+          "rank": 4,
+          "file": "README.md",
+          "start_line": 1,
+          "end_line": 80,
+          "score": 0.8995028734207153
+        },
+        {
+          "rank": 5,
+          "file": "agent\\extensions.py",
+          "start_line": 489,
+          "end_line": 586,
+          "score": 0.8989220857620239
+        }
+      ]
+    },
+    {
+      "id": "rd-025",
+      "query": "点了清空记忆以后，后端到底把哪一段对话删掉了？",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "relevant_files": [
+        "api/main.py",
+        "agent/extensions.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "点了清空记忆以后，后端到底把哪一段对话删掉了？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "清空记忆功能的后端实现，删除对话历史的具体代码逻辑",
+        "keyword_query": "清空记忆 删除对话 对话历史 memory clear delete conversation history",
+        "identifiers": [],
+        "identifier_checks": [],
+        "confidence": 0.85,
+        "reason": "用户询问清空记忆后端删除对话的实现，需要检索仓库代码，但未提供具体标识符，故使用自然语言和关键词描述。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 2908.925799999963,
+      "retrieval_latency_ms": 15.994100000000344,
+      "total_latency_ms": 2924.922600000002,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "agent\\extensions.py",
+          "start_line": 717,
+          "end_line": 817,
+          "score": 0.8834059238433838
+        },
+        {
+          "rank": 2,
+          "file": "agent\\extensions.py",
+          "start_line": 47,
+          "end_line": 169,
+          "score": 0.8827618360519409
+        },
+        {
+          "rank": 3,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 1005,
+          "end_line": 1081,
+          "score": 0.8805603981018066
+        },
+        {
+          "rank": 4,
+          "file": "agent\\extensions.py",
+          "start_line": 172,
+          "end_line": 448,
+          "score": 0.8798059225082397
+        },
+        {
+          "rank": 5,
+          "file": "ui\\streamlit_app.py",
+          "start_line": 19,
+          "end_line": 174,
+          "score": 0.8796306848526001
+        }
+      ]
+    },
+    {
+      "id": "rd-026",
+      "query": "search.py 是调用 Google 搜索引擎查询网页的吗？",
+      "query_type": "misleading_keyword",
+      "should_retrieve": true,
+      "relevant_files": [
+        "repository/search.py"
+      ],
+      "first_relevant_rank": 1,
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "rewrite": {
+        "original_query": "search.py 是调用 Google 搜索引擎查询网页的吗？",
+        "intent": "code_analysis",
+        "should_search": true,
+        "semantic_query": "repository/search.py 是否调用 Google 搜索引擎查询网页？search.py 的功能和实现",
+        "keyword_query": "search.py Google 搜索引擎 网页查询 repository/search.py search.py repository/search.py",
+        "identifiers": [
+          "search.py",
+          "repository/search.py"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "search.py",
+            "source": "original_query",
+            "exists_in_repository": true,
+            "accepted": true
+          },
+          {
+            "identifier": "repository/search.py",
+            "source": "llm",
+            "exists_in_repository": true,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "用户询问仓库中 search.py 是否调用 Google 搜索引擎，需要检索该文件实现，保留文件名标识符。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 3268.3827999999835,
+      "retrieval_latency_ms": 18.068500000026688,
+      "total_latency_ms": 3286.4534999999933,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "repository\\search.py",
+          "start_line": 93,
+          "end_line": 102,
+          "score": 0.8992472887039185
+        },
+        {
+          "rank": 2,
+          "file": "repository\\search.py",
+          "start_line": 103,
+          "end_line": 123,
+          "score": 0.8971433639526367
+        },
+        {
+          "rank": 3,
+          "file": "rag\\bm25.py",
+          "start_line": 494,
+          "end_line": 541,
+          "score": 0.8944993615150452
+        },
+        {
+          "rank": 4,
+          "file": "rag\\query_rewriter.py",
+          "start_line": 282,
+          "end_line": 712,
+          "score": 0.8893083333969116
+        },
+        {
+          "rank": 5,
+          "file": "tools\\registry.py",
+          "start_line": 1,
+          "end_line": 222,
+          "score": 0.8872320652008057
+        }
+      ]
+    },
+    {
+      "id": "rd-027",
+      "query": "今天北京天气怎么样？",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "relevant_files": [],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "rewrite": {
+        "original_query": "今天北京天气怎么样？",
+        "intent": "general_question",
+        "should_search": false,
+        "semantic_query": "今天北京天气怎么样？",
+        "keyword_query": "今天北京天气怎么样？",
+        "identifiers": [],
+        "identifier_checks": [],
+        "confidence": 0.99,
+        "reason": "用户询问北京天气，与代码仓库检索无关，不需要查询目标仓库。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": true,
+      "rewrite_latency_ms": 2676.431600000001,
+      "retrieval_latency_ms": 0.0033000000030369847,
+      "total_latency_ms": 2676.4367000000107,
+      "retrieved_count": 0,
+      "retrieved_results": []
+    },
+    {
+      "id": "rd-028",
+      "query": "请帮我写一条查询用户订单的 SQL。",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "relevant_files": [],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "rewrite": {
+        "original_query": "请帮我写一条查询用户订单的 SQL。",
+        "intent": "general_question",
+        "should_search": false,
+        "semantic_query": "编写一条查询用户订单的 SQL 语句",
+        "keyword_query": "SQL 用户订单 查询 SQL",
+        "identifiers": [
+          "SQL"
+        ],
+        "identifier_checks": [
+          {
+            "identifier": "SQL",
+            "source": "original_query",
+            "exists_in_repository": false,
+            "accepted": true
+          }
+        ],
+        "confidence": 0.95,
+        "reason": "用户请求编写通用 SQL 查询，不涉及目标仓库中的文件、函数或实现，因此无需检索仓库。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": true,
+      "rewrite_latency_ms": 10099.969199999976,
+      "retrieval_latency_ms": 0.0006999999868639861,
+      "total_latency_ms": 10099.971799999992,
+      "retrieved_count": 0,
+      "retrieved_results": []
+    },
+    {
+      "id": "rd-029",
+      "query": "把 good morning 翻译成中文。",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "relevant_files": [],
+      "first_relevant_rank": null,
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "rewrite": {
+        "original_query": "把 good morning 翻译成中文。",
+        "intent": "general_question",
+        "should_search": false,
+        "semantic_query": "把 good morning 翻译成中文",
+        "keyword_query": "把 good morning 翻译成中文。",
+        "identifiers": [],
+        "identifier_checks": [],
+        "confidence": 0.99,
+        "reason": "用户请求是通用翻译任务，不涉及仓库实现、文件、函数、日志、测试或 Dockerfile，因此无需检索代码仓库。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": true,
+      "rewrite_latency_ms": 2386.368300000015,
+      "retrieval_latency_ms": 0.0008999999749903509,
+      "total_latency_ms": 2386.370700000043,
+      "retrieved_count": 0,
+      "retrieved_results": []
+    },
+    {
+      "id": "rd-030",
+      "query": "Embedding 模型名称和批量大小在哪里配置，又在哪里实际使用？",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "relevant_files": [
+        "config.py",
+        "rag/dense.py"
+      ],
+      "first_relevant_rank": 3,
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "rewrite": {
+        "original_query": "Embedding 模型名称和批量大小在哪里配置，又在哪里实际使用？",
+        "intent": "code_search",
+        "should_search": true,
+        "semantic_query": "Embedding 模型名称和批量大小在哪里配置，又在哪里实际使用？",
+        "keyword_query": "embedding model name batch size config 配置 使用",
+        "identifiers": [],
+        "identifier_checks": [],
+        "confidence": 0.9,
+        "reason": "用户询问配置项及其使用位置，需要检索仓库中配置与调用代码，保留原始技术词。",
+        "rewrite_source": "llm",
+        "rewrite_error": null
+      },
+      "rewrite_source": "llm",
+      "rewrite_error": null,
+      "skipped": false,
+      "rewrite_latency_ms": 2773.896900000011,
+      "retrieval_latency_ms": 16.629000000023098,
+      "total_latency_ms": 2790.5289000000266,
+      "retrieved_count": 5,
+      "retrieved_results": [
+        {
+          "rank": 1,
+          "file": "tests\\check_config.py",
+          "start_line": 1,
+          "end_line": 24,
+          "score": 0.8870699405670166
+        },
+        {
+          "rank": 2,
+          "file": "tests\\check_dense.py",
+          "start_line": 1,
+          "end_line": 63,
+          "score": 0.8835717439651489
+        },
+        {
+          "rank": 3,
+          "file": "rag\\dense.py",
+          "start_line": 70,
+          "end_line": 202,
+          "score": 0.8769330382347107
+        },
+        {
+          "rank": 4,
+          "file": "rag\\dense.py",
+          "start_line": 235,
+          "end_line": 280,
+          "score": 0.8750334978103638
+        },
+        {
+          "rank": 5,
+          "file": "agent\\core.py",
+          "start_line": 363,
+          "end_line": 684,
+          "score": 0.8707767724990845
+        }
+      ]
+    }
+  ]
+}

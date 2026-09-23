@@ -17,13 +17,26 @@ INDEXABLE_SUFFIXES = {
     ".toml",
 }
 IGNORED_INDEX_DIRS = {
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".vscode",
+    "node_modules",
+    "checkpoints",
+    "models",
+    "lora_outputs",
+    "runtime_data",
+    "generated_outputs",
+    "dense_index",
+    "bm25_index",
     "data",
     "datasets",
+    "reports",
     "logs",
-    "experiments",
-    "checkpoints",
-    "__pycache__",
     "training",
+    "experiments",
 }
 
 def should_index_chunk(chunk):

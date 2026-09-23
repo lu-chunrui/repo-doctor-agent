@@ -1,0 +1,441 @@
+{
+  "summary": {
+    "method": "dense",
+    "query_count": 30,
+    "relevant_query_count": 25,
+    "hit_at_1": 0.44,
+    "hit_at_3": 0.72,
+    "hit_at_5": 0.8,
+    "mrr": 0.5713333333333334,
+    "average_latency_ms": 18.72881333333277,
+    "index_seconds": 21.1204665,
+    "irrelevant_false_positive_rate": 1.0
+  },
+  "index_info": {
+    "repository": "D:\\桌面\\repo-doctor-agent",
+    "chunk_count": 243,
+    "embedding_dimension": 384
+  },
+  "queries": [
+    {
+      "id": "rd-001",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "first_relevant_rank": null,
+      "latency_ms": 17.857199999994577,
+      "retrieved_files": [
+        "rag\\hybrid.py",
+        "api\\main.py",
+        "scripts\\evaluate_hybrid.py",
+        "tests\\check_dense.py",
+        "tests\\check_hybrid.py"
+      ]
+    },
+    {
+      "id": "rd-002",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "first_relevant_rank": 4,
+      "latency_ms": 22.049200000004987,
+      "retrieved_files": [
+        "rag\\hybrid.py",
+        "api\\main.py",
+        "rag\\query_rewriter.py",
+        "rag\\bm25.py",
+        "scripts\\evaluate_hybrid.py"
+      ]
+    },
+    {
+      "id": "rd-003",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "first_relevant_rank": 3,
+      "latency_ms": 19.03599999999983,
+      "retrieved_files": [
+        "agent\\citations.py",
+        "agent\\extensions.py",
+        "tools\\registry.py",
+        "agent\\core.py",
+        "agent\\core.py"
+      ]
+    },
+    {
+      "id": "rd-004",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "first_relevant_rank": null,
+      "latency_ms": 16.79850000000016,
+      "retrieved_files": [
+        "README.md",
+        "scripts\\run_all_retrieval_evals.py",
+        "tests\\check_hybrid.py",
+        "README.md",
+        "tests\\check_dense.py"
+      ]
+    },
+    {
+      "id": "rd-005",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "first_relevant_rank": null,
+      "latency_ms": 20.891800000001126,
+      "retrieved_files": [
+        "rag\\dense.py",
+        "README.md",
+        "tests\\check_dense.py",
+        "api\\main.py",
+        "tests\\check_hybrid.py"
+      ]
+    },
+    {
+      "id": "rd-006",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 15.555100000000266,
+      "retrieved_files": [
+        "agent\\extensions.py",
+        "agent\\extensions.py",
+        "agent\\extensions.py",
+        "agent\\extensions.py",
+        "ui\\streamlit_app.py"
+      ]
+    },
+    {
+      "id": "rd-007",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "first_relevant_rank": 2,
+      "latency_ms": 18.58379999999471,
+      "retrieved_files": [
+        "agent\\extensions.py",
+        "agent\\citations.py",
+        "agent\\citations.py",
+        "agent\\citations.py",
+        "agent\\code_qa.py"
+      ]
+    },
+    {
+      "id": "rd-008",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 20.142299999996283,
+      "retrieved_files": [
+        "agent\\extensions.py",
+        "ui\\streamlit_app.py",
+        "agent\\code_qa.py",
+        "ui\\streamlit_app.py",
+        "ui\\streamlit_app.py"
+      ]
+    },
+    {
+      "id": "rd-009",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "first_relevant_rank": null,
+      "latency_ms": 15.115500000000281,
+      "retrieved_files": [
+        "rag\\reranker.py",
+        "ui\\streamlit_app.py",
+        "rag\\query_rewriter.py",
+        "rag\\reranker.py",
+        "tests\\check_bm25.py"
+      ]
+    },
+    {
+      "id": "rd-010",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "first_relevant_rank": null,
+      "latency_ms": 16.669399999997836,
+      "retrieved_files": [
+        "ui\\streamlit_app.py",
+        "README.md",
+        "api\\main.py",
+        "README.md",
+        "tools\\log_analysis.py"
+      ]
+    },
+    {
+      "id": "rd-011",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "first_relevant_rank": null,
+      "latency_ms": 16.339999999999577,
+      "retrieved_files": [
+        "tests\\check_config.py",
+        "tests\\check_dense.py",
+        "repository\\analyzer.py",
+        "agent\\core.py",
+        "tests\\check_splitter.py"
+      ]
+    },
+    {
+      "id": "rd-012",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "first_relevant_rank": 3,
+      "latency_ms": 16.64960000000093,
+      "retrieved_files": [
+        "tests\\check_agent.py",
+        "agent\\extensions.py",
+        "agent\\core.py",
+        "tools\\log_analysis.py",
+        "tools\\log_analysis.py"
+      ]
+    },
+    {
+      "id": "rd-013",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 18.31399999999661,
+      "retrieved_files": [
+        "agent\\core.py",
+        "agent\\core.py",
+        "tools\\log_analysis.py",
+        "tools\\log_analysis.py",
+        "repository\\analyzer.py"
+      ]
+    },
+    {
+      "id": "rd-014",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "first_relevant_rank": null,
+      "latency_ms": 17.86570000000154,
+      "retrieved_files": [
+        "api\\main.py",
+        "agent\\extensions.py",
+        "agent\\extensions.py",
+        "README.md",
+        "ui\\streamlit_app.py"
+      ]
+    },
+    {
+      "id": "rd-015",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 24.438099999997576,
+      "retrieved_files": [
+        "tools\\log_analysis.py",
+        "tools\\log_analysis.py",
+        "agent\\core.py",
+        "ui\\streamlit_app.py",
+        "agent\\extensions.py"
+      ]
+    },
+    {
+      "id": "rd-016",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 21.275500000001557,
+      "retrieved_files": [
+        "api\\main.py",
+        "rag\\hybrid.py",
+        "tests\\check_hybrid.py",
+        "README.md",
+        "rag\\query_rewriter.py"
+      ]
+    },
+    {
+      "id": "rd-017",
+      "query_type": "misleading_keyword",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 21.188199999997437,
+      "retrieved_files": [
+        "tools\\registry.py",
+        "tools\\registry.py",
+        "api\\main.py",
+        "tools\\log_analysis.py",
+        "tools\\log_analysis.py"
+      ]
+    },
+    {
+      "id": "rd-018",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "first_relevant_rank": 5,
+      "latency_ms": 19.6547000000038,
+      "retrieved_files": [
+        "agent\\code_qa.py",
+        "agent\\code_qa.py",
+        "agent\\core.py",
+        "agent\\code_qa.py",
+        "rag\\query_rewriter.py"
+      ]
+    },
+    {
+      "id": "rd-019",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 18.978699999998128,
+      "retrieved_files": [
+        "rag\\reranker.py",
+        "api\\main.py",
+        "rag\\dense.py",
+        "rag\\reranker.py",
+        "rag\\reranker.py"
+      ]
+    },
+    {
+      "id": "rd-020",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "first_relevant_rank": 3,
+      "latency_ms": 20.448999999999273,
+      "retrieved_files": [
+        "agent\\citations.py",
+        "agent\\citations.py",
+        "ui\\streamlit_app.py",
+        "tests\\check_api.py",
+        "agent\\citations.py"
+      ]
+    },
+    {
+      "id": "rd-021",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 18.97519999999986,
+      "retrieved_files": [
+        "repository\\analyzer.py",
+        "agent\\code_qa.py",
+        "docs\\routing_experiment.md",
+        "agent\\code_qa.py",
+        "tools\\registry.py"
+      ]
+    },
+    {
+      "id": "rd-022",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "first_relevant_rank": 2,
+      "latency_ms": 18.916799999999512,
+      "retrieved_files": [
+        "ui\\streamlit_app.py",
+        "tools\\log_analysis.py",
+        "api\\main.py",
+        "agent\\core.py",
+        "tools\\log_analysis.py"
+      ]
+    },
+    {
+      "id": "rd-023",
+      "query_type": "identifier",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 17.359299999995415,
+      "retrieved_files": [
+        "api\\main.py",
+        "api\\main.py",
+        "repository\\search.py",
+        "tools\\registry.py",
+        "repository\\analyzer.py"
+      ]
+    },
+    {
+      "id": "rd-024",
+      "query_type": "natural_language",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 19.251900000000433,
+      "retrieved_files": [
+        "agent\\extensions.py",
+        "agent\\core.py",
+        "agent\\extensions.py",
+        "agent\\extensions.py",
+        "README.md"
+      ]
+    },
+    {
+      "id": "rd-025",
+      "query_type": "colloquial_zh",
+      "should_retrieve": true,
+      "first_relevant_rank": 2,
+      "latency_ms": 21.973099999996748,
+      "retrieved_files": [
+        "README.md",
+        "agent\\extensions.py",
+        "ui\\streamlit_app.py",
+        "agent\\citations.py",
+        "ui\\streamlit_app.py"
+      ]
+    },
+    {
+      "id": "rd-026",
+      "query_type": "misleading_keyword",
+      "should_retrieve": true,
+      "first_relevant_rank": 1,
+      "latency_ms": 21.64290000000335,
+      "retrieved_files": [
+        "repository\\search.py",
+        "rag\\bm25.py",
+        "repository\\search.py",
+        "ui\\streamlit_app.py",
+        "rag\\query_rewriter.py"
+      ]
+    },
+    {
+      "id": "rd-027",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "first_relevant_rank": null,
+      "latency_ms": 16.05419999999924,
+      "retrieved_files": [
+        "README.md",
+        "agent\\code_qa.py",
+        "README.md",
+        "api\\main.py",
+        "rag\\hybrid.py"
+      ]
+    },
+    {
+      "id": "rd-028",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "first_relevant_rank": null,
+      "latency_ms": 15.645700000000318,
+      "retrieved_files": [
+        "README.md",
+        "agent\\code_qa.py",
+        "README.md",
+        "rag\\reranker.py",
+        "rag\\reranker.py"
+      ]
+    },
+    {
+      "id": "rd-029",
+      "query_type": "irrelevant",
+      "should_retrieve": false,
+      "first_relevant_rank": null,
+      "latency_ms": 16.37050000000073,
+      "retrieved_files": [
+        "ui\\streamlit_app.py",
+        "ui\\streamlit_app.py",
+        "ui\\streamlit_app.py",
+        "rag\\bm25.py",
+        "tools\\log_analysis.py"
+      ]
+    },
+    {
+      "id": "rd-030",
+      "query_type": "cross_file",
+      "should_retrieve": true,
+      "first_relevant_rank": 3,
+      "latency_ms": 17.822500000001185,
+      "retrieved_files": [
+        "tests\\check_config.py",
+        "tests\\check_dense.py",
+        "rag\\dense.py",
+        "rag\\dense.py",
+        "agent\\core.py"
+      ]
+    }
+  ]
+}

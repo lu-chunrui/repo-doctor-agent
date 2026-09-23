@@ -7,3 +7,4 @@ bm25_index/
 lora_outputs/
 .env
 models/
+.vscode/

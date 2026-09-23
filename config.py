@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     llm_temperature: float = 0.1
 
     # Agent
-    max_tool_steps: int = 6
+    max_tool_steps: int = 4
     max_tool_result_chars: int = 30000
     max_tool_content_chars: int = 12000
     memory_max_turns: int = 6
@@ -73,9 +73,9 @@ class Settings(BaseSettings):
     # Paths
     runtime_directory: Path = PROJECT_ROOT / "runtime_data"
 
-    # 以后实现软熔断时再启用
+    # 软熔断
     soft_fuse_enabled: bool = False
-    soft_fuse_distance_threshold: Optional[float] = None
+    soft_fuse_similarity_threshold: Optional[float] = None
 
     model_config = SettingsConfigDict(
         env_file=PROJECT_ROOT / ".env",
