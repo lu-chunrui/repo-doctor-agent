@@ -1,50 +1,50 @@
-import os
-from dataclasses import dataclass
-from hashlib import sha256
-from pathlib import Path
-from threading import RLock
-from typing import Any, Dict, Optional
-from uuid import uuid4
+import os#用于获取环境变量
+from dataclasses import dataclass#用于定义数据类
+from hashlib import sha256#用于计算哈希值，用于唯一标识文件
+from pathlib import Path#用于处理文件路径
+from threading import RLock#用于保护共享资源
+from typing import Any, Dict, Optional#用于类型提示
+from uuid import uuid4#用于生成唯一标识
 
 from fastapi import (
     FastAPI,
     HTTPException,
     Query,
-)
+)#用于处理查询参数
 from fastapi.middleware.cors import (
     CORSMiddleware,
-)
+)#用于处理跨域请求
 from pydantic import (
     BaseModel,
     Field,
-)
+)#用于定义模型字段，包括最小长度、描述等默认值
 
 from repository.scanner import (
     validate_repository,
-)
+)#用于验证仓库路径是否存在且为目录
 from rag.hybrid import (
     prepare_bm25_retriever,
     prepare_dense_retriever,
-)
+)#用于准备检索器，包括 BM25 和 Dense 索引
 from tools.registry import (
     AgentToolbox,
     TOOL_SCHEMAS,
-)
+)#用于注册工具，包括工具名称、描述、参数等
 from agent.core import (
     ToolCallingLLMClient,
-)
+)#用于调用 LLM 模型，包括工具调用、上下文管理等
 from agent.citations import (
     CitationAwareRepoDoctor,
     CitationValidator,
     EvidenceTrackingToolbox,
-)
+)#用于跟踪证据，包括引用、验证等
 from tools.log_analysis import (
     TracebackDiagnosisAgent,
-)
+)#用于诊断 Traceback 错误   
 from agent.extensions import (
     ConversationMemory,
     MemoryRepoDoctorAgent,
-)
+)#用于管理会话记忆，包括上下文、工具调用等
 from rag.query_rewriter import (
     QueryRewriter,
     RewrittenHybridRetriever,
@@ -53,7 +53,7 @@ from rag.reranker import (
     CodeReranker,
     RerankedCodeSearch,
     environment_flag,
-)
+)#用于设置环境变量，包括是否启用 CrossEncoder Reranker 等
 from config import settings
 
 
@@ -65,7 +65,7 @@ app = FastAPI(
     ),
     version="0.1.0",
 )
-
+#用于定义 FastAPI 应用，包括标题、描述、版本等
 
 def load_cors_origins():
     raw_origins = os.getenv(
@@ -80,7 +80,7 @@ def load_cors_origins():
         origin.strip()
         for origin in raw_origins.split(",")
         if origin.strip()
-    ]
+    ]#用于加载跨域请求的来源，包括环境变量和默认值
 
 
 app.add_middleware(
@@ -95,9 +95,9 @@ app.add_middleware(
         "Content-Type",
         "Authorization",
     ],
-)
+)#用于添加跨域请求中间件，包括允许的来源、方法、头等默认值
 
-
+#接口的输入契约
 class IndexRequest(BaseModel):
     repository_path: str = Field(
         min_length=1,
@@ -165,7 +165,7 @@ class SessionRequest(BaseModel):
         max_length=settings.max_session_id_length,
     )
 
-
+#以下都是检验合理性
 def load_allowed_roots():
     raw_roots = os.getenv(
         "REPO_DOCTOR_ALLOWED_ROOTS",
@@ -269,12 +269,8 @@ def repository_identifier(
         normalized_path.encode("utf-8")
     ).hexdigest()[:16]
 
-
+#以下是将格式转换成需要的格式
 class RerankedSearchAdapter:
-    """
-    将 Day 16 的返回格式适配成
-    Day 9 AgentToolbox 需要的 search() 格式。
-    """
 
     def __init__(
         self,
@@ -317,7 +313,7 @@ class RerankedSearchAdapter:
 
         return result["results"]
 
-
+#以下是仓库运行时的配置
 @dataclass
 class RepositoryRuntime:
     repository_path: Path
@@ -331,7 +327,7 @@ class RepositoryRuntime:
     search_pipeline: RerankedCodeSearch
     reranker_enabled: bool
 
-
+#以下是会话运行时的配置
 @dataclass
 class SessionRuntime:
     repository_path: Path
@@ -343,7 +339,7 @@ class SessionRuntime:
     diagnosis_agent: TracebackDiagnosisAgent
     lock: RLock
 
-
+#以下是后端管理器，建索引，取会话，对话/诊断，清记忆
 class BackendManager:
     def __init__(self):
         self.repositories: Dict[

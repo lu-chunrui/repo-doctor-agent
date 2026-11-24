@@ -1,19 +1,21 @@
-import re
-from uuid import uuid4
+#Repo Doctor Agent 界面
+#大部分都是渲染操作，只有少数是与后端交互的函数
+import re  #导入正则表达式
+from uuid import uuid4  #给每个会话分配独立ID
 
-import requests
-import streamlit as st
-from config import settings
+import requests  #用于向后端发送HTTP请求请求
+import streamlit as st  #快速写WebUI
+from config import settings  #从本地引入配置
 
 st.set_page_config(
     page_title="Repo Doctor Agent",
     page_icon="🩺",
     layout="wide",
-)
+)#设置页面布局
 
 
 class BackendAPIError(RuntimeError):
-    pass
+    pass #自定义异常类，用于表示后端API调用失败
 
 
 class RepoDoctorAPIClient:
@@ -30,7 +32,7 @@ class RepoDoctorAPIClient:
 
         self.base_url = (
             base_url.rstrip("/")
-        )
+        )#去掉结尾的斜杠
 
     def _request(
         self,
@@ -39,7 +41,7 @@ class RepoDoctorAPIClient:
         timeout=settings.request_timeout,
         **kwargs,
     ):
-        url = f"{self.base_url}{path}"
+        url = f"{self.base_url}{path}"#拼接URL
 
         try:
             response = requests.request(
@@ -59,7 +61,7 @@ class RepoDoctorAPIClient:
         except ValueError:
             response_data = {
                 "detail": response.text[:2000]
-            }
+            }#如果响应不是JSON格式，就用文本内容作为detail字段
 
         if not response.ok:
             detail = response_data.get(
@@ -70,7 +72,7 @@ class RepoDoctorAPIClient:
             raise BackendAPIError(
                 f"HTTP {response.status_code}："
                 f"{detail}"
-            )
+            )#如果响应状态码不是200，就抛出异常
 
         return response_data
 
@@ -79,7 +81,7 @@ class RepoDoctorAPIClient:
             method="GET",
             path="/api/v1/health",
             timeout=20,
-        )
+        )#检查后端是否健康
 
     def index_repository(
         self,
@@ -102,7 +104,7 @@ class RepoDoctorAPIClient:
                     enable_reranker
                 ),
             },
-        )
+        )#索引仓库，返回索引信息
 
     def chat(
         self,
@@ -120,7 +122,7 @@ class RepoDoctorAPIClient:
                 "session_id": session_id,
                 "message": message,
             },
-        )
+        )#与后端进行聊天，返回聊天结果
 
     def analyze_log(
         self,
@@ -138,7 +140,7 @@ class RepoDoctorAPIClient:
                 "session_id": session_id,
                 "log_text": log_text,
             },
-        )
+        )#分析日志，返回分析结果
 
     def clear_memory(
         self,
@@ -154,7 +156,7 @@ class RepoDoctorAPIClient:
                 ),
                 "session_id": session_id,
             },
-        )
+        )#清除会话记忆，返回清除结果
 
     def get_memory(
         self,
@@ -171,7 +173,7 @@ class RepoDoctorAPIClient:
                 "session_id": session_id,
             },
             timeout=20,
-        )
+        )#获取会话记忆，返回记忆内容
 
 
 def initialize_session_state():
@@ -191,13 +193,13 @@ def initialize_session_state():
             st.session_state[
                 key
             ] = default_value
-
+#初始化会话状态，设置默认值
 
 def reset_local_conversation():
     st.session_state.chat_messages = []
     st.session_state.last_log_result = (
         None
-    )
+    )#重置本地会话，清空聊天记录和日志结果
 
 
 def start_new_session():
@@ -206,7 +208,7 @@ def start_new_session():
     )
 
     reset_local_conversation()
-
+#开始新对话，重置状态
 
 def render_tool_trace(
     tool_trace,
@@ -238,7 +240,7 @@ def render_tool_trace(
             }
         )
 
-    st.table(table_rows)
+    st.table(table_rows)#渲染工具调用记录表格
 
     for index, item in enumerate(
         tool_trace
@@ -253,7 +255,7 @@ def render_tool_trace(
                     "arguments",
                     {},
                 )
-            )
+            )#渲染工具调用参数JSON
 
 
 def render_evidence(
@@ -328,7 +330,7 @@ def render_evidence(
                     content,
                     language=language,
                     line_numbers=True,
-                )
+                )#将引用代码证据展示出来
 
 
 def render_citation_report(
@@ -376,7 +378,7 @@ def extract_code_blocks(text):
         r"(.*?)"
         r"\n```",
         flags=re.DOTALL,
-    )
+    )#定义正则表达式模式，用于匹配 Markdown 代码块
 
     blocks = []
 
@@ -398,7 +400,7 @@ def extract_code_blocks(text):
             }
         )
 
-    return blocks
+    return blocks#返回提取到的代码块列表
 
 
 def choose_download_filename(
@@ -432,7 +434,7 @@ def choose_download_filename(
         )
 
     return f"generated_{index}.txt"
-
+#根据代码块语言选择下载文件名，默认使用文本格式
 
 def choose_mime_type(
     filename,
@@ -449,7 +451,7 @@ def choose_mime_type(
         return "text/yaml"
 
     return "text/plain"
-
+#根据文件名选择 MIME MIME 类型
 
 def render_download_buttons(
     answer,
@@ -496,7 +498,7 @@ def render_download_buttons(
                     f"{key_prefix}_"
                     f"download_{index}"
                 ),
-            )
+            )#渲染下载按钮
 
 
 def render_response_details(
@@ -557,7 +559,6 @@ def render_response_details(
             f"{memory.get('max_chars', 0)} 字符"
         )
 
-
 def render_chat_history():
     for index, message in enumerate(
         st.session_state.chat_messages
@@ -598,7 +599,7 @@ def render_chat_history():
                         f"history_{index}"
                     ),
                 )
-
+#渲染聊天历史记录，包括工具调用轨迹、代码证据、引用检查和下载按钮
 
 def render_sidebar(
     api_client,
@@ -754,7 +755,7 @@ def render_sidebar(
 
             except BackendAPIError as error:
                 st.error(str(error))
-
+#渲染侧边栏，包括会话 ID、状态检查、索引建立/加载、清空对话记忆和索引信息
 
 def render_chat_tab(
     api_client,
@@ -1082,7 +1083,7 @@ def render_system_tab(
 
 
 def main():
-    initialize_session_state()
+    initialize_session_state()#初始化会话状态，包括会话 ID、聊天消息、索引仓库路径和后端状态结果
 
     st.title(
         "🩺 Repo Doctor Agent"

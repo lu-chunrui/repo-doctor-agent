@@ -10,32 +10,7 @@
 - **混合代码检索**：Dense 与 BM25 双路召回，通过 RRF 融合，并支持 Query Rewrite 与 CrossEncoder Reranker。
 - **证据约束回答**：记录每次工具调用的源码证据，校验 `[文件路径:起始行-结束行]` 引用，减少无依据回答。
 - **端到端评测**：同时评估工具决策、工具选择、参数、检索证据、引用和最终回答支持度。
-- **安全边界**：只允许访问配置目录中的仓库，不执行待分析仓库中的未知代码，并限制输入和工具结果大小。
 - **完整交互入口**：提供 FastAPI 后端、Swagger API 文档和 Streamlit Web UI。
-
-## 工作流程
-
-```text
-用户问题
-   |
-   v
-意图判断与 Query Rewrite
-   |
-   +-- semantic query --> Dense Retriever --------+
-   |                                               |
-   `-- keyword query  --> BM25 Retriever ----------+--> RRF
-                                                       |
-                                                       v
-                                             CrossEncoder Reranker
-                                                       |
-                                                       v
-LLM <---- 带文件路径和行号的证据 <---- Agent 工具调用
-   |
-   v
-回答生成 --> 引用校验 --> 多轮会话记忆 --> API / Web UI
-```
-
-软熔断作为可选实验功能保留，默认关闭。当前 30 条检索评测中，开启阈值熔断会误伤 1 条相关查询，而 Query Rewrite 已能过滤无关查询，因此默认配置优先保证召回率。
 
 ## 核心能力
 
@@ -297,16 +272,3 @@ repo-doctor-agent/
 ├── config.py              # 集中配置
 └── requirements.txt
 ```
-
-## 当前限制
-
-- AST 静态分析目前只支持 Python；其他文本文件可以参与检索，但没有语言级结构分析。
-- 当前检索集和 Agent 集均为 30 条，结果仍需在更多仓库和盲测数据上验证。
-- Query Rewrite 和 Reranker 提升了当前评测效果，但显著增加延迟。
-- 代码补全、测试和 Dockerfile 工具负责收集可信上下文，最终生成内容仍需要人工审查。
-- `tests/check_*.py` 主要是手动检查脚本，尚未形成完整的自动化单元测试套件。
-- LLM-as-Judge 不是人工标注的替代品，其结果可能受 Judge 模型和提示词影响。
-
-## License
-
-当前仓库尚未添加开源许可证。在添加 `LICENSE` 前，默认保留全部权利。

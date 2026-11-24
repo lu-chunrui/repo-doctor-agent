@@ -20,7 +20,8 @@ from rag.hybrid import (
     prepare_dense_retriever,
 )
 
-
+#以下是工具的注册
+#注册工具的模式
 TOOL_SCHEMAS = [
     {
         "type": "function",
@@ -229,7 +230,9 @@ def truncate_text(text, max_chars=None):
     return (
         text[:max_chars]
         + "\n...内容过长，已截断..."
-    )
+    )#截断文本，防止超出最大字符数
+
+#以下是添加行号的函数
 def add_line_numbers(
         file_result,
     ):

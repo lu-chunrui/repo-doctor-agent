@@ -27,7 +27,7 @@ CODE_FENCE_PATTERN = re.compile(
     r"```.*?(?:```|\Z)",
     re.DOTALL,
 )
-
+#以下是引用校验与修正助手的系统提示
 CITATION_REPAIR_SYSTEM_PROMPT = """
 你是一个代码回答引用校验与修正助手。
 
@@ -68,7 +68,6 @@ def normalize_path_text(path_text):
 
 class EvidenceTrackingToolbox:
     """
-    包装 Day 9 工具箱。
 
     每次执行工具时，自动记录工具返回的：
     - 文件路径
